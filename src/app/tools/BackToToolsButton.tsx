@@ -4,11 +4,12 @@ import Link from "next/link";
 
 export function BackToToolsButton() {
   return (
-    <Link href="/tools" style={{ textDecoration: "none", display: "inline-block", marginBottom: "2rem" }}>
+    <Link href="/tools" style={{ textDecoration: "none", display: "inline-block", marginBottom: "2.5rem", marginTop: "0.5rem" }}>
       <button
         style={{
           display: "inline-flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: "0.75rem",
           padding: "0.9rem 1.8rem",
           borderRadius: "0.75rem",
@@ -18,17 +19,20 @@ export function BackToToolsButton() {
           cursor: "pointer",
           fontWeight: 600,
           fontSize: "0.95rem",
-          transition: "all 0.3s",
+          transition: "all 0.3s ease",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = "rgba(168,124,246,0.25)";
           e.currentTarget.style.borderColor = "rgba(168,124,246,0.8)";
-          e.currentTarget.style.transform = "translateX(-4px)";
+          e.currentTarget.style.transform = "translateY(-3px)";
+          e.currentTarget.style.boxShadow = "0 8px 25px rgba(139,92,246,0.3)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = "rgba(168,124,246,0.15)";
           e.currentTarget.style.borderColor = "rgba(168,124,246,0.5)";
-          e.currentTarget.style.transform = "translateX(0)";
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
         }}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
