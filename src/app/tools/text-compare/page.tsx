@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 interface DiffLine {
   type: "add" | "remove" | "same";
@@ -49,19 +49,14 @@ export default function TextComparePage() {
   return (
     <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.75)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
-          </svg>
-          Back to Tools
-        </Link>
+        <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Text Compare</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Compare two texts and see the differences</p>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Text Compare</h1>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two texts and see the differences</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text 1</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 1</label>
             <textarea
               value={text1}
               onChange={(e) => setText1(e.target.value)}
@@ -69,20 +64,20 @@ export default function TextComparePage() {
               style={{
                 width: "100%",
                 height: "300px",
-                padding: "1rem",
+                padding: "1.25rem",
                 borderRadius: "0.75rem",
                 border: "1px solid rgba(168,124,246,0.3)",
                 background: "rgba(30,27,75,0.6)",
                 color: "#ede9ff",
                 fontFamily: "monospace",
-                fontSize: "0.875rem",
+                fontSize: "0.95rem",
                 resize: "none",
               }}
             />
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text 2</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 2</label>
             <textarea
               value={text2}
               onChange={(e) => setText2(e.target.value)}
@@ -90,30 +85,31 @@ export default function TextComparePage() {
               style={{
                 width: "100%",
                 height: "300px",
-                padding: "1rem",
+                padding: "1.25rem",
                 borderRadius: "0.75rem",
                 border: "1px solid rgba(168,124,246,0.3)",
                 background: "rgba(30,27,75,0.6)",
                 color: "#ede9ff",
                 fontFamily: "monospace",
-                fontSize: "0.875rem",
+                fontSize: "0.95rem",
                 resize: "none",
               }}
             />
           </div>
         </div>
 
-        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
+        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
           <button
             onClick={handleCompare}
             style={{
-              padding: "0.75rem 1.5rem",
+              padding: "0.9rem 2rem",
               borderRadius: "0.5rem",
               border: "none",
               background: "linear-gradient(120deg, #a78bfa, #c084fc)",
               color: "#fff",
               cursor: "pointer",
               fontWeight: 600,
+              fontSize: "0.95rem",
             }}
           >
             Compare
@@ -121,7 +117,7 @@ export default function TextComparePage() {
           <button
             onClick={() => setViewMode("split")}
             style={{
-              padding: "0.75rem 1.5rem",
+              padding: "0.9rem 1.8rem",
               borderRadius: "0.5rem",
               border: "1px solid",
               background: viewMode === "split" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
@@ -129,6 +125,7 @@ export default function TextComparePage() {
               color: "#c4b5fd",
               cursor: "pointer",
               fontWeight: 600,
+              fontSize: "0.95rem",
             }}
           >
             Split View
@@ -136,7 +133,7 @@ export default function TextComparePage() {
           <button
             onClick={() => setViewMode("unified")}
             style={{
-              padding: "0.75rem 1.5rem",
+              padding: "0.9rem 1.8rem",
               borderRadius: "0.5rem",
               border: "1px solid",
               background: viewMode === "unified" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
@@ -144,6 +141,7 @@ export default function TextComparePage() {
               color: "#c4b5fd",
               cursor: "pointer",
               fontWeight: 600,
+              fontSize: "0.95rem",
             }}
           >
             Unified View
@@ -153,26 +151,26 @@ export default function TextComparePage() {
         {diff.length > 0 && (
           <>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem", marginBottom: "2rem" }}>
-              <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                <div style={{ fontSize: "2rem", fontWeight: 800, color: "#86efac" }}>{stats.same}</div>
-                <div style={{ fontSize: "0.875rem", color: "rgba(220,210,255,0.72)" }}>Unchanged</div>
+              <div style={{ padding: "1.25rem", borderRadius: "0.75rem", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}>
+                <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#86efac" }}>{stats.same}</div>
+                <div style={{ fontSize: "0.95rem", color: "rgba(220,210,255,0.72)" }}>Unchanged</div>
               </div>
-              <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)" }}>
-                <div style={{ fontSize: "2rem", fontWeight: 800, color: "#fca5a5" }}>{stats.removed}</div>
-                <div style={{ fontSize: "0.875rem", color: "rgba(220,210,255,0.72)" }}>Removed</div>
+              <div style={{ padding: "1.25rem", borderRadius: "0.75rem", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)" }}>
+                <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#fca5a5" }}>{stats.removed}</div>
+                <div style={{ fontSize: "0.95rem", color: "rgba(220,210,255,0.72)" }}>Removed</div>
               </div>
-              <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                <div style={{ fontSize: "2rem", fontWeight: 800, color: "#86efac" }}>{stats.added}</div>
-                <div style={{ fontSize: "0.875rem", color: "rgba(220,210,255,0.72)" }}>Added</div>
+              <div style={{ padding: "1.25rem", borderRadius: "0.75rem", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}>
+                <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#86efac" }}>{stats.added}</div>
+                <div style={{ fontSize: "0.95rem", color: "rgba(220,210,255,0.72)" }}>Added</div>
               </div>
             </div>
 
-            <div style={{ padding: "1rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", maxHeight: "400px", overflow: "auto" }}>
+            <div style={{ padding: "1.25rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", maxHeight: "400px", overflow: "auto" }}>
               {diff.map((line, idx) => (
                 <div
                   key={idx}
                   style={{
-                    padding: "0.5rem",
+                    padding: "0.7rem",
                     background:
                       line.type === "add"
                         ? "rgba(34,197,94,0.15)"
@@ -192,10 +190,10 @@ export default function TextComparePage() {
                           ? "#fca5a5"
                           : "#ede9ff",
                     fontFamily: "monospace",
-                    fontSize: "0.875rem",
+                    fontSize: "0.95rem",
                   }}
                 >
-                  <span style={{ marginRight: "0.5rem" }}>
+                  <span style={{ marginRight: "0.75rem" }}>
                     {line.type === "add" ? "+" : line.type === "remove" ? "−" : " "}
                   </span>
                   {line.content || "∅"}
