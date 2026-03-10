@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import HeroButtons from "./HeroButtons";
 import FAQ from "./FAQ";
+import { useState } from "react";
 
 const toolsList = [
   { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", desc: "Format & minify JSON", category: "Data", href: "/tools/json-beautifier", color: "#8b5cf6" },
@@ -81,18 +84,12 @@ export default function Home() {
           
           <div style={{ display:"flex", gap:"1rem", marginBottom:"2.5rem", flexWrap:"wrap" }}>
             <Link href="/converter" style={{ textDecoration:"none" }}>
-              <button style={{ padding:"1rem 2.2rem", borderRadius:"0.75rem", border:"none", background:"linear-gradient(120deg, #a78bfa, #c084fc)", color:"#fff", cursor:"pointer", fontWeight:700, fontSize:"1rem", transition:"all 0.3s", boxShadow: "0 8px 25px rgba(139,92,246,0.3)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 35px rgba(139,92,246,0.4)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 8px 25px rgba(139,92,246,0.3)"; }}
-              >
+              <button className="btn-primary" style={{ padding:"1rem 2.2rem", borderRadius:"0.75rem", border:"none", background:"linear-gradient(120deg, #a78bfa, #c084fc)", color:"#fff", cursor:"pointer", fontWeight:700, fontSize:"1rem", transition:"all 0.3s", boxShadow: "0 8px 25px rgba(139,92,246,0.3)" }}>
                 📤 Convert Now
               </button>
             </Link>
             <Link href="/features" style={{ textDecoration:"none" }}>
-              <button style={{ padding:"1rem 2.2rem", borderRadius:"0.75rem", border:"1.5px solid rgba(168,124,246,0.5)", background:"rgba(168,124,246,0.1)", color:"#c4b5fd", cursor:"pointer", fontWeight:700, fontSize:"1rem", transition:"all 0.3s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(168,124,246,0.2)"; e.currentTarget.style.borderColor = "rgba(168,124,246,0.8)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(168,124,246,0.1)"; e.currentTarget.style.borderColor = "rgba(168,124,246,0.5)"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
+              <button className="btn-secondary" style={{ padding:"1rem 2.2rem", borderRadius:"0.75rem", border:"1.5px solid rgba(168,124,246,0.5)", background:"rgba(168,124,246,0.1)", color:"#c4b5fd", cursor:"pointer", fontWeight:700, fontSize:"1rem", transition:"all 0.3s" }}>
                 ✨ Learn More
               </button>
             </Link>
@@ -132,7 +129,7 @@ export default function Home() {
           <div style={{ display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"0.9rem", marginBottom:"1.75rem" }}>
             {toolsList.map(tool => (
               <Link key={tool.id} href={tool.href} style={{ textDecoration:"none" }}>
-                <div style={{
+                <div className="tool-card" style={{
                   padding:"1.1rem",
                   borderRadius:"0.85rem",
                   border:"1.5px solid rgba(168,124,246,0.2)",
@@ -142,18 +139,6 @@ export default function Home() {
                   textAlign:"center",
                   position: "relative",
                   overflow: "hidden",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(168,124,246,0.18)";
-                  e.currentTarget.style.borderColor = "rgba(168,124,246,0.6)";
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow = `0 8px 25px ${tool.color}20`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(168,124,246,0.08)";
-                  e.currentTarget.style.borderColor = "rgba(168,124,246,0.2)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
                 }}>
                   <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${tool.color}, transparent)`, opacity: 0 }}>
                     <div style={{ animation: "shimmer 2s infinite" }} />
@@ -168,10 +153,7 @@ export default function Home() {
           </div>
 
           <Link href="/tools" style={{ textDecoration:"none" }}>
-            <button style={{ width:"100%", padding:"1rem", borderRadius:"0.75rem", border:"1.5px solid rgba(139,92,246,0.4)", background:"rgba(139,92,246,0.12)", color:"#c4b5fd", cursor:"pointer", fontWeight:600, fontSize:"0.95rem", transition:"all 0.2s" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(139,92,246,0.22)"; e.currentTarget.style.borderColor = "rgba(139,92,246,0.7)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(139,92,246,0.12)"; e.currentTarget.style.borderColor = "rgba(139,92,246,0.4)"; }}
-            >
+            <button className="btn-tertiary" style={{ width:"100%", padding:"1rem", borderRadius:"0.75rem", border:"1.5px solid rgba(139,92,246,0.4)", background:"rgba(139,92,246,0.12)", color:"#c4b5fd", cursor:"pointer", fontWeight:600, fontSize:"0.95rem", transition:"all 0.2s" }}>
               🔧 View All Tools →
             </button>
           </Link>
@@ -242,15 +224,7 @@ export default function Home() {
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:"1.2rem" }}>
           {features.map(f => (
-            <div key={f.title} className="glass-card feature-card" style={{ padding:"1.8rem", background: "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02))", cursor: "pointer", transition: "all 0.3s" }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.background = "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.08))";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.background = "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02))";
-              }}>
+            <div key={f.title} className="glass-card feature-card" style={{ padding:"1.8rem", background: "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02))", cursor: "pointer", transition: "all 0.3s" }}>
               <div className="feature-icon" style={{ background:f.gradient, fontSize: "1.8rem" }}>{f.icon}</div>
               <h3 style={{ fontSize:"1.05rem", fontWeight:700, marginBottom:"0.5rem", color:"#ede9ff" }}>{f.title}</h3>
               <p style={{ fontSize:"0.85rem", color:"rgba(220,210,255,0.82)", lineHeight:1.6, margin:0 }}>{f.desc}</p>
@@ -308,9 +282,8 @@ export default function Home() {
             <input
               type="email"
               placeholder="your@email.com"
+              className="email-input"
               style={{ flex:"1", minWidth:"200px", padding:"0.85rem 1.1rem", borderRadius:"0.75rem", border:"1px solid rgba(255,255,255,0.15)", background:"rgba(255,255,255,0.08)", color:"#ede9ff", fontSize:"0.9rem", outline:"none", transition: "all 0.2s" }}
-              onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(168,124,246,0.6)"; e.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
-              onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.background = "rgba(255,255,255,0.08)"; }}
             />
             <button className="btn-glow" style={{ padding:"0.85rem 1.6rem", fontSize:"0.9rem", borderRadius:"0.75rem", whiteSpace:"nowrap" }}>
               Subscribe
@@ -359,9 +332,7 @@ export default function Home() {
               <div style={{ fontSize:"0.78rem", fontWeight:700, color:"rgba(220,210,255,0.5)", letterSpacing:"0.07em", textTransform:"uppercase", marginBottom:"1rem" }}>Product</div>
               {[["Converter","/converter"],["Tools","/tools"],["Features","/features"]].map(([l,h]) => (
                 <div key={l} style={{ marginBottom:"0.65rem" }}>
-                  <Link href={h} style={{ fontSize:"0.875rem", color:"rgba(220,210,255,0.75)", textDecoration:"none", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = "#c4b5fd"}
-                    onMouseLeave={(e) => e.currentTarget.style.color = "rgba(220,210,255,0.75)"}>{l}</Link>
+                  <Link href={h} style={{ fontSize:"0.875rem", color:"rgba(220,210,255,0.75)", textDecoration:"none", transition: "color 0.2s" }}>{l}</Link>
                 </div>
               ))}
             </div>
@@ -377,9 +348,7 @@ export default function Home() {
               <div style={{ fontSize:"0.78rem", fontWeight:700, color:"rgba(220,210,255,0.5)", letterSpacing:"0.07em", textTransform:"uppercase", marginBottom:"1rem" }}>Company</div>
               {["About","Blog","Careers","Privacy","Terms"].map(l => (
                 <div key={l} style={{ marginBottom:"0.65rem" }}>
-                  <span style={{ fontSize:"0.875rem", color:"rgba(220,210,255,0.75)", cursor:"pointer", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = "#c4b5fd"}
-                    onMouseLeave={(e) => e.currentTarget.style.color = "rgba(220,210,255,0.75)"}>{l}</span>
+                  <span style={{ fontSize:"0.875rem", color:"rgba(220,210,255,0.75)", cursor:"pointer", transition: "color 0.2s" }}>{l}</span>
                 </div>
               ))}
             </div>
@@ -388,9 +357,7 @@ export default function Home() {
             <span style={{ fontSize:"0.82rem", color:"rgba(220,210,255,0.5)" }}>© 2026 <span className="gradient-text" style={{ fontWeight:600 }}>AIEditPro</span> — File Conversion & Developer Tools</span>
             <div style={{ display:"flex", gap:"1.5rem" }}>
               {["Twitter","GitHub","Discord"].map(s => (
-                <span key={s} style={{ fontSize:"0.82rem", color:"rgba(220,210,255,0.55)", cursor:"pointer", fontWeight:500, transition: "color 0.2s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#c4b5fd"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "rgba(220,210,255,0.55)"}>{s}</span>
+                <span key={s} style={{ fontSize:"0.82rem", color:"rgba(220,210,255,0.55)", cursor:"pointer", fontWeight:500, transition: "color 0.2s" }}>{s}</span>
               ))}
             </div>
           </div>
@@ -412,6 +379,38 @@ export default function Home() {
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
+        }
+        
+        .btn-primary:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 35px rgba(139,92,246,0.4);
+        }
+        
+        .btn-secondary:hover {
+          background: rgba(168,124,246,0.2);
+          border-color: rgba(168,124,246,0.8);
+          transform: translateY(-4px);
+        }
+        
+        .btn-tertiary:hover {
+          background: rgba(139,92,246,0.22);
+          border-color: rgba(139,92,246,0.7);
+        }
+        
+        .tool-card:hover {
+          background: rgba(168,124,246,0.18);
+          border-color: rgba(168,124,246,0.6);
+          transform: translateY(-3px);
+        }
+        
+        .feature-card:hover {
+          transform: translateY(-4px);
+          background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.08));
+        }
+        
+        .email-input:focus {
+          border-color: rgba(168,124,246,0.6);
+          background: rgba(255,255,255,0.12);
         }
         
         @media (max-width: 768px) {
