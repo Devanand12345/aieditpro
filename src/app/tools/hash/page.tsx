@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BackToToolsButton from "@/components/BackToToolsButton";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 export default function HashGeneratorPage() {
   const [input, setInput] = useState("");
@@ -142,3 +142,4 @@ export default function HashGeneratorPage() {
     </div>
   );
 }
+

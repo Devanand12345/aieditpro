@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BackToToolsButton from "@/components/BackToToolsButton";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 interface RegexMatch {
   match: string;
@@ -195,3 +195,4 @@ export default function RegexTesterPage() {
     </div>
   );
 }
+

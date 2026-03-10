@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BackToToolsButton from "@/components/BackToToolsButton";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 export default function Base64Page() {
   const [input, setInput] = useState("");
@@ -164,3 +164,4 @@ export default function Base64Page() {
     </div>
   );
 }
+

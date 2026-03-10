@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BackToToolsButton from "@/components/BackToToolsButton";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 export default function UuidGeneratorPage() {
   const [uuids, setUuids] = useState<string[]>([]);
@@ -170,3 +170,4 @@ export default function UuidGeneratorPage() {
     </div>
   );
 }
+

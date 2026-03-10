@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BackToToolsButton from "@/components/BackToToolsButton";
+import { BackToToolsButton } from "../BackToToolsButton";
 
 export default function XmlFormatterPage() {
   const [input, setInput] = useState("");
@@ -223,3 +223,4 @@ export default function XmlFormatterPage() {
     </div>
   );
 }
+
