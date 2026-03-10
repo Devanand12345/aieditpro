@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import BackToToolsButton from "@/components/BackToToolsButton";
 
 export default function HashGeneratorPage() {
   const [input, setInput] = useState("");
@@ -49,18 +49,13 @@ export default function HashGeneratorPage() {
   return (
     <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-        <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.75)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
-          </svg>
-          Back to Tools
-        </Link>
+        <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Hash Generator</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Hash Generator</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes</p>
 
         <div style={{ marginBottom: "2rem" }}>
-          <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text Input</label>
+          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text Input</label>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -68,13 +63,13 @@ export default function HashGeneratorPage() {
             style={{
               width: "100%",
               height: "150px",
-              padding: "1rem",
+              padding: "1.25rem",
               borderRadius: "0.5rem",
               border: "1px solid rgba(168,124,246,0.3)",
               background: "rgba(30,27,75,0.6)",
               color: "#ede9ff",
               fontFamily: "monospace",
-              fontSize: "0.875rem",
+              fontSize: "0.95rem",
               resize: "none",
             }}
           />
@@ -85,7 +80,7 @@ export default function HashGeneratorPage() {
           disabled={loading}
           style={{
             width: "100%",
-            padding: "0.75rem 1.5rem",
+            padding: "0.9rem 1.5rem",
             borderRadius: "0.5rem",
             border: "none",
             background: loading ? "rgba(168,124,246,0.5)" : "linear-gradient(120deg, #a78bfa, #c084fc)",
@@ -93,13 +88,14 @@ export default function HashGeneratorPage() {
             cursor: loading ? "not-allowed" : "pointer",
             fontWeight: 600,
             marginBottom: "2rem",
+            fontSize: "0.95rem",
           }}
         >
           {loading ? "Generating..." : "Generate Hashes"}
         </button>
 
         {error && (
-          <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.875rem", marginBottom: "2rem" }}>
+          <div style={{ padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem", marginBottom: "2rem" }}>
             {error}
           </div>
         )}
@@ -107,14 +103,14 @@ export default function HashGeneratorPage() {
         {Object.keys(hashes).length > 0 && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {Object.entries(hashes).map(([type, hash]) => (
-              <div key={type} style={{ padding: "1rem", borderRadius: "0.5rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
-                <div style={{ fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>{type}</div>
+              <div key={type} style={{ padding: "1.25rem", borderRadius: "0.5rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
+                <div style={{ fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>{type}</div>
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                   <code
                     style={{
                       color: "#86efac",
                       fontFamily: "monospace",
-                      fontSize: "0.75rem",
+                      fontSize: "0.95rem",
                       wordBreak: "break-all",
                       flex: 1,
                     }}
@@ -131,7 +127,7 @@ export default function HashGeneratorPage() {
                       color: "#c4b5fd",
                       cursor: "pointer",
                       fontWeight: 600,
-                      fontSize: "0.75rem",
+                      fontSize: "0.95rem",
                       flexShrink: 0,
                     }}
                   >

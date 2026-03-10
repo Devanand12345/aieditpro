@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import BackToToolsButton from "@/components/BackToToolsButton";
 
 interface RegexMatch {
   match: string;
@@ -61,19 +61,14 @@ export default function RegexTesterPage() {
   return (
     <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.75)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
-          </svg>
-          Back to Tools
-        </Link>
+        <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Regex Tester</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Regex Tester</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Test and validate regular expressions</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Regex Pattern</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Regex Pattern</label>
             <input
               type="text"
               value={pattern}
@@ -81,13 +76,13 @@ export default function RegexTesterPage() {
               placeholder="e.g., /hello|world/gi"
               style={{
                 width: "100%",
-                padding: "0.75rem",
+                padding: "1.25rem",
                 borderRadius: "0.5rem",
                 border: "1px solid rgba(168,124,246,0.3)",
                 background: "rgba(30,27,75,0.6)",
                 color: "#ede9ff",
                 fontFamily: "monospace",
-                fontSize: "0.875rem",
+                fontSize: "0.95rem",
               }}
             />
             <div style={{ marginTop: "0.5rem", fontSize: "0.75rem", color: "rgba(220,210,255,0.6)" }}>
@@ -96,10 +91,10 @@ export default function RegexTesterPage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Flags</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Flags</label>
             <div style={{ display: "flex", gap: "0.5rem" }}>
               {["g", "i", "m", "s"].map((flag) => (
-                <label key={flag} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.875rem" }}>
+                <label key={flag} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
                   <input
                     type="checkbox"
                     checked={flags.includes(flag)}
@@ -122,7 +117,7 @@ export default function RegexTesterPage() {
         </div>
 
         <div style={{ marginBottom: "2rem" }}>
-          <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text to Test</label>
+          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text to Test</label>
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -130,13 +125,13 @@ export default function RegexTesterPage() {
             style={{
               width: "100%",
               height: "250px",
-              padding: "1rem",
+              padding: "1.25rem",
               borderRadius: "0.5rem",
               border: "1px solid rgba(168,124,246,0.3)",
               background: "rgba(30,27,75,0.6)",
               color: "#ede9ff",
               fontFamily: "monospace",
-              fontSize: "0.875rem",
+              fontSize: "0.95rem",
               resize: "none",
             }}
           />
@@ -146,7 +141,7 @@ export default function RegexTesterPage() {
           onClick={handleTest}
           style={{
             width: "100%",
-            padding: "0.75rem 1.5rem",
+            padding: "0.9rem 1.5rem",
             borderRadius: "0.5rem",
             border: "none",
             background: "linear-gradient(120deg, #a78bfa, #c084fc)",
@@ -154,13 +149,14 @@ export default function RegexTesterPage() {
             cursor: "pointer",
             fontWeight: 600,
             marginBottom: "2rem",
+            fontSize: "0.95rem",
           }}
         >
           Test Regex
         </button>
 
         {error && (
-          <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.875rem", marginBottom: "2rem" }}>
+          <div style={{ padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem", marginBottom: "2rem" }}>
             {error}
           </div>
         )}
