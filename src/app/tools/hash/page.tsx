@@ -1,0 +1,148 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+
+export default function HashGeneratorPage() {
+  const [input, setInput] = useState("");
+  const [hashes, setHashes] = useState<Record<string, string>>({});
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const generateHashes = async () => {
+    if (!input.trim()) return;
+
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/hash", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        setError(data.error || "Error generating hashes");
+        return;
+      }
+
+      const data = await response.json();
+      setHashes({
+        MD5: data.md5,
+        "SHA-1": data.sha1,
+        "SHA-256": data.sha256,
+        "SHA-512": data.sha512,
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error generating hashes");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
+      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.75)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+          Back to Tools
+        </Link>
+
+        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Hash Generator</h1>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes</p>
+
+        <div style={{ marginBottom: "2rem" }}>
+          <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text Input</label>
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter text to hash..."
+            style={{
+              width: "100%",
+              height: "150px",
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid rgba(168,124,246,0.3)",
+              background: "rgba(30,27,75,0.6)",
+              color: "#ede9ff",
+              fontFamily: "monospace",
+              fontSize: "0.875rem",
+              resize: "none",
+            }}
+          />
+        </div>
+
+        <button
+          onClick={generateHashes}
+          disabled={loading}
+          style={{
+            width: "100%",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "0.5rem",
+            border: "none",
+            background: loading ? "rgba(168,124,246,0.5)" : "linear-gradient(120deg, #a78bfa, #c084fc)",
+            color: "#fff",
+            cursor: loading ? "not-allowed" : "pointer",
+            fontWeight: 600,
+            marginBottom: "2rem",
+          }}
+        >
+          {loading ? "Generating..." : "Generate Hashes"}
+        </button>
+
+        {error && (
+          <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.875rem", marginBottom: "2rem" }}>
+            {error}
+          </div>
+        )}
+
+        {Object.keys(hashes).length > 0 && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            {Object.entries(hashes).map(([type, hash]) => (
+              <div key={type} style={{ padding: "1rem", borderRadius: "0.5rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
+                <div style={{ fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>{type}</div>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                  <code
+                    style={{
+                      color: "#86efac",
+                      fontFamily: "monospace",
+                      fontSize: "0.75rem",
+                      wordBreak: "break-all",
+                      flex: 1,
+                    }}
+                  >
+                    {hash}
+                  </code>
+                  <button
+                    onClick={() => copyToClipboard(hash)}
+                    style={{
+                      padding: "0.5rem 0.75rem",
+                      borderRadius: "0.25rem",
+                      border: "none",
+                      background: "rgba(168,124,246,0.3)",
+                      color: "#c4b5fd",
+                      cursor: "pointer",
+                      fontWeight: 600,
+                      fontSize: "0.75rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

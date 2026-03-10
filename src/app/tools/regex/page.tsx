@@ -1,0 +1,201 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+
+interface RegexMatch {
+  match: string;
+  index: number;
+  groups: string[];
+}
+
+export default function RegexTesterPage() {
+  const [pattern, setPattern] = useState("");
+  const [text, setText] = useState("");
+  const [flags, setFlags] = useState("g");
+  const [matches, setMatches] = useState<RegexMatch[]>([]);
+  const [error, setError] = useState("");
+
+  const handleTest = () => {
+    setError("");
+    setMatches([]);
+    try {
+      if (!pattern.trim()) {
+        setError("Please enter a regex pattern");
+        return;
+      }
+      if (!text.trim()) {
+        setError("Please enter text to test");
+        return;
+      }
+
+      const regex = new RegExp(pattern, flags);
+      const foundMatches: RegexMatch[] = [];
+
+      if (flags.includes("g")) {
+        let match;
+        while ((match = regex.exec(text)) !== null) {
+          foundMatches.push({
+            match: match[0],
+            index: match.index,
+            groups: match.slice(1),
+          });
+        }
+      } else {
+        const match = regex.exec(text);
+        if (match) {
+          foundMatches.push({
+            match: match[0],
+            index: match.index,
+            groups: match.slice(1),
+          });
+        }
+      }
+
+      setMatches(foundMatches);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Invalid regex pattern");
+    }
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.75)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+          Back to Tools
+        </Link>
+
+        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Regex Tester</h1>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Test and validate regular expressions</p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
+          <div>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Regex Pattern</label>
+            <input
+              type="text"
+              value={pattern}
+              onChange={(e) => setPattern(e.target.value)}
+              placeholder="e.g., /hello|world/gi"
+              style={{
+                width: "100%",
+                padding: "0.75rem",
+                borderRadius: "0.5rem",
+                border: "1px solid rgba(168,124,246,0.3)",
+                background: "rgba(30,27,75,0.6)",
+                color: "#ede9ff",
+                fontFamily: "monospace",
+                fontSize: "0.875rem",
+              }}
+            />
+            <div style={{ marginTop: "0.5rem", fontSize: "0.75rem", color: "rgba(220,210,255,0.6)" }}>
+              Pattern (without slashes and flags)
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Flags</label>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              {["g", "i", "m", "s"].map((flag) => (
+                <label key={flag} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.875rem" }}>
+                  <input
+                    type="checkbox"
+                    checked={flags.includes(flag)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setFlags((f) => f + flag);
+                      } else {
+                        setFlags((f) => f.replace(flag, ""));
+                      }
+                    }}
+                  />
+                  {flag === "g" && "Global"}
+                  {flag === "i" && "Ignore Case"}
+                  {flag === "m" && "Multiline"}
+                  {flag === "s" && "Dotall"}
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: "2rem" }}>
+          <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text to Test</label>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Enter text to test the regex against..."
+            style={{
+              width: "100%",
+              height: "250px",
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid rgba(168,124,246,0.3)",
+              background: "rgba(30,27,75,0.6)",
+              color: "#ede9ff",
+              fontFamily: "monospace",
+              fontSize: "0.875rem",
+              resize: "none",
+            }}
+          />
+        </div>
+
+        <button
+          onClick={handleTest}
+          style={{
+            width: "100%",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "0.5rem",
+            border: "none",
+            background: "linear-gradient(120deg, #a78bfa, #c084fc)",
+            color: "#fff",
+            cursor: "pointer",
+            fontWeight: 600,
+            marginBottom: "2rem",
+          }}
+        >
+          Test Regex
+        </button>
+
+        {error && (
+          <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.875rem", marginBottom: "2rem" }}>
+            {error}
+          </div>
+        )}
+
+        {matches.length > 0 && (
+          <div>
+            <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)", marginBottom: "1rem" }}>
+              <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "#86efac" }}>{matches.length}</div>
+              <div style={{ fontSize: "0.875rem", color: "rgba(220,210,255,0.72)" }}>Matches found</div>
+            </div>
+
+            <div style={{ padding: "1rem", borderRadius: "0.5rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", maxHeight: "400px", overflow: "auto" }}>
+              {matches.map((m, idx) => (
+                <div key={idx} style={{ marginBottom: "1rem", paddingBottom: "1rem", borderBottom: "1px solid rgba(168,124,246,0.2)" }}>
+                  <div style={{ color: "#86efac", fontFamily: "monospace", fontWeight: 600, marginBottom: "0.5rem", wordBreak: "break-all" }}>
+                    Match {idx + 1}: {m.match}
+                  </div>
+                  <div style={{ color: "rgba(220,210,255,0.72)", fontSize: "0.75rem" }}>
+                    Index: {m.index}
+                  </div>
+                  {m.groups.length > 0 && (
+                    <div style={{ marginTop: "0.5rem" }}>
+                      {m.groups.map((group, gidx) => (
+                        <div key={gidx} style={{ color: "#c4b5fd", fontSize: "0.75rem", fontFamily: "monospace" }}>
+                          Group {gidx + 1}: {group || "(empty)"}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
