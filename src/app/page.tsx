@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import HeroButtons from "./HeroButtons";
-import FAQ from "./FAQ";
+
 import { useState } from "react";
 
 const toolsList = [
@@ -21,14 +21,14 @@ const toolsList = [
 ];
 
 const features = [
-  { icon:"⚡", title:"Lightning Fast",    desc:"Convert files in seconds with our optimized AI pipeline.",             gradient:"linear-gradient(135deg,#f59e0b,#ef4444)" },
-  { icon:"🔒", title:"Secure & Private",  desc:"Files processed in isolation, deleted immediately after conversion.",  gradient:"linear-gradient(135deg,#10b981,#06b6d4)" },
-  { icon:"🎯", title:"High Accuracy",     desc:"99%+ fidelity — fonts, tables, images, layout all preserved.",         gradient:"linear-gradient(135deg,#8b5cf6,#ec4899)" },
-  { icon:"📦", title:"8+ Formats",        desc:"PDF, DOCX, TXT, HTML, EPUB, RTF, XLSX, PPTX and more.",               gradient:"linear-gradient(135deg,#ec4899,#f59e0b)" },
-  { icon:"🔄", title:"Batch Convert",     desc:"Upload and convert up to 50 files simultaneously.",                    gradient:"linear-gradient(135deg,#22d3ee,#8b5cf6)" },
-  { icon:"🛠️", title:"REST API",          desc:"Full API access for developers. SDKs for JS and Python.",             gradient:"linear-gradient(135deg,#8b5cf6,#22d3ee)" },
-  { icon:"📊", title:"Analytics",         desc:"Track conversions, usage trends and team performance.",                gradient:"linear-gradient(135deg,#f59e0b,#10b981)" },
-  { icon:"💬", title:"24/7 Support",      desc:"Real human support agents ready to help around the clock.",            gradient:"linear-gradient(135deg,#ec4899,#a78bfa)" },
+  { icon:"🎨", title:"JSON & Code Formatting",  desc:"Beautify, minify, and format JSON, HTML, XML with precision.",                   gradient:"linear-gradient(135deg,#8b5cf6,#a78bfa)" },
+  { icon:"📋", title:"Text Comparison & Diff",  desc:"Compare and analyze text differences instantly with side-by-side view.",       gradient:"linear-gradient(135deg,#10b981,#06b6d4)" },
+  { icon:"🔐", title:"Security & Encoding",     desc:"Decode JWTs, encode/decode Base64 & URLs with military-grade security.",     gradient:"linear-gradient(135deg,#ec4899,#f59e0b)" },
+  { icon:"#️⃣", title:"Hash & UUID Generation",  desc:"Generate MD5, SHA hashes and UUIDs (v1 & v4) in seconds.",                  gradient:"linear-gradient(135deg,#f59e0b,#ef4444)" },
+  { icon:"🔍", title:"Regex & Pattern Testing", desc:"Test and validate regex patterns with real-time results.",                     gradient:"linear-gradient(135deg,#06b6d4,#22d3ee)" },
+  { icon:"📊", title:"Data Processing",         desc:"Format and organize CSV, JSON, and tabular data effortlessly.",              gradient:"linear-gradient(135deg,#14b8a6,#10b981)" },
+  { icon:"⚡", title:"Lightning Fast",          desc:"All tools process data instantly with zero latency.",                       gradient:"linear-gradient(135deg,#a855f7,#8b5cf6)" },
+  { icon:"✨", title:"No Sign-Up Required",      desc:"Start using tools immediately — free and unlimited access.",               gradient:"linear-gradient(135deg,#fbbf24,#f59e0b)" },
 ];
 
 const formats = ["PDF","DOCX","XLSX","PPTX","EPUB","HTML","RTF","TXT"];
@@ -42,17 +42,6 @@ const fmtStyle = [
   { bg:"rgba(251,191,36,0.10)", border:"rgba(251,191,36,0.30)", text:"#fde68a" },
   { bg:"rgba(52,211,153,0.10)", border:"rgba(52,211,153,0.30)", text:"#6ee7b7" },
 ];
-
-const testimonials = [
-  { name:"Sarah K.",   role:"Content Manager",    avatar:"👩‍💼", text:"AIEditPro saved our team hours every week. The PDF to DOCX conversion is incredibly accurate — even complex tables come out perfectly.", stars:5, tag:"⚡ Saves 3h/week" },
-  { name:"James R.",   role:"Freelance Developer", avatar:"👨‍💻", text:"The REST API is exactly what I needed. Integration took under an hour and the accuracy is outstanding. Best file conversion service I've used.", stars:5, tag:"🛠️ API user" },
-  { name:"Priya S.",   role:"Legal Consultant",    avatar:"👩‍⚖️", text:"As a lawyer, document accuracy is critical. AIEditPro's conversion fidelity is unmatched — I trust it with sensitive legal documents.", stars:5, tag:"🔒 Security focused" },
-  { name:"Tom H.",     role:"Startup Founder",     avatar:"🧑‍🚀", text:"We process thousands of documents a month. The batch conversion and unlimited plan makes it incredibly cost-effective for our team.", stars:5, tag:"📦 Batch power user" },
-  { name:"Mei L.",     role:"UX Designer",          avatar:"👩‍🎨", text:"Converted all our design specs from PPTX to PDF in seconds. The formatting stayed pixel-perfect. Absolutely love this tool!", stars:5, tag:"🎨 Design team" },
-  { name:"Carlos M.",  role:"Data Analyst",         avatar:"👨‍💻", text:"The XLSX to CSV conversion is flawless. Handles complex spreadsheets with merged cells and formulas without breaking a sweat.", stars:5, tag:"📊 Data workflows" },
-];
-
-const trustedBy = ["Vercel", "Stripe", "Figma", "Notion", "Linear", "Shopify", "GitHub", "Slack"];
 
 const howItWorks = [
   { step:"01", icon:"📂", title:"Upload",  desc:"Drag & drop or click to browse. Any format, any size." },
@@ -160,18 +149,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Trusted By ───────────────────────────────────── */}
-      <section style={{ maxWidth:"1400px", margin:"4rem auto", padding:"0 2rem" }}>
-        <p style={{ textAlign:"center", fontSize:"0.78rem", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", color:"rgba(220,210,255,0.5)", marginBottom:"1.5rem" }}>
-          Trusted by teams at
-        </p>
-        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"1rem 2.5rem" }}>
-          {trustedBy.map(name => (
-            <span key={name} style={{ fontSize:"1rem", fontWeight:700, color:"rgba(220,210,255,0.35)", letterSpacing:"0.02em" }}>{name}</span>
-          ))}
-        </div>
-      </section>
-
       {/* ── Stats ────────────────────────────────────────── */}
       <section style={{ maxWidth:"1400px", margin:"0 auto 4rem", padding:"0 2rem" }}>
         <div className="glass-card" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", overflow:"hidden", background: "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(236,72,153,0.05))" }}>
@@ -220,7 +197,7 @@ export default function Home() {
           <h2 style={{ fontSize:"2.2rem", fontWeight:800, letterSpacing:"-0.03em", marginBottom:"0.75rem", color:"#ede9ff" }}>
             Why <span className="gradient-text-2">AIEditPro</span>?
           </h2>
-          <p style={{ color:"rgba(220,210,255,0.82)", fontSize:"1rem" }}>Everything you need for effortless file conversion</p>
+          <p style={{ color:"rgba(220,210,255,0.82)", fontSize:"1rem" }}>Everything you need for file conversion & developer tools</p>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:"1.2rem" }}>
           {features.map(f => (
@@ -230,86 +207,6 @@ export default function Home() {
               <p style={{ fontSize:"0.85rem", color:"rgba(220,210,255,0.82)", lineHeight:1.6, margin:0 }}>{f.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ── Testimonials ─────────────────────────────────── */}
-      <section style={{ maxWidth:"1400px", margin:"0 auto 6rem", padding:"0 2rem" }}>
-        <div style={{ textAlign:"center", marginBottom:"3rem" }}>
-          <h2 style={{ fontSize:"2.2rem", fontWeight:800, letterSpacing:"-0.03em", marginBottom:"0.75rem", color:"#ede9ff" }}>
-            Loved by <span className="gradient-text">Thousands</span>
-          </h2>
-          <p style={{ color:"rgba(220,210,255,0.82)", fontSize:"1rem" }}>Don't take our word for it — here's what our users say</p>
-        </div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))", gap:"1.5rem" }}>
-          {testimonials.map((t) => (
-            <div key={t.name} className="glass-card feature-card" style={{ padding:"1.8rem", display:"flex", flexDirection:"column", gap:"1rem", background: "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(236,72,153,0.05))" }}>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:"0.75rem" }}>
-                  <div style={{ width:"45px", height:"45px", borderRadius:"50%", background:"linear-gradient(135deg,rgba(139,92,246,0.3),rgba(236,72,153,0.3))", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.4rem", border:"1.5px solid rgba(168,124,246,0.3)" }}>
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <div style={{ fontSize:"0.9rem", fontWeight:700, color:"#ede9ff" }}>{t.name}</div>
-                    <div style={{ fontSize:"0.75rem", color:"rgba(220,210,255,0.7)" }}>{t.role}</div>
-                  </div>
-                </div>
-                <span style={{ fontSize:"0.7rem", fontWeight:700, padding:"0.3rem 0.7rem", borderRadius:"9999px", background:"rgba(139,92,246,0.15)", border:"1px solid rgba(139,92,246,0.25)", color:"#c4b5fd", whiteSpace:"nowrap" }}>{t.tag}</span>
-              </div>
-              <div style={{ display:"flex", gap:"3px" }}>
-                {Array.from({length:t.stars}).map((_,i) => <span key={i} style={{ color:"#fbbf24", fontSize:"0.9rem" }}>★</span>)}
-              </div>
-              <p style={{ fontSize:"0.875rem", color:"rgba(220,210,255,0.88)", lineHeight:1.7, margin:0, fontStyle:"italic" }}>"{t.text}"</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── FAQ ──────────────────────────────────────────── */}
-      <FAQ />
-
-      {/* ── Newsletter ───────────────────────────────────── */}
-      <section style={{ maxWidth:"600px", margin:"0 auto 6rem", padding:"0 2rem", textAlign:"center" }}>
-        <div className="glass-card" style={{ padding:"2.75rem 2.25rem", background:"linear-gradient(135deg,rgba(139,92,246,0.15),rgba(236,72,153,0.1))", border:"1.5px solid rgba(139,92,246,0.3)" }}>
-          <div style={{ fontSize:"2.2rem", marginBottom:"1rem" }}>📬</div>
-          <h3 style={{ fontSize:"1.45rem", fontWeight:800, color:"#ede9ff", marginBottom:"0.5rem", letterSpacing:"-0.02em" }}>
-            Stay in the loop
-          </h3>
-          <p style={{ fontSize:"0.9rem", color:"rgba(220,210,255,0.82)", marginBottom:"1.75rem", lineHeight:1.6 }}>
-            Get notified about new formats, features, and special offers.
-          </p>
-          <div style={{ display:"flex", gap:"0.6rem", flexWrap:"wrap", justifyContent:"center" }}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="email-input"
-              style={{ flex:"1", minWidth:"200px", padding:"0.85rem 1.1rem", borderRadius:"0.75rem", border:"1px solid rgba(255,255,255,0.15)", background:"rgba(255,255,255,0.08)", color:"#ede9ff", fontSize:"0.9rem", outline:"none", transition: "all 0.2s" }}
-            />
-            <button className="btn-glow" style={{ padding:"0.85rem 1.6rem", fontSize:"0.9rem", borderRadius:"0.75rem", whiteSpace:"nowrap" }}>
-              Subscribe
-            </button>
-          </div>
-          <p style={{ fontSize:"0.75rem", color:"rgba(220,210,255,0.55)", marginTop:"0.9rem" }}>No spam, ever. Unsubscribe anytime.</p>
-        </div>
-      </section>
-
-      {/* ── Final CTA ────────────────────────────────────── */}
-      <section style={{ maxWidth:"700px", margin:"0 auto 6rem", padding:"0 2rem", textAlign:"center" }}>
-        <div style={{ padding:"3.75rem 2.25rem", borderRadius:"1.5rem", position:"relative", overflow:"hidden", background:"linear-gradient(135deg,rgba(139,92,246,0.2),rgba(236,72,153,0.12))", border:"1.5px solid rgba(139,92,246,0.35)", backdropFilter:"blur(20px)", boxShadow:"0 8px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" }}>
-          <div style={{ position:"absolute", top:"-80px", left:"50%", transform:"translateX(-50%)", width:"320px", height:"220px", background:"radial-gradient(circle,rgba(139,92,246,0.25),transparent 70%)", pointerEvents:"none" }} />
-          <h2 style={{ fontSize:"2.1rem", fontWeight:800, letterSpacing:"-0.03em", marginBottom:"1rem", position:"relative", color:"#ede9ff" }}>
-            Ready to <span className="gradient-text">get started?</span>
-          </h2>
-          <p style={{ color:"rgba(220,210,255,0.85)", marginBottom:"2rem", position:"relative", fontSize: "1rem" }}>
-            No account needed. Upload your file and convert instantly.
-          </p>
-          <div style={{ display:"flex", gap:"1rem", justifyContent:"center", flexWrap:"wrap", position:"relative" }}>
-            <Link href="/converter" style={{ textDecoration:"none" }}>
-              <button className="btn-glow" style={{ fontSize:"1.05rem", padding:"1rem 2.75rem" }}>
-                Convert Your First File — Free
-              </button>
-            </Link>
-          </div>
         </div>
       </section>
 
