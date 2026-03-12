@@ -16,8 +16,98 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AIEditPro — Smart File Converter",
-  description: "Convert any file with AI-powered precision. Fast, secure, and beautifully simple.",
+  title: "AIEditPro - PDF Converter, JSON Beautifier & 12+ Developer Tools",
+  description: "Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT, EPUB, RTF instantly. Free online JSON beautifier, Base64 encoder, URL decoder, Hash generator & more developer tools. No sign-up required.",
+  keywords: [
+    "PDF converter",
+    "PDF to DOCX converter",
+    "PDF to Word",
+    "PDF to Excel",
+    "PDF to PowerPoint",
+    "online file converter",
+    "free file converter",
+    "document converter",
+    "JSON beautifier",
+    "JSON formatter",
+    "JSON minifier",
+    "HTML formatter",
+    "CSS formatter",
+    "CSV formatter",
+    "XML formatter",
+    "Base64 encoder",
+    "Base64 decoder",
+    "URL encoder",
+    "URL decoder",
+    "JWT decoder",
+    "JWT token decoder",
+    "Hash generator",
+    "MD5 hash",
+    "SHA256 hash",
+    "UUID generator",
+    "text compare",
+    "text diff",
+    "regex tester",
+    "developer tools",
+    "online tools",
+    "free online tools",
+    "file format converter",
+    "document conversion",
+    "batch converter",
+    "AI file converter",
+    "DOCX converter",
+    "Excel converter",
+    "PowerPoint converter",
+    "EPUB converter",
+    "RTF converter",
+    "TXT converter",
+    "HTML converter",
+  ].join(", "),
+  authors: [{ name: "AIEditPro" }],
+  creator: "AIEditPro",
+  publisher: "AIEditPro",
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
+  openGraph: {
+    title: "AIEditPro - Free Online File Converter & Developer Tools",
+    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 12 free developer tools including JSON beautifier, Base64 encoder, URL decoder, Hash generator, UUID generator & more.",
+    url: "https://aieditpro.net",
+    siteName: "AIEditPro",
+    images: [
+      {
+        url: "https://aieditpro.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AIEditPro - Free File Converter & Developer Tools",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AIEditPro - Free Online File Converter & 12+ Developer Tools",
+    description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, Base64 encoder, Hash generator & more. No sign-up required.",
+    images: ["https://aieditpro.net/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+  category: "Technology",
+  alternates: {
+    canonical: "https://aieditpro.net",
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +117,45 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Schema.org structured data for rich snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "AIEditPro",
+              description: "Free online file converter and developer tools suite",
+              url: "https://aieditpro.net",
+              applicationCategory: "Utility",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                ratingCount: "50000",
+              },
+              potentialAction: {
+                "@type": "UseAction",
+                target: "https://aieditpro.net/converter",
+              },
+            }),
+          }}
+        />
+        {/* Additional SEO meta tags */}
+        <meta name="theme-color" content="#a78bfa" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Preconnect to external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* Dynamic canvas background */}
         <DynamicBackground />

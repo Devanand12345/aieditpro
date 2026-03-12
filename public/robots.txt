@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.next/
+Disallow: /private/
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Other bots
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://aieditpro.net/sitemap.xml
