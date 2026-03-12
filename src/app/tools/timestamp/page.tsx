@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function TimestampConverter() {
-  const [now, setNow] = useState(Math.floor(Date.now() / 1000));
+  const [now, setNow] = useState(() => Math.floor(Date.now() / 1000));
   const [tsInput, setTsInput] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [tsResult, setTsResult] = useState<{ utc: string; local: string; relative: string; iso: string } | null>(null);

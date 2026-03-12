@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
@@ -129,11 +129,16 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   category: "Technology",
   alternates: {
     canonical: "https://AI-EditPro.net",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -144,7 +149,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Schema.org structured data for rich snippets */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -172,7 +176,6 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* FAQ Schema for rich snippets */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

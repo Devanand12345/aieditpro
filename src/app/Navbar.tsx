@@ -54,6 +54,7 @@ export default function Navbar() {
           <button
             onClick={() => setMenuOpen(o => !o)}
             className="mobile-menu-btn"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: "0.25rem", color: "rgba(220,210,255,0.88)" }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

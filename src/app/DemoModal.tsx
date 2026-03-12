@@ -66,8 +66,16 @@ function DownloadDemo() {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   useEffect(() => {
-    setProgress(0); setDone(false);
-    const t = setInterval(() => setProgress(p => { if(p>=100){clearInterval(t);setDone(true);return 100;} return p+5; }), 80);
+    const t = setInterval(() => {
+      setProgress(p => { 
+        if(p >= 100){
+          clearInterval(t);
+          setDone(true);
+          return 100;
+        } 
+        return p + 5; 
+      });
+    }, 80);
     return () => clearInterval(t);
   }, []);
   return (

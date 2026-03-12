@@ -2,35 +2,14 @@
 
 import Link from "next/link";
 import { useState, useMemo } from "react";
-
-const TOOLS = [
-  { id: "json-beautifier",    name: "JSON Beautifier",       icon: "🎨", desc: "Format and minify JSON with syntax validation and instant preview.",          category: "Data",      color: "#8b5cf6" },
-  { id: "html-formatter",     name: "HTML Formatter",         icon: "🌐", desc: "Beautify or minify HTML markup with proper indentation and structure.",       category: "Code",      color: "#06b6d4" },
-  { id: "jwt-decoder",        name: "JWT Decoder",            icon: "🔐", desc: "Decode and inspect JWT tokens — header, payload, and signature.",             category: "Security",  color: "#ec4899" },
-  { id: "text-compare",       name: "Text Diff",              icon: "📋", desc: "Compare two blocks of text side-by-side and highlight differences.",          category: "Utility",   color: "#10b981" },
-  { id: "json-compare",       name: "JSON Compare",           icon: "⚖️", desc: "Deep compare two JSON objects and pinpoint structural differences.",           category: "Data",      color: "#a855f7" },
-  { id: "csv-formatter",      name: "CSV Formatter",          icon: "📊", desc: "Format, preview, and convert CSV data into readable table layouts.",          category: "Data",      color: "#f59e0b" },
-  { id: "base64",             name: "Base64 Encoder",         icon: "🔤", desc: "Encode text or files to Base64 and decode Base64 strings back to text.",      category: "Encoding",  color: "#ef4444" },
-  { id: "url-encode",         name: "URL Encoder",            icon: "🔗", desc: "Encode special characters in URLs or decode percent-encoded strings.",         category: "Encoding",  color: "#14b8a6" },
-  { id: "regex",              name: "Regex Tester",           icon: "🔍", desc: "Write and test regular expressions with real-time match highlighting.",        category: "Code",      color: "#06b6d4" },
-  { id: "uuid",               name: "UUID Generator",         icon: "🆔", desc: "Generate universally unique identifiers — v1 (time-based) or v4 (random).",   category: "Generator", color: "#a855f7" },
-  { id: "hash",               name: "Hash Generator",         icon: "#️⃣", desc: "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from any text.",             category: "Security",  color: "#ec4899" },
-  { id: "xml-formatter",      name: "XML Formatter",          icon: "📦", desc: "Beautify or minify XML documents with proper structure and indentation.",      category: "Code",      color: "#8b5cf6" },
-  { id: "password-generator", name: "Password Generator",     icon: "🔑", desc: "Generate secure, random passwords with custom length and character sets.",     category: "Security",  color: "#10b981" },
-  { id: "word-counter",       name: "Word Counter",           icon: "📝", desc: "Count words, characters, sentences, paragraphs and get reading time.",        category: "Utility",   color: "#f59e0b" },
-  { id: "color-picker",       name: "Color Picker",           icon: "🎨", desc: "Pick colors and convert between HEX, RGB, HSL, and CMYK formats instantly.",  category: "Design",    color: "#06b6d4" },
-  { id: "markdown-preview",   name: "Markdown Preview",       icon: "📄", desc: "Live markdown editor and previewer with split-view and syntax highlighting.", category: "Editor",    color: "#f59e0b" },
-  { id: "timestamp",          name: "Timestamp Converter",    icon: "⏱️", desc: "Convert Unix timestamps to human-readable dates and vice versa.",             category: "Utility",   color: "#ec4899" },
-];
-
-const ALL_CATEGORIES = ["All", ...Array.from(new Set(TOOLS.map(t => t.category))).sort()];
+import { tools, categories } from "@/data/tools";
 
 export default function ToolsPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filtered = useMemo(() => {
-    return TOOLS.filter(tool => {
+    return tools.filter(tool => {
       const matchesSearch =
         search.trim() === "" ||
         tool.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -56,7 +35,7 @@ export default function ToolsPage() {
 
         {/* Page header */}
         <div className="page-header">
-          <div className="page-eyebrow">{TOOLS.length} Tools Available</div>
+          <div className="page-eyebrow">{tools.length} Tools Available</div>
           <h1 className="page-title">
             Developer{" "}
             <span style={{ background: "linear-gradient(120deg,#a78bfa,#c084fc)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
@@ -90,7 +69,7 @@ export default function ToolsPage() {
 
         {/* Category filter tabs */}
         <div className="category-tabs">
-          {ALL_CATEGORIES.map(cat => (
+          {categories.map(cat => (
             <button
               key={cat}
               className={`category-tab${activeCategory === cat ? " active" : ""}`}
@@ -98,7 +77,7 @@ export default function ToolsPage() {
             >
               {cat}
               <span className="category-count">
-                {cat === "All" ? TOOLS.length : TOOLS.filter(t => t.category === cat).length}
+                {cat === "All" ? tools.length : tools.filter(t => t.category === cat).length}
               </span>
             </button>
           ))}
