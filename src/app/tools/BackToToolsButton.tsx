@@ -1,45 +1,88 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export function BackToToolsButton() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <Link href="/tools" style={{ textDecoration: "none", display: "block", marginBottom: "3rem" }}>
-      <button
+    <Link href="/tools" style={{ textDecoration: "none" }}>
+      <div
         style={{
-          display: "inline-flex",
+          position: "fixed",
+          top: "100px",
+          left: "24px",
+          zIndex: 40,
+          display: "flex",
           alignItems: "center",
-          justifyContent: "center",
           gap: "0.75rem",
-          padding: "0.8rem 1.6rem",
-          borderRadius: "0.75rem",
-          border: "1px solid rgba(168,124,246,0.5)",
-          background: "rgba(168,124,246,0.15)",
-          color: "#c4b5fd",
-          cursor: "pointer",
-          fontWeight: 600,
-          fontSize: "0.9rem",
-          transition: "all 0.3s ease",
-          boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "rgba(168,124,246,0.25)";
-          e.currentTarget.style.borderColor = "rgba(168,124,246,0.8)";
-          e.currentTarget.style.transform = "translateY(-3px)";
-          e.currentTarget.style.boxShadow = "0 8px 25px rgba(139,92,246,0.3)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "rgba(168,124,246,0.15)";
-          e.currentTarget.style.borderColor = "rgba(168,124,246,0.5)";
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
-        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
-        </svg>
-        Back to Tools
-      </button>
+        {/* Floating Icon Button */}
+        <button
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "48px",
+            height: "48px",
+            borderRadius: "50%",
+            border: "2px solid rgba(168,124,246,0.6)",
+            background: isHovered 
+              ? "linear-gradient(135deg, #a78bfa, #c084fc)" 
+              : "rgba(168,124,246,0.15)",
+            color: isHovered ? "#fff" : "#c4b5fd",
+            cursor: "pointer",
+            fontWeight: 700,
+            fontSize: "1.2rem",
+            transition: "all 0.3s ease",
+            boxShadow: isHovered
+              ? "0 8px 32px rgba(139,92,246,0.4)"
+              : "0 4px 15px rgba(0,0,0,0.2)",
+            transform: isHovered ? "scale(1.1)" : "scale(1)",
+          }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5" />
+            <path d="M12 5l-7 7 7 7" />
+          </svg>
+        </button>
+
+        {/* Tooltip - shows on hover */}
+        {isHovered && (
+          <div
+            style={{
+              padding: "0.6rem 1.2rem",
+              borderRadius: "0.5rem",
+              background: "rgba(168,124,246,0.25)",
+              border: "1px solid rgba(168,124,246,0.5)",
+              color: "#c4b5fd",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+              animation: "slideIn 0.3s ease",
+            }}
+          >
+            Back to Tools
+          </div>
+        )}
+
+        <style>{`
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
+      </div>
     </Link>
   );
 }
