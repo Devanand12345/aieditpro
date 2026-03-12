@@ -117,42 +117,7 @@ export default function CsvFormatterPage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>CSV Formatter</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Format and convert CSV data instantly</p>
-
-        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
-          <button
-            onClick={() => handleModeChange("beautify")}
-            style={{
-              padding: "0.9rem 1.5rem",
-              borderRadius: "0.5rem",
-              border: "1px solid",
-              background: mode === "beautify" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
-              borderColor: mode === "beautify" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: mode === "beautify" ? "#fff" : "#c4b5fd",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-            }}
-          >
-            ✨ Beautify
-          </button>
-          <button
-            onClick={() => handleModeChange("minify")}
-            style={{
-              padding: "0.9rem 1.5rem",
-              borderRadius: "0.5rem",
-              border: "1px solid",
-              background: mode === "minify" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
-              borderColor: mode === "minify" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: mode === "minify" ? "#fff" : "#c4b5fd",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-            }}
-          >
-            📦 Minify
-          </button>
-        </div>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Format and convert CSV data instantly</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
           <div>
@@ -174,6 +139,41 @@ export default function CsvFormatterPage() {
                 resize: "none",
               }}
             />
+
+            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem", flexWrap: "wrap" }}>
+              <button
+                onClick={() => handleModeChange("beautify")}
+                style={{
+                  padding: "0.9rem 1.5rem",
+                  borderRadius: "0.5rem",
+                  border: "1px solid",
+                  background: mode === "beautify" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
+                  borderColor: mode === "beautify" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
+                  color: mode === "beautify" ? "#fff" : "#c4b5fd",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                }}
+              >
+                ✨ Beautify
+              </button>
+              <button
+                onClick={() => handleModeChange("minify")}
+                style={{
+                  padding: "0.9rem 1.5rem",
+                  borderRadius: "0.5rem",
+                  border: "1px solid",
+                  background: mode === "minify" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
+                  borderColor: mode === "minify" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
+                  color: mode === "minify" ? "#fff" : "#c4b5fd",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                }}
+              >
+                📦 Minify
+              </button>
+            </div>
 
             {error && (
               <div style={{ marginTop: "1rem", padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem" }}>
