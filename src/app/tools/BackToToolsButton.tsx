@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function BackToToolsButton() {
   return (
-    <Link href="/tools" style={{ textDecoration: "none", display: "block", marginBottom: "1.5rem" }}>
+    <Link href="/tools" style={{ textDecoration: "none", display: "block", marginBottom: "3rem" }}>
       <button
         style={{
           display: "inline-flex",
