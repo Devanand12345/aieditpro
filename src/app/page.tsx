@@ -69,7 +69,7 @@ const trendingTools = [
 ];
 
 const testimonials = [
-  { name: "Sarah Chen", role: "Frontend Developer", avatar: "SC", review: "AIEditPro's JSON beautifier saved me hours every week. The UI is stunning and it's blazing fast!", rating: 5 },
+  { name: "Sarah Chen", role: "Frontend Developer", avatar: "SC", review: "AI-EditPro's JSON beautifier saved me hours every week. The UI is stunning and it's blazing fast!", rating: 5 },
   { name: "Marcus Johnson", role: "Data Engineer", avatar: "MJ", review: "The PDF converter is incredibly accurate. Converted 200+ documents with perfect formatting.", rating: 5 },
   { name: "Priya Sharma", role: "Full Stack Dev", avatar: "PS", review: "Best free developer tools I've found. The JWT decoder and Base64 encoder work flawlessly.", rating: 5 },
   { name: "Tom Williams", role: "DevOps Engineer", avatar: "TW", review: "The Hash Generator and UUID tools are part of my daily workflow. Incredibly reliable.", rating: 5 },
@@ -111,7 +111,7 @@ export default function Home() {
                 </button>
               </Link>
               <button className="btn-secondary-hero" onClick={() => {
-                alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to save AIEditPro!');
+                alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to save AI-EditPro!');
               }} title="Quick access to your favorite tools">
                 ⭐ Save for Later
               </button>
@@ -266,7 +266,7 @@ export default function Home() {
         <div className="section-header">
           <div className="section-eyebrow">Capabilities</div>
           <h2 className="section-title">
-            Why <span className="gradient-text-2">AIEditPro</span>?
+            Why <span className="gradient-text-2">AI-EditPro</span>?
           </h2>
           <p className="section-subtitle">Everything you need for file conversion &amp; developer tools</p>
         </div>
@@ -319,8 +319,8 @@ export default function Home() {
             <p className="cta-subtitle">Start converting now. No credit card required.</p>
             <button className="btn-cta" onClick={() => {
               alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark!');
-            }} title="Never lose access to AIEditPro">
-              🔗 Keep AIEditPro Handy
+            }} title="Never lose access to AI-EditPro">
+              🔗 Keep AI-EditPro Handy
             </button>
           </div>
         </div>
@@ -383,7 +383,7 @@ export default function Home() {
 
           <div className="footer-bottom">
             <span className="footer-copy">
-              © 2026 <span className="gradient-text" style={{ fontWeight: 600 }}>AIEditPro</span> — File Conversion &amp; Developer Tools
+              © 2026 <span className="gradient-text" style={{ fontWeight: 600 }}>AI-EditPro</span> — File Conversion &amp; Developer Tools
             </span>
             <div className="footer-socials">
               {["Twitter", "GitHub", "Discord"].map(s => (

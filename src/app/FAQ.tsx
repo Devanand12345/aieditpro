@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const faqs = [
-  { q: "What file formats does AIEditPro support?", a: "AIEditPro supports PDF, DOCX, XLSX, PPTX, EPUB, HTML, RTF, and TXT. We're constantly adding new formats — more coming soon!" },
+  { q: "What file formats does AI-EditPro support?", a: "AI-EditPro supports PDF, DOCX, XLSX, PPTX, EPUB, HTML, RTF, and TXT. We're constantly adding new formats — more coming soon!" },
   { q: "Is my data safe and private?", a: "Absolutely. Files are processed in isolated environments, never stored on our servers after conversion, and all transfers are encrypted end-to-end with TLS." },
   { q: "Do I need to create an account?", a: "No account needed for the free tier. Simply upload your file and convert instantly. Pro features require a free account sign-up." },
   { q: "How large can my files be?", a: "Free users can upload files up to 10 MB. Pro users get up to 500 MB per file, and Enterprise users have no limits." },
@@ -22,7 +22,7 @@ export default function FAQ() {
         <h2 style={{ fontSize: "2.2rem", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: "0.75rem", color: "#ede9ff" }}>
           Frequently Asked <span className="gradient-text">Questions</span>
         </h2>
-        <p style={{ color: "rgba(220,210,255,0.82)", fontSize: "1rem" }}>Everything you need to know about AIEditPro</p>
+        <p style={{ color: "rgba(220,210,255,0.82)", fontSize: "1rem" }}>Everything you need to know about AI-EditPro</p>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>

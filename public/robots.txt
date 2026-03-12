@@ -20,4 +20,4 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://aieditpro.net/sitemap.xml
+Sitemap: https://AI-EditPro.net/sitemap.xml

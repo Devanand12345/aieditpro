@@ -90,7 +90,7 @@ export default function FeaturesPage() {
             Powerful Features,<br /><span className="gradient-text">Built for Everyone</span>
           </h1>
           <p style={{ fontSize: "1.1rem", color: "rgba(220,210,255,0.82)", maxWidth: "560px", margin: "0 auto 2rem", lineHeight: 1.75 }}>
-            From one-click conversions to enterprise-grade APIs — AIEditPro has everything to power your document workflow.
+            From one-click conversions to enterprise-grade APIs — AI-EditPro has everything to power your document workflow.
           </p>
           <Link href="/converter" style={{ textDecoration: "none" }}>
             <button className="btn-glow" style={{ fontSize: "1rem", padding: "0.85rem 2.2rem" }}>

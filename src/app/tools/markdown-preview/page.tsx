@@ -7,7 +7,7 @@ const SAMPLE = `# Welcome to Markdown Preview
 ## Features
 - **Bold text** and *italic text*
 - \`inline code\` and code blocks
-- [Links](https://aieditpro.net)
+- [Links](https://AI-EditPro.net)
 - > Blockquotes
 - Ordered and unordered lists
 
@@ -27,7 +27,7 @@ function greet(name) {
 
 ---
 
-Made with ❤️ on **AIEditPro**
+Made with ❤️ on **AI-EditPro**
 `;
 
 function markdownToHtml(md: string): string {

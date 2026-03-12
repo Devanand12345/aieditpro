@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AIEditPro - PDF Converter, JSON Beautifier & 17+ Developer Tools",
+  title: "AI-EditPro - PDF Converter, JSON Beautifier & 17+ Developer Tools",
   description: "Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT, EPUB, RTF instantly. Free online JSON beautifier, Base64 encoder, URL decoder, Hash generator, Password generator, Word counter & more developer tools. No sign-up required.",
   keywords: [
     "PDF converter",
@@ -88,25 +88,25 @@ export const metadata: Metadata = {
     "JSON beautifier online",
     "JSON formatter online",
   ].join(", "),
-  authors: [{ name: "AIEditPro" }],
-  creator: "AIEditPro",
-  publisher: "AIEditPro",
+  authors: [{ name: "AI-EditPro" }],
+  creator: "AI-EditPro",
+  publisher: "AI-EditPro",
   formatDetection: {
     email: true,
     address: true,
     telephone: true,
   },
   openGraph: {
-    title: "AIEditPro - Free Online File Converter & 17+ Developer Tools",
+    title: "AI-EditPro - Free Online File Converter & 17+ Developer Tools",
     description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 17 free developer tools including JSON beautifier, password generator, word counter, color picker, Base64 encoder, Hash generator & more.",
-    url: "https://aieditpro.net",
-    siteName: "AIEditPro",
+    url: "https://AI-EditPro.net",
+    siteName: "AI-EditPro",
     images: [
       {
-        url: "https://aieditpro.net/og-image.jpg",
+        url: "https://AI-EditPro.net/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "AIEditPro - Free File Converter & Developer Tools",
+        alt: "AI-EditPro - Free File Converter & Developer Tools",
       },
     ],
     locale: "en_US",
@@ -114,9 +114,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIEditPro - Free Online File Converter & 17+ Developer Tools",
+    title: "AI-EditPro - Free Online File Converter & 17+ Developer Tools",
     description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, password generator, word counter, color picker, Base64 encoder & more. No sign-up required.",
-    images: ["https://aieditpro.net/og-image.jpg"],
+    images: ["https://AI-EditPro.net/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   category: "Technology",
   alternates: {
-    canonical: "https://aieditpro.net",
+    canonical: "https://AI-EditPro.net",
   },
 };
 
@@ -151,9 +151,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: "AIEditPro",
+              name: "AI-EditPro",
               description: "Free online file converter and developer tools suite",
-              url: "https://aieditpro.net",
+              url: "https://AI-EditPro.net",
               applicationCategory: "Utility",
               offers: {
                 "@type": "Offer",
@@ -167,7 +167,7 @@ export default function RootLayout({
               },
               potentialAction: {
                 "@type": "UseAction",
-                target: "https://aieditpro.net/converter",
+                target: "https://AI-EditPro.net/converter",
               },
             }),
           }}
@@ -182,10 +182,10 @@ export default function RootLayout({
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "Is AIEditPro free to use?",
+                  "name": "Is AI-EditPro free to use?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes, AIEditPro is completely free. No sign-up or credit card required."
+                    "text": "Yes, AI-EditPro is completely free. No sign-up or credit card required."
                   }
                 },
                 {
@@ -201,7 +201,7 @@ export default function RootLayout({
                   "name": "What is a JSON Beautifier?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "A JSON Beautifier formats compact or minified JSON data into a readable, indented structure. AIEditPro's JSON Beautifier also validates JSON syntax."
+                    "text": "A JSON Beautifier formats compact or minified JSON data into a readable, indented structure. AI-EditPro's JSON Beautifier also validates JSON syntax."
                   }
                 },
                 {
@@ -209,7 +209,7 @@ export default function RootLayout({
                   "name": "How do I generate a secure password?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Use AIEditPro's Password Generator tool. Set your desired length (up to 128 characters), choose character types (uppercase, lowercase, numbers, symbols), and click Generate."
+                    "text": "Use AI-EditPro's Password Generator tool. Set your desired length (up to 128 characters), choose character types (uppercase, lowercase, numbers, symbols), and click Generate."
                   }
                 }
               ]
