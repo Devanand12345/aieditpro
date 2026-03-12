@@ -4,21 +4,21 @@ import Link from "next/link";
 
 export function BackToToolsButton() {
   return (
-    <Link href="/tools" style={{ textDecoration: "none", display: "inline-block", marginBottom: "2.5rem", marginTop: "0.5rem" }}>
+    <Link href="/tools" style={{ textDecoration: "none", display: "block", marginBottom: "1.5rem" }}>
       <button
         style={{
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "0.75rem",
-          padding: "0.9rem 1.8rem",
+          padding: "0.8rem 1.6rem",
           borderRadius: "0.75rem",
           border: "1px solid rgba(168,124,246,0.5)",
           background: "rgba(168,124,246,0.15)",
           color: "#c4b5fd",
           cursor: "pointer",
           fontWeight: 600,
-          fontSize: "0.95rem",
+          fontSize: "0.9rem",
           transition: "all 0.3s ease",
           boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
         }}
