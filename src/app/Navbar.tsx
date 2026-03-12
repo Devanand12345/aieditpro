@@ -44,11 +44,11 @@ export default function Navbar() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <Link href="/converter" style={{ textDecoration: "none" }}>
-            <button className="btn-glow" style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem" }}>
-              Try Free
-            </button>
-          </Link>
+          <button className="btn-glow" onClick={() => {
+            alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
+          }} style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem" }}>
+            ⭐ Bookmark
+          </button>
 
           {/* Mobile hamburger */}
           <button
