@@ -321,9 +321,9 @@ export default function Home() {
           <div className="cta-content">
             <h2 className="cta-title">Ready to Transform Your Files?</h2>
             <p className="cta-subtitle">Start converting now. No credit card required.</p>
-            <Link href="/converter" style={{ textDecoration: "none" }}>
-              <button className="btn-cta">Get Started Free →</button>
-            </Link>
+            <button className="btn-cta" onClick={() => {
+              alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
+            }}>⭐ Bookmark AIEditPro</button>
           </div>
         </div>
       </section>
