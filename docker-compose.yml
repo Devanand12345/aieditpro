@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    ports:
+      - "3002:3000"
+    restart: unless-stopped
+    environment:
+      - GOTENBERG_CHROMIUM_DISABLE_ROUTES=false
+      - GOTENBERG_LIBREOFFICE_DISABLE_ROUTES=false

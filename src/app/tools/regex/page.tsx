@@ -16,25 +16,21 @@ export default function RegexTesterPage() {
   const [matches, setMatches] = useState<RegexMatch[]>([]);
   const [error, setError] = useState("");
 
-  const handleTest = () => {
+  const testRegex = (pat: string, txt: string, flgs: string) => {
     setError("");
     setMatches([]);
-    try {
-      if (!pattern.trim()) {
-        setError("Please enter a regex pattern");
-        return;
-      }
-      if (!text.trim()) {
-        setError("Please enter text to test");
-        return;
-      }
 
-      const regex = new RegExp(pattern, flags);
+    if (!pat.trim() || !txt.trim()) {
+      return;
+    }
+
+    try {
+      const regex = new RegExp(pat, flgs);
       const foundMatches: RegexMatch[] = [];
 
-      if (flags.includes("g")) {
+      if (flgs.includes("g")) {
         let match;
-        while ((match = regex.exec(text)) !== null) {
+        while ((match = regex.exec(txt)) !== null) {
           foundMatches.push({
             match: match[0],
             index: match.index,
@@ -42,7 +38,7 @@ export default function RegexTesterPage() {
           });
         }
       } else {
-        const match = regex.exec(text);
+        const match = regex.exec(txt);
         if (match) {
           foundMatches.push({
             match: match[0],
@@ -58,13 +54,29 @@ export default function RegexTesterPage() {
     }
   };
 
+  const handlePatternChange = (value: string) => {
+    setPattern(value);
+    testRegex(value, text, flags);
+  };
+
+  const handleTextChange = (value: string) => {
+    setText(value);
+    testRegex(pattern, value, flags);
+  };
+
+  const handleFlagsChange = (flag: string) => {
+    const newFlags = flags.includes(flag) ? flags.replace(flag, "") : flags + flag;
+    setFlags(newFlags);
+    testRegex(pattern, text, newFlags);
+  };
+
   return (
     <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Regex Tester</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Test and validate regular expressions</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Test and validate regular expressions instantly</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
@@ -72,8 +84,8 @@ export default function RegexTesterPage() {
             <input
               type="text"
               value={pattern}
-              onChange={(e) => setPattern(e.target.value)}
-              placeholder="e.g., /hello|world/gi"
+              onChange={(e) => handlePatternChange(e.target.value)}
+              placeholder="e.g., hello|world"
               style={{
                 width: "100%",
                 padding: "1.25rem",
@@ -92,19 +104,13 @@ export default function RegexTesterPage() {
 
           <div>
             <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Flags</label>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               {["g", "i", "m", "s"].map((flag) => (
                 <label key={flag} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
                   <input
                     type="checkbox"
                     checked={flags.includes(flag)}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setFlags((f) => f + flag);
-                      } else {
-                        setFlags((f) => f.replace(flag, ""));
-                      }
-                    }}
+                    onChange={() => handleFlagsChange(flag)}
                   />
                   {flag === "g" && "Global"}
                   {flag === "i" && "Ignore Case"}
@@ -120,7 +126,7 @@ export default function RegexTesterPage() {
           <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text to Test</label>
           <textarea
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => handleTextChange(e.target.value)}
             placeholder="Enter text to test the regex against..."
             style={{
               width: "100%",
@@ -137,27 +143,9 @@ export default function RegexTesterPage() {
           />
         </div>
 
-        <button
-          onClick={handleTest}
-          style={{
-            width: "100%",
-            padding: "0.9rem 1.5rem",
-            borderRadius: "0.5rem",
-            border: "none",
-            background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-            color: "#fff",
-            cursor: "pointer",
-            fontWeight: 600,
-            marginBottom: "2rem",
-            fontSize: "0.95rem",
-          }}
-        >
-          Test Regex
-        </button>
-
         {error && (
           <div style={{ padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem", marginBottom: "2rem" }}>
-            {error}
+            ❌ {error}
           </div>
         )}
 
@@ -195,4 +183,3 @@ export default function RegexTesterPage() {
     </div>
   );
 }
-

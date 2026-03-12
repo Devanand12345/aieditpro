@@ -29,11 +29,21 @@ export default function UuidGeneratorPage() {
     return `${timeLow}-${timeMid}-${timeHighVersion}-${clockSeq}-${node}`;
   };
 
-  const handleGenerate = () => {
-    const newUuids = Array.from({ length: count }, () =>
-      version === "v4" ? generateUUIDv4() : generateUUIDv1()
+  const generateUUIDs = (cnt: number, ver: "v4" | "v1") => {
+    const newUuids = Array.from({ length: cnt }, () =>
+      ver === "v4" ? generateUUIDv4() : generateUUIDv1()
     );
     setUuids(newUuids);
+  };
+
+  const handleCountChange = (newCount: number) => {
+    setCount(newCount);
+    generateUUIDs(newCount, version);
+  };
+
+  const handleVersionChange = (ver: "v4" | "v1") => {
+    setVersion(ver);
+    generateUUIDs(count, ver);
   };
 
   const copyAllToClipboard = () => {
@@ -50,19 +60,19 @@ export default function UuidGeneratorPage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>UUID Generator</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Generate UUIDs (v1 and v4)</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Generate UUIDs instantly (v1 and v4)</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>UUID Version</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>UUID Version</label>
             <div style={{ display: "flex", gap: "1rem" }}>
               <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
-                <input type="radio" name="version" checked={version === "v4"} onChange={() => setVersion("v4")} />
-                v4 (Random)
+                <input type="radio" name="version" checked={version === "v4"} onChange={() => handleVersionChange("v4")} />
+                🎲 v4 (Random)
               </label>
               <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
-                <input type="radio" name="version" checked={version === "v1"} onChange={() => setVersion("v1")} />
-                v1 (Time-based)
+                <input type="radio" name="version" checked={version === "v1"} onChange={() => handleVersionChange("v1")} />
+                ⏰ v1 (Time-based)
               </label>
             </div>
           </div>
@@ -74,7 +84,7 @@ export default function UuidGeneratorPage() {
               min="1"
               max="100"
               value={count}
-              onChange={(e) => setCount(Math.max(1, parseInt(e.target.value) || 1))}
+              onChange={(e) => handleCountChange(Math.max(1, parseInt(e.target.value) || 1))}
               style={{
                 width: "100%",
                 padding: "1.25rem",
@@ -88,24 +98,6 @@ export default function UuidGeneratorPage() {
           </div>
         </div>
 
-        <button
-          onClick={handleGenerate}
-          style={{
-            width: "100%",
-            padding: "0.9rem 1.5rem",
-            borderRadius: "0.5rem",
-            border: "none",
-            background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-            color: "#fff",
-            cursor: "pointer",
-            fontWeight: 600,
-            marginBottom: "2rem",
-            fontSize: "0.95rem",
-          }}
-        >
-          Generate
-        </button>
-
         {uuids.length > 0 && (
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
@@ -113,14 +105,14 @@ export default function UuidGeneratorPage() {
               <button
                 onClick={copyAllToClipboard}
                 style={{
-                  padding: "0.5rem 1rem",
+                  padding: "0.7rem 1rem",
                   borderRadius: "0.5rem",
                   border: "1px solid rgba(168,124,246,0.3)",
                   background: "rgba(168,124,246,0.2)",
                   color: "#c4b5fd",
                   cursor: "pointer",
                   fontWeight: 600,
-                  fontSize: "0.95rem",
+                  fontSize: "0.9rem",
                 }}
               >
                 📋 Copy All
@@ -141,7 +133,7 @@ export default function UuidGeneratorPage() {
                     alignItems: "center",
                   }}
                 >
-                  <code style={{ color: "#86efac", fontFamily: "monospace", fontSize: "0.95rem", wordBreak: "break-all" }}>
+                  <code style={{ color: "#86efac", fontFamily: "monospace", fontSize: "0.95rem", wordBreak: "break-all", flex: 1 }}>
                     {uuid}
                   </code>
                   <button
@@ -154,7 +146,7 @@ export default function UuidGeneratorPage() {
                       color: "#c4b5fd",
                       cursor: "pointer",
                       fontWeight: 600,
-                      fontSize: "0.95rem",
+                      fontSize: "0.9rem",
                       flexShrink: 0,
                       marginLeft: "0.5rem",
                     }}
@@ -170,4 +162,3 @@ export default function UuidGeneratorPage() {
     </div>
   );
 }
-

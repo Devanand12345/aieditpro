@@ -36,15 +36,17 @@ export default function JwtDecoderPage() {
     }
   };
 
-  const handleDecode = () => {
+  const handleInputChange = (value: string) => {
+    setInput(value);
     setError("");
     setDecoded(null);
+
+    if (!value.trim()) {
+      return;
+    }
+
     try {
-      if (!input.trim()) {
-        setError("Please paste a JWT token");
-        return;
-      }
-      const result = decodeJWT(input.trim());
+      const result = decodeJWT(value.trim());
       setDecoded(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error decoding JWT");
@@ -61,51 +63,32 @@ export default function JwtDecoderPage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>JWT Decoder</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Decode and analyze JWT tokens</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Decode and analyze JWT tokens instantly</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
           <div>
-            <div style={{ marginBottom: "1.5rem" }}>
-              <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JWT Token</label>
-              <textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Paste your JWT token here..."
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  padding: "1.25rem",
-                  borderRadius: "0.75rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
-                  background: "rgba(30,27,75,0.6)",
-                  color: "#ede9ff",
-                  fontFamily: "monospace",
-                  fontSize: "0.95rem",
-                  resize: "none",
-                }}
-              />
-            </div>
-
-            <button
-              onClick={handleDecode}
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JWT Token</label>
+            <textarea
+              value={input}
+              onChange={(e) => handleInputChange(e.target.value)}
+              placeholder="Paste your JWT token here..."
               style={{
                 width: "100%",
-                padding: "1rem 1.8rem",
-                borderRadius: "0.5rem",
-                border: "none",
-                background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-                color: "#fff",
-                cursor: "pointer",
-                fontWeight: 600,
+                height: "300px",
+                padding: "1.25rem",
+                borderRadius: "0.75rem",
+                border: "1px solid rgba(168,124,246,0.3)",
+                background: "rgba(30,27,75,0.6)",
+                color: "#ede9ff",
+                fontFamily: "monospace",
                 fontSize: "0.95rem",
+                resize: "none",
               }}
-            >
-              Decode
-            </button>
+            />
 
             {error && (
               <div style={{ marginTop: "1rem", padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem" }}>
-                {error}
+                ❌ {error}
               </div>
             )}
           </div>
@@ -115,7 +98,7 @@ export default function JwtDecoderPage() {
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div style={{ padding: "1.25rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
                   <h3 style={{ color: "#c4b5fd", fontWeight: 600, marginBottom: "0.75rem", fontSize: "1rem" }}>Header</h3>
-                  <pre style={{ color: "#ede9ff", fontSize: "0.85rem", overflow: "auto", maxHeight: "150px", margin: 0 }}>
+                  <pre style={{ color: "#ede9ff", fontSize: "0.85rem", overflow: "auto", maxHeight: "120px", margin: 0 }}>
                     {JSON.stringify(decoded.header, null, 2)}
                   </pre>
                   <button
@@ -128,7 +111,7 @@ export default function JwtDecoderPage() {
 
                 <div style={{ padding: "1.25rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
                   <h3 style={{ color: "#c4b5fd", fontWeight: 600, marginBottom: "0.75rem", fontSize: "1rem" }}>Payload</h3>
-                  <pre style={{ color: "#ede9ff", fontSize: "0.85rem", overflow: "auto", maxHeight: "200px", margin: 0 }}>
+                  <pre style={{ color: "#ede9ff", fontSize: "0.85rem", overflow: "auto", maxHeight: "150px", margin: 0 }}>
                     {JSON.stringify(decoded.payload, null, 2)}
                   </pre>
                   <button
@@ -146,4 +129,3 @@ export default function JwtDecoderPage() {
     </div>
   );
 }
-

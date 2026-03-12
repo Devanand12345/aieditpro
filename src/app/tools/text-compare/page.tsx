@@ -15,6 +15,8 @@ export default function TextComparePage() {
   const [viewMode, setViewMode] = useState<"split" | "unified">("split");
 
   const computeDiff = (): DiffLine[] => {
+    if (!text1.trim() && !text2.trim()) return [];
+    
     const lines1 = text1.split("\n");
     const lines2 = text2.split("\n");
     const result: DiffLine[] = [];
@@ -35,7 +37,14 @@ export default function TextComparePage() {
     return result;
   };
 
-  const handleCompare = () => {
+  const handleText1Change = (value: string) => {
+    setText1(value);
+    const diffResult = computeDiff();
+    setDiff(diffResult);
+  };
+
+  const handleText2Change = (value: string) => {
+    setText2(value);
     const diffResult = computeDiff();
     setDiff(diffResult);
   };
@@ -52,14 +61,49 @@ export default function TextComparePage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Text Compare</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two texts and see the differences</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two texts instantly and see the differences</p>
+
+        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
+          <button
+            onClick={() => setViewMode("split")}
+            style={{
+              padding: "0.9rem 1.8rem",
+              borderRadius: "0.5rem",
+              border: "1px solid",
+              background: viewMode === "split" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
+              borderColor: viewMode === "split" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
+              color: viewMode === "split" ? "#fff" : "#c4b5fd",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+            }}
+          >
+            📑 Split View
+          </button>
+          <button
+            onClick={() => setViewMode("unified")}
+            style={{
+              padding: "0.9rem 1.8rem",
+              borderRadius: "0.5rem",
+              border: "1px solid",
+              background: viewMode === "unified" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
+              borderColor: viewMode === "unified" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
+              color: viewMode === "unified" ? "#fff" : "#c4b5fd",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+            }}
+          >
+            📜 Unified View
+          </button>
+        </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
             <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 1</label>
             <textarea
               value={text1}
-              onChange={(e) => setText1(e.target.value)}
+              onChange={(e) => handleText1Change(e.target.value)}
               placeholder="Enter first text..."
               style={{
                 width: "100%",
@@ -80,7 +124,7 @@ export default function TextComparePage() {
             <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 2</label>
             <textarea
               value={text2}
-              onChange={(e) => setText2(e.target.value)}
+              onChange={(e) => handleText2Change(e.target.value)}
               placeholder="Enter second text..."
               style={{
                 width: "100%",
@@ -96,56 +140,6 @@ export default function TextComparePage() {
               }}
             />
           </div>
-        </div>
-
-        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
-          <button
-            onClick={handleCompare}
-            style={{
-              padding: "0.9rem 2rem",
-              borderRadius: "0.5rem",
-              border: "none",
-              background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-              color: "#fff",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-            }}
-          >
-            Compare
-          </button>
-          <button
-            onClick={() => setViewMode("split")}
-            style={{
-              padding: "0.9rem 1.8rem",
-              borderRadius: "0.5rem",
-              border: "1px solid",
-              background: viewMode === "split" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
-              borderColor: viewMode === "split" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: "#c4b5fd",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-            }}
-          >
-            Split View
-          </button>
-          <button
-            onClick={() => setViewMode("unified")}
-            style={{
-              padding: "0.9rem 1.8rem",
-              borderRadius: "0.5rem",
-              border: "1px solid",
-              background: viewMode === "unified" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
-              borderColor: viewMode === "unified" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: "#c4b5fd",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-            }}
-          >
-            Unified View
-          </button>
         </div>
 
         {diff.length > 0 && (
@@ -206,4 +200,3 @@ export default function TextComparePage() {
     </div>
   );
 }
-

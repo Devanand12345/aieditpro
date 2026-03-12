@@ -79,16 +79,33 @@ export default function JsonComparePage() {
     return diffs;
   };
 
-  const handleCompare = () => {
+  const handleJson1Change = (value: string) => {
+    setJson1(value);
     setError("");
     setDifferences([]);
+
+    if (!value.trim() || !json2.trim()) return;
+
     try {
-      if (!json1.trim() || !json2.trim()) {
-        setError("Please enter both JSON objects");
-        return;
-      }
-      const obj1 = JSON.parse(json1);
+      const obj1 = JSON.parse(value);
       const obj2 = JSON.parse(json2);
+      const diffs = compareObjects(obj1, obj2);
+      setDifferences(diffs);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Invalid JSON");
+    }
+  };
+
+  const handleJson2Change = (value: string) => {
+    setJson2(value);
+    setError("");
+    setDifferences([]);
+
+    if (!json1.trim() || !value.trim()) return;
+
+    try {
+      const obj1 = JSON.parse(json1);
+      const obj2 = JSON.parse(value);
       const diffs = compareObjects(obj1, obj2);
       setDifferences(diffs);
     } catch (err) {
@@ -102,14 +119,14 @@ export default function JsonComparePage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>JSON Compare</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Compare two JSON objects and see the differences</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two JSON objects instantly and see the differences</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>JSON 1</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JSON 1</label>
             <textarea
               value={json1}
-              onChange={(e) => setJson1(e.target.value)}
+              onChange={(e) => handleJson1Change(e.target.value)}
               placeholder="Paste first JSON..."
               style={{
                 width: "100%",
@@ -127,10 +144,10 @@ export default function JsonComparePage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>JSON 2</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JSON 2</label>
             <textarea
               value={json2}
-              onChange={(e) => setJson2(e.target.value)}
+              onChange={(e) => handleJson2Change(e.target.value)}
               placeholder="Paste second JSON..."
               style={{
                 width: "100%",
@@ -148,26 +165,9 @@ export default function JsonComparePage() {
           </div>
         </div>
 
-        <button
-          onClick={handleCompare}
-          style={{
-            padding: "0.9rem 1.5rem",
-            borderRadius: "0.5rem",
-            border: "none",
-            background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-            color: "#fff",
-            cursor: "pointer",
-            fontWeight: 600,
-            marginBottom: "2rem",
-            fontSize: "0.95rem",
-          }}
-        >
-          Compare
-        </button>
-
         {error && (
           <div style={{ padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem", marginBottom: "2rem" }}>
-            {error}
+            ❌ {error}
           </div>
         )}
 
@@ -213,4 +213,3 @@ export default function JsonComparePage() {
     </div>
   );
 }
-

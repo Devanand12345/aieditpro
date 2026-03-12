@@ -1,0 +1,12 @@
+services:
+  # Gotenberg — LibreOffice conversion service
+  - type: web
+    name: aieditpro-gotenberg
+    runtime: docker
+    dockerfilePath: ./Dockerfile.gotenberg
+    plan: free
+    envVars:
+      - key: GOTENBERG_CHROMIUM_DISABLE_ROUTES
+        value: "false"
+      - key: GOTENBERG_LIBREOFFICE_DISABLE_ROUTES
+        value: "false"

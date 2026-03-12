@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:30001 2>&1 | head -50)",
+      "Bash(curl -sv http://localhost:30001 2>&1 | head -20)",
+      "Bash(docker --version 2>&1; docker ps 2>&1 | head -3)",
+      "Bash(cmd //c \"docker --version\" 2>&1)"
+    ]
+  }
+}

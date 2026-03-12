@@ -9,15 +9,39 @@ export default function Base64Page() {
   const [error, setError] = useState("");
   const [mode, setMode] = useState<"encode" | "decode">("encode");
 
-  const handleProcess = () => {
+  const handleInputChange = (value: string) => {
+    setInput(value);
     setError("");
-    try {
-      if (!input.trim()) {
-        setError("Please enter text");
-        return;
-      }
 
+    if (!value.trim()) {
+      setOutput("");
+      return;
+    }
+
+    try {
       if (mode === "encode") {
+        const encoded = btoa(value);
+        setOutput(encoded);
+      } else {
+        const decoded = atob(value);
+        setOutput(decoded);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Invalid input");
+    }
+  };
+
+  const handleModeChange = (newMode: "encode" | "decode") => {
+    setMode(newMode);
+    setError("");
+
+    if (!input.trim()) {
+      setOutput("");
+      return;
+    }
+
+    try {
+      if (newMode === "encode") {
         const encoded = btoa(input);
         setOutput(encoded);
       } else {
@@ -39,40 +63,40 @@ export default function Base64Page() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Base64 Encoder/Decoder</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Encode and decode Base64 strings</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Encode and decode Base64 strings instantly</p>
 
         <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
           <button
-            onClick={() => setMode("encode")}
+            onClick={() => handleModeChange("encode")}
             style={{
               padding: "0.9rem 1.5rem",
               borderRadius: "0.5rem",
               border: "1px solid",
-              background: mode === "encode" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
+              background: mode === "encode" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
               borderColor: mode === "encode" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: "#c4b5fd",
+              color: mode === "encode" ? "#fff" : "#c4b5fd",
               cursor: "pointer",
               fontWeight: 600,
               fontSize: "0.95rem",
             }}
           >
-            Encode
+            🔒 Encode
           </button>
           <button
-            onClick={() => setMode("decode")}
+            onClick={() => handleModeChange("decode")}
             style={{
               padding: "0.9rem 1.5rem",
               borderRadius: "0.5rem",
               border: "1px solid",
-              background: mode === "decode" ? "rgba(168,124,246,0.3)" : "rgba(255,255,255,0.05)",
+              background: mode === "decode" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
               borderColor: mode === "decode" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: "#c4b5fd",
+              color: mode === "decode" ? "#fff" : "#c4b5fd",
               cursor: "pointer",
               fontWeight: 600,
               fontSize: "0.95rem",
             }}
           >
-            Decode
+            🔓 Decode
           </button>
         </div>
 
@@ -82,7 +106,7 @@ export default function Base64Page() {
           </label>
           <textarea
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => handleInputChange(e.target.value)}
             placeholder={mode === "encode" ? "Enter text to encode..." : "Enter Base64 to decode..."}
             style={{
               width: "100%",
@@ -99,27 +123,9 @@ export default function Base64Page() {
           />
         </div>
 
-        <button
-          onClick={handleProcess}
-          style={{
-            width: "100%",
-            padding: "0.9rem 1.5rem",
-            borderRadius: "0.5rem",
-            border: "none",
-            background: "linear-gradient(120deg, #a78bfa, #c084fc)",
-            color: "#fff",
-            cursor: "pointer",
-            fontWeight: 600,
-            marginBottom: "1rem",
-            fontSize: "0.95rem",
-          }}
-        >
-          {mode === "encode" ? "Encode" : "Decode"}
-        </button>
-
         {error && (
           <div style={{ padding: "1.25rem", borderRadius: "0.5rem", background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.5)", color: "#fca5a5", fontSize: "0.95rem", marginBottom: "1rem" }}>
-            {error}
+            ❌ {error}
           </div>
         )}
 
@@ -164,4 +170,3 @@ export default function Base64Page() {
     </div>
   );
 }
-

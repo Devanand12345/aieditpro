@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d0720;
+  --foreground: #ede9ff;
+  --primary: #8b5cf6;
+  --primary-light: #a78bfa;
+  --secondary: #ec4899;
+  --accent: #22d3ee;
+  --gradient-1: linear-gradient(135deg, #8b5cf6 0%, #ec4899 55%, #f59e0b 100%);
+  --gradient-2: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 100%);
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.10);
+  --glow-purple: 0 8px 40px rgba(139,92,246,0.45);
+  --text-primary: #ede9ff;
+  --text-muted: rgba(220,210,255,0.55);
 }
 
 @theme inline {
@@ -12,15 +23,154 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0d0720;
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Gradient text ───────────────────────────── */
+.gradient-text {
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-2 {
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ──────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+/* ── Glow button ─────────────────────────────── */
+.btn-glow {
+  position: relative;
+  background: var(--gradient-1);
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+.btn-glow::after {
+  content:"";
+  position:absolute; inset:-2px;
+  background: var(--gradient-1);
+  filter: blur(16px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.25s;
+  border-radius: 9999px;
+}
+.btn-glow:hover { transform: translateY(-2px); box-shadow: var(--glow-purple); }
+.btn-glow:hover::after { opacity: 0.55; }
+.btn-glow:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+/* ── Animations ──────────────────────────────── */
+@keyframes pulse-glow {
+  0%,100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes float-up {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+
+/* ── Navbar ──────────────────────────────────── */
+.navbar {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 0.9rem 2rem;
+  background: rgba(22,11,46,0.35);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(180,150,255,0.08);
+  box-shadow: 0 1px 0 rgba(180,150,255,0.06);
+}
+
+/* ── Logo ────────────────────────────────────── */
+.logo-icon {
+  width:36px; height:36px; border-radius:10px;
+  background: var(--gradient-1);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: var(--glow-purple); flex-shrink:0;
+}
+
+/* ── Badge ───────────────────────────────────── */
+.badge {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  padding:0.3rem 0.9rem; border-radius:9999px;
+  font-size:0.75rem; font-weight:600; letter-spacing:0.05em;
+  background: rgba(139,92,246,0.15);
+  border: 1px solid rgba(139,92,246,0.35);
+  color: var(--primary-light);
+}
+
+/* ── Feature icon ────────────────────────────── */
+.feature-icon {
+  width:48px; height:48px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; margin-bottom:1rem;
+}
+
+/* ── Feature card hover ──────────────────────── */
+.feature-card { transition: transform 0.25s, box-shadow 0.25s; }
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,92,246,0.2);
+}
+
+/* ── Nav link ────────────────────────────────── */
+.nav-link {
+  color: rgba(220,210,255,0.82);
+  text-decoration:none; font-size:0.9rem; font-weight:500;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: #ffffff; }
+
+/* ── Drop zone ───────────────────────────────── */
+.drop-zone {
+  border: 2px dashed rgba(139,92,246,0.35);
+  border-radius:1rem; padding:2.5rem; text-align:center; cursor:pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: rgba(139,92,246,0.03);
+}
+.drop-zone:hover {
+  border-color: rgba(139,92,246,0.7);
+  background: rgba(139,92,246,0.07);
+}
+
+/* ── Shimmer ─────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, #a78bfa 0%, #f0abfc 25%, #fff 45%, #f9a8d4 65%, #a78bfa 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }

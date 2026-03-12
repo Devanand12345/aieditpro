@@ -1,17 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AIEditPro
+
+This is a simple Next.js application focused on file format conversion utilities. It was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and includes a generic *File Converter* page.
+
 
 ## Getting Started
 
-First, run the development server:
+First, run the development server (make sure you are in the `aieditpro` directory):
 
 ```bash
+npm install        # install deps
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
