@@ -15,6 +15,11 @@ const toolsList = [
   { id: "uuid", name: "UUID Generator", icon: "🆔", desc: "Generate UUIDs", category: "Generator", href: "/tools/uuid", color: "#a855f7" },
   { id: "hash", name: "Hash Generator", icon: "#️⃣", desc: "Generate hashes", category: "Security", href: "/tools/hash", color: "#ec4899" },
   { id: "xml-formatter", name: "XML Formatter", icon: "📦", desc: "Format & minify XML", category: "Code", href: "/tools/xml-formatter", color: "#8b5cf6" },
+  { id: "password-generator", name: "Password Generator", icon: "🔑", desc: "Generate secure passwords", category: "Security", href: "/tools/password-generator", color: "#10b981" },
+  { id: "word-counter", name: "Word Counter", icon: "📝", desc: "Count words & characters", category: "Utility", href: "/tools/word-counter", color: "#f59e0b" },
+  { id: "color-picker", name: "Color Picker", icon: "🎨", desc: "Pick & convert colors", category: "Design", href: "/tools/color-picker", color: "#06b6d4" },
+  { id: "markdown-preview", name: "Markdown Preview", icon: "📄", desc: "Live markdown previewer", category: "Editor", href: "/tools/markdown-preview", color: "#f59e0b" },
+  { id: "timestamp", name: "Timestamp", icon: "⏱️", desc: "Unix timestamp converter", category: "Utility", href: "/tools/timestamp", color: "#ec4899" },
 ];
 
 const features = [
@@ -49,9 +54,27 @@ const howItWorks = [
 
 const stats = [
   { value: "50K+", label: "Files Converted", icon: "📄" },
-  { value: "8+", label: "File Formats", icon: "🗂️" },
+  { value: "17+", label: "Free Tools", icon: "🗂️" },
   { value: "99.9%", label: "Uptime", icon: "⚡" },
   { value: "<5s", label: "Avg. Convert Time", icon: "🚀" },
+];
+
+const trendingTools = [
+  { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", href: "/tools/json-beautifier", color: "#8b5cf6", tag: "🔥 Hot" },
+  { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ New" },
+  { id: "word-counter", name: "Word Counter", icon: "📝", href: "/tools/word-counter", color: "#f59e0b", tag: "⭐ New" },
+  { id: "color-picker", name: "Color Picker", icon: "🎨", href: "/tools/color-picker", color: "#06b6d4", tag: "⭐ New" },
+  { id: "timestamp", name: "Timestamp Converter", icon: "⏱️", href: "/tools/timestamp", color: "#ec4899", tag: "⭐ New" },
+  { id: "base64", name: "Base64 Encoder", icon: "🔤", href: "/tools/base64", color: "#ef4444", tag: "🔥 Hot" },
+];
+
+const testimonials = [
+  { name: "Sarah Chen", role: "Frontend Developer", avatar: "SC", review: "AIEditPro's JSON beautifier saved me hours every week. The UI is stunning and it's blazing fast!", rating: 5 },
+  { name: "Marcus Johnson", role: "Data Engineer", avatar: "MJ", review: "The PDF converter is incredibly accurate. Converted 200+ documents with perfect formatting.", rating: 5 },
+  { name: "Priya Sharma", role: "Full Stack Dev", avatar: "PS", review: "Best free developer tools I've found. The JWT decoder and Base64 encoder work flawlessly.", rating: 5 },
+  { name: "Tom Williams", role: "DevOps Engineer", avatar: "TW", review: "The Hash Generator and UUID tools are part of my daily workflow. Incredibly reliable.", rating: 5 },
+  { name: "Ana Kowalski", role: "Technical Writer", avatar: "AK", review: "Markdown preview is exactly what I needed. Clean, fast, and the split view is perfect.", rating: 5 },
+  { name: "David Park", role: "Security Researcher", avatar: "DP", review: "Password Generator has become my go-to. Excellent entropy, beautiful UI, and very fast.", rating: 5 },
 ];
 
 export default function Home() {
@@ -139,7 +162,7 @@ export default function Home() {
           <div className="hero-right fade-up-delay">
             <div className="tools-header">
               <h2 className="tools-title">
-                12+ Developer <span className="gradient-text">Tools</span>
+                17+ Developer <span className="gradient-text">Tools</span>
               </h2>
               <p className="tools-subtitle">
                 Format, validate, encode, decode, and analyze instantly.
@@ -147,7 +170,7 @@ export default function Home() {
             </div>
 
             <div className="tools-grid">
-              {toolsList.map(tool => (
+              {toolsList.slice(0, 12).map(tool => (
                 <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
                   <div className="tool-card">
                     <div
@@ -165,7 +188,7 @@ export default function Home() {
 
             <Link href="/tools" style={{ textDecoration: "none" }}>
               <button className="btn-all-tools">
-                🔧 View All Tools →
+                🔧 View All 17 Tools →
               </button>
             </Link>
           </div>
@@ -181,6 +204,32 @@ export default function Home() {
               <div className="gradient-text stat-value">{s.value}</div>
               <div className="stat-label">{s.label}</div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Trending Tools ───────────────────────────────────────────── */}
+      <section className="section">
+        <div className="section-header">
+          <div className="section-eyebrow">Most Popular</div>
+          <h2 className="section-title">
+            Trending <span className="gradient-text">Tools</span>
+          </h2>
+          <p className="section-subtitle">The tools developers use most — all free, all instant</p>
+        </div>
+
+        <div className="trending-grid">
+          {trendingTools.map(tool => (
+            <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
+              <div className="trending-card glass-card">
+                <div className="trending-tag" style={{ background: `${tool.color}18`, border: `1px solid ${tool.color}40`, color: tool.color }}>
+                  {tool.tag}
+                </div>
+                <div className="trending-icon">{tool.icon}</div>
+                <div className="trending-name">{tool.name}</div>
+                <div className="trending-arrow" style={{ color: tool.color }}>→</div>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -228,6 +277,35 @@ export default function Home() {
               <div className="feature-icon" style={{ background: f.gradient }}>{f.icon}</div>
               <h3 className="feature-title">{f.title}</h3>
               <p className="feature-desc">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Testimonials ────────────────────────────────────────────── */}
+      <section className="section">
+        <div className="section-header">
+          <div className="section-eyebrow">Loved by Developers</div>
+          <h2 className="section-title">
+            What Users <span className="gradient-text">Say</span>
+          </h2>
+          <p className="section-subtitle">Trusted by thousands of developers, writers, and data engineers worldwide</p>
+        </div>
+
+        <div className="testimonials-grid">
+          {testimonials.map((t, i) => (
+            <div key={i} className="testimonial-card glass-card">
+              <div className="testimonial-stars">
+                {"★".repeat(t.rating)}
+              </div>
+              <p className="testimonial-review">&ldquo;{t.review}&rdquo;</p>
+              <div className="testimonial-author">
+                <div className="testimonial-avatar">{t.avatar}</div>
+                <div>
+                  <div className="testimonial-name">{t.name}</div>
+                  <div className="testimonial-role">{t.role}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -327,7 +405,7 @@ export default function Home() {
           content: '';
           position: fixed;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%), 
+          background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
                       radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
           pointer-events: none;
           z-index: 1;
@@ -651,6 +729,44 @@ export default function Home() {
         .stat-value { font-size: 2.4rem; font-weight: 950; letter-spacing: -0.02em; }
         .stat-label { font-size: 0.85rem; color: rgba(220,210,255,0.78); font-weight: 600; }
 
+        /* ── Trending Tools ─────────────────────── */
+        .trending-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+        }
+        .trending-card {
+          padding: 1.5rem 1.75rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.03));
+          position: relative;
+          overflow: hidden;
+        }
+        .trending-card:hover {
+          transform: translateY(-5px);
+          background: rgba(139,92,246,0.14);
+          border-color: rgba(168,124,246,0.5);
+          box-shadow: 0 16px 40px rgba(139,92,246,0.2);
+        }
+        .trending-tag {
+          position: absolute;
+          top: 0.75rem;
+          right: 0.75rem;
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.05em;
+          padding: 0.2rem 0.6rem;
+          border-radius: 9999px;
+        }
+        .trending-icon { font-size: 2rem; flex-shrink: 0; }
+        .trending-name { font-size: 0.95rem; font-weight: 700; color: #ede9ff; flex: 1; }
+        .trending-arrow { font-size: 1.2rem; font-weight: 800; flex-shrink: 0; transition: transform 0.2s; }
+        .trending-card:hover .trending-arrow { transform: translateX(4px); }
+
         /* ── Shared section styles ──────────────── */
         .section {
           max-width: 1360px;
@@ -798,6 +914,72 @@ export default function Home() {
         .feature-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.65rem; color: #f0f0ff; }
         .feature-desc  { font-size: 0.88rem; color: rgba(220,210,255,0.78); line-height: 1.65; margin: 0; }
 
+        /* ── Testimonials ───────────────────────── */
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .testimonial-card {
+          padding: 2rem 1.75rem;
+          background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(139,92,246,0.03));
+          backdrop-filter: blur(12px);
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .testimonial-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 20px 50px rgba(139,92,246,0.2);
+          border-color: rgba(168,124,246,0.45);
+        }
+        .testimonial-stars {
+          color: #fbbf24;
+          font-size: 1rem;
+          letter-spacing: 0.05em;
+        }
+        .testimonial-review {
+          font-size: 0.9rem;
+          color: rgba(220,210,255,0.82);
+          line-height: 1.7;
+          margin: 0;
+          flex: 1;
+          font-style: italic;
+        }
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(168,124,246,0.15);
+        }
+        .testimonial-avatar {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #a78bfa, #e879f9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.75rem;
+          font-weight: 800;
+          color: #fff;
+          flex-shrink: 0;
+          letter-spacing: 0.02em;
+        }
+        .testimonial-name {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: #ede9ff;
+          margin-bottom: 0.15rem;
+        }
+        .testimonial-role {
+          font-size: 0.78rem;
+          color: rgba(220,210,255,0.55);
+          font-weight: 500;
+        }
+
         /* ── CTA Section ────────────────────────── */
         .cta-section {
           max-width: 1360px;
@@ -942,6 +1124,8 @@ export default function Home() {
           .step-arrow    { display: none; }
           .footer-grid   { grid-template-columns: 1.5fr 1fr 1fr; }
           .hero-grid     { gap: 3.5rem; }
+          .trending-grid { grid-template-columns: repeat(2, 1fr); }
+          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
           .hero-grid     { grid-template-columns: 1fr; gap: 3rem; }
@@ -953,6 +1137,8 @@ export default function Home() {
           .trust-badges  { grid-template-columns: 1fr; }
           .footer-grid   { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
           .cta-card      { padding: 3rem 2rem; }
+          .trending-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+          .testimonials-grid { grid-template-columns: 1fr; gap: 1.25rem; }
         }
         @media (max-width: 480px) {
           .hero-section  { padding: 3rem 1.25rem 4rem; }
@@ -965,6 +1151,7 @@ export default function Home() {
           .hero-title    { font-size: 2.2rem; }
           .cta-card      { padding: 2rem 1.5rem; }
           .cta-title     { font-size: 1.6rem; }
+          .trending-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </div>

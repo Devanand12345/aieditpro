@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AIEditPro - PDF Converter, JSON Beautifier & 12+ Developer Tools",
-  description: "Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT, EPUB, RTF instantly. Free online JSON beautifier, Base64 encoder, URL decoder, Hash generator & more developer tools. No sign-up required.",
+  title: "AIEditPro - PDF Converter, JSON Beautifier & 17+ Developer Tools",
+  description: "Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT, EPUB, RTF instantly. Free online JSON beautifier, Base64 encoder, URL decoder, Hash generator, Password generator, Word counter & more developer tools. No sign-up required.",
   keywords: [
     "PDF converter",
     "PDF to DOCX converter",
@@ -61,6 +61,32 @@ export const metadata: Metadata = {
     "RTF converter",
     "TXT converter",
     "HTML converter",
+    "password generator",
+    "secure password generator",
+    "random password generator",
+    "word counter",
+    "character counter",
+    "word count tool",
+    "color picker",
+    "hex to rgb converter",
+    "rgb to hex",
+    "color converter",
+    "markdown editor",
+    "markdown previewer",
+    "markdown to html",
+    "unix timestamp converter",
+    "epoch converter",
+    "timestamp to date",
+    "online developer tools",
+    "free developer utilities",
+    "web developer tools",
+    "JSON validator",
+    "JSON parser",
+    "PDF to Word free",
+    "convert PDF online",
+    "PDF converter free",
+    "JSON beautifier online",
+    "JSON formatter online",
   ].join(", "),
   authors: [{ name: "AIEditPro" }],
   creator: "AIEditPro",
@@ -71,8 +97,8 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "AIEditPro - Free Online File Converter & Developer Tools",
-    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 12 free developer tools including JSON beautifier, Base64 encoder, URL decoder, Hash generator, UUID generator & more.",
+    title: "AIEditPro - Free Online File Converter & 17+ Developer Tools",
+    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 17 free developer tools including JSON beautifier, password generator, word counter, color picker, Base64 encoder, Hash generator & more.",
     url: "https://aieditpro.net",
     siteName: "AIEditPro",
     images: [
@@ -88,8 +114,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIEditPro - Free Online File Converter & 12+ Developer Tools",
-    description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, Base64 encoder, Hash generator & more. No sign-up required.",
+    title: "AIEditPro - Free Online File Converter & 17+ Developer Tools",
+    description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, password generator, word counter, color picker, Base64 encoder & more. No sign-up required.",
     images: ["https://aieditpro.net/og-image.jpg"],
   },
   robots: {
@@ -143,6 +169,50 @@ export default function RootLayout({
                 "@type": "UseAction",
                 target: "https://aieditpro.net/converter",
               },
+            }),
+          }}
+        />
+        {/* FAQ Schema for rich snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Is AIEditPro free to use?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, AIEditPro is completely free. No sign-up or credit card required."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I convert a PDF to DOCX?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Go to the Converter page, upload your PDF file, select DOCX as the output format, and click Convert. Your file will be ready in seconds."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is a JSON Beautifier?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A JSON Beautifier formats compact or minified JSON data into a readable, indented structure. AIEditPro's JSON Beautifier also validates JSON syntax."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I generate a secure password?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use AIEditPro's Password Generator tool. Set your desired length (up to 128 characters), choose character types (uppercase, lowercase, numbers, symbols), and click Generate."
+                  }
+                }
+              ]
             }),
           }}
         />
