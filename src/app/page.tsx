@@ -111,13 +111,9 @@ export default function Home() {
                 </button>
               </Link>
               <button className="btn-secondary-hero" onClick={() => {
-                if (typeof window !== 'undefined' && navigator.bookmarks !== undefined) {
-                  window.location.href = 'javascript:void((function(){var d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k?k():(x?x.createRange().text:0))),f="https://aieditpro.net",t="AIEditPro - PDF Converter & Developer Tools";if(window.sidebar)window.sidebar.addPanel(t,f,"");else if(window.external)window.external.AddFavorite(f,t);else alert("Press "+(/Mac/.test(navigator.userAgent)?"Cmd":"Ctrl")+"+D to bookmark this page.");})())';
-                } else {
-                  alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
-                }
-              }}>
-                ⭐ Bookmark
+                alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to save AIEditPro!');
+              }} title="Quick access to your favorite tools">
+                ⭐ Save for Later
               </button>
             </div>
 
@@ -322,8 +318,10 @@ export default function Home() {
             <h2 className="cta-title">Ready to Transform Your Files?</h2>
             <p className="cta-subtitle">Start converting now. No credit card required.</p>
             <button className="btn-cta" onClick={() => {
-              alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
-            }}>⭐ Bookmark AIEditPro</button>
+              alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark!');
+            }} title="Never lose access to AIEditPro">
+              🔗 Keep AIEditPro Handy
+            </button>
           </div>
         </div>
       </section>

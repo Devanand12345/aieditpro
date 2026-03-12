@@ -46,8 +46,8 @@ export default function Navbar() {
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <button className="btn-glow" onClick={() => {
             alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
-          }} style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem" }}>
-            ⭐ Bookmark
+          }} style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem", position: "relative" }} title="Save AIEditPro for instant access">
+            ⭐ Save to Bookmarks
           </button>
 
           {/* Mobile hamburger */}
