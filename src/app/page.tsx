@@ -397,18 +397,9 @@ export default function Home() {
         .page-root {
           min-height: 100vh;
           padding-top: 80px;
-          background: linear-gradient(135deg, #0f172a 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0f172a 100%);
+          background: transparent;
           position: relative;
           overflow-x: hidden;
-        }
-        .page-root::before {
-          content: '';
-          position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
-          pointer-events: none;
-          z-index: 1;
         }
         .page-root > * {
           position: relative;

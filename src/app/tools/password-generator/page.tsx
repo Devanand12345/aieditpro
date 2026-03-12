@@ -61,7 +61,7 @@ export default function PasswordGenerator() {
   const str = strength();
 
   return (
-    <div style={{ minHeight: "100vh", padding: "5rem 1.5rem 4rem", background: "linear-gradient(160deg,#0f172a 0%,#1e1b4b 55%,#0f172a 100%)" }}>
+    <div style={{ minHeight: "100vh", padding: "5rem 1.5rem 4rem", background: "transparent" }}>
       <div style={{ maxWidth: "700px", margin: "0 auto" }}>
         <Link href="/tools" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(220,210,255,0.65)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "2rem", fontWeight: 500 }}>
           ← Back to Tools

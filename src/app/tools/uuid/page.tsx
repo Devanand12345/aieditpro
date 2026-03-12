@@ -55,7 +55,7 @@ export default function UuidGeneratorPage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
+    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "transparent" }}>
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <BackToToolsButton />
 

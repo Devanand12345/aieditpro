@@ -56,7 +56,7 @@ export default function TextComparePage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)" }}>
+    <div style={{ minHeight: "100vh", padding: "3rem 1.5rem", background: "transparent" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <BackToToolsButton />
 

@@ -171,7 +171,7 @@ export default function ToolsPage() {
         .tools-page {
           min-height: 100vh;
           padding: 5rem 1.5rem 4rem;
-          background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 55%, #0f172a 100%);
+          background: transparent;
         }
         .tools-container {
           max-width: 1200px;

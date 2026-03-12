@@ -68,7 +68,7 @@ export default function ConverterPage() {
   };
 
   return (
-    <div style={{ minHeight:"100vh", padding:"100px 1.5rem 3rem", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)" }}>
+    <div style={{ minHeight:"100vh", padding:"100px 1.5rem 3rem", background: "transparent" }}>
       <div style={{ maxWidth:"900px", margin:"0 auto" }}>
 
         <Link href="/" style={{ display:"inline-flex", alignItems:"center", gap:"0.4rem", color:"rgba(220,210,255,0.75)", textDecoration:"none", fontSize:"0.85rem", marginBottom:"2.5rem", fontWeight:600, transition:"all 0.2s" }}>
