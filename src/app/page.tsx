@@ -110,11 +110,15 @@ export default function Home() {
                   📤 Convert Now
                 </button>
               </Link>
-              <Link href="/tools" style={{ textDecoration: "none" }}>
-                <button className="btn-secondary-hero">
-                  🔧 Explore Tools
-                </button>
-              </Link>
+              <button className="btn-secondary-hero" onClick={() => {
+                if (typeof window !== 'undefined' && navigator.bookmarks !== undefined) {
+                  window.location.href = 'javascript:void((function(){var d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k?k():(x?x.createRange().text:0))),f="https://aieditpro.net",t="AIEditPro - PDF Converter & Developer Tools";if(window.sidebar)window.sidebar.addPanel(t,f,"");else if(window.external)window.external.AddFavorite(f,t);else alert("Press "+(/Mac/.test(navigator.userAgent)?"Cmd":"Ctrl")+"+D to bookmark this page.");})())';
+                } else {
+                  alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AIEditPro!');
+                }
+              }}>
+                ⭐ Bookmark
+              </button>
             </div>
 
             <div className="format-pills">
