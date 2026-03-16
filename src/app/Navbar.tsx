@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import DonationWidget from "./DonationWidget";
 
 function Logo() {
   return (
@@ -23,7 +24,6 @@ function Logo() {
 
 const navLinks = [
   { label: "Home",      href: "/" },
-  { label: "Features",  href: "/features" },
   { label: "Converter", href: "/converter" },
   { label: "Tools",     href: "/tools" },
 ];
@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 1.5rem" }}>
         <Logo />
 
         {/* Desktop links */}
@@ -44,6 +44,10 @@ export default function Navbar() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          {/* Donation Widget */}
+          <DonationWidget />
+
+          {/* Bookmark Button */}
           <button className="btn-glow" onClick={() => {
             alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AI-EditPro!');
           }} style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem", position: "relative" }} title="Save AI-EditPro for instant access">
