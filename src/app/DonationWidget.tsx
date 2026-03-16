@@ -76,24 +76,62 @@ export default function DonationWidget() {
             justifyContent: "center",
             zIndex: 9999,
             backdropFilter: "blur(5px)",
+            padding: "1rem",
           }}
           onClick={() => setShowDonation(false)}
         >
           <div
             className="donation-modal"
             style={{
+              position: "relative",
               background: "linear-gradient(135deg, rgba(31,41,55,0.95), rgba(17,24,39,0.95))",
               border: "1.5px solid rgba(249,158,11,0.3)",
               borderRadius: "1.5rem",
-              padding: "3rem 2rem",
+              padding: "clamp(1.5rem, 5%, 3rem) clamp(1rem, 5%, 2rem)",
               maxWidth: "500px",
-              width: "90%",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
               boxShadow: "0 25px 50px rgba(0,0,0,0.5)",
               animation: "slideUp 0.3s ease-out",
               backdropFilter: "blur(20px)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowDonation(false)}
+              style={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                background: "rgba(249,158,11,0.1)",
+                border: "1px solid rgba(249,158,11,0.3)",
+                borderRadius: "50%",
+                width: "2.5rem",
+                height: "2.5rem",
+                color: "#fcd34d",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.2s",
+                fontWeight: 700,
+                zIndex: 10,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(249,158,11,0.25)";
+                e.currentTarget.style.transform = "rotate(90deg)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(249,158,11,0.1)";
+                e.currentTarget.style.transform = "rotate(0)";
+              }}
+              title="Close donation modal"
+            >
+              ✕
+            </button>
             {/* Header */}
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
               <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>💝</div>
@@ -134,7 +172,7 @@ export default function DonationWidget() {
             <div style={{ marginBottom: "2rem" }}>
               <div style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
+                gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
                 gap: "1rem",
               }}>
                 {donationAmounts.map((option) => (

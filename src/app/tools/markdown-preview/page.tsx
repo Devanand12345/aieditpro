@@ -41,7 +41,7 @@ function markdownToHtml(md: string): string {
     .replace(/```[\w]*\n([\s\S]*?)```/g, "<pre><code>$1</code></pre>")
     .replace(/^\> (.*$)/gm, "<blockquote>$1</blockquote>")
     .replace(/^\- (.*$)/gm, "<li>$1</li>")
-    .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
+    .replace(/(<li>.*<\/li>)/g, "<ul>$1</ul>")
     .replace(/^\d+\. (.*$)/gm, "<li>$1</li>")
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     .replace(/\|(.+)\|/g, (match) => {
@@ -49,7 +49,7 @@ function markdownToHtml(md: string): string {
       if (cells.every(c => /^[-:]+$/.test(c.trim()))) return "";
       return "<tr>" + cells.map(c => `<td>${c.trim()}</td>`).join("") + "</tr>";
     })
-    .replace(/(<tr>.*<\/tr>)/gs, "<table>$1</table>")
+    .replace(/(<tr>.*<\/tr>)/g, "<table>$1</table>")
     .replace(/^---$/gm, "<hr>")
     .replace(/\n\n/g, "</p><p>")
     .replace(/^(?!<[h|u|o|l|b|p|c|t|a|e])/gm, "");

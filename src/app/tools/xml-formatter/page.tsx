@@ -29,7 +29,7 @@ export default function XmlFormatterPage() {
     }
   };
 
-  const formatNode = (node: Element | Document, indent: number): string => {
+  const formatNode = (node: Element, indent: number): string => {
     let result = "";
     const indentStr = "  ".repeat(indent);
     const nextIndentStr = "  ".repeat(indent + 1);
