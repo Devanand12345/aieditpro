@@ -1,11 +1,43 @@
-version: "3"
+version: '3.8'
 
 services:
-  gotenberg:
-    image: gotenberg/gotenberg:8
+  app:
+    build: .
+    container_name: aieditpro
     ports:
-      - "3002:3000"
-    restart: unless-stopped
+      - "3000:3000"
     environment:
-      - GOTENBERG_CHROMIUM_DISABLE_ROUTES=false
-      - GOTENBERG_LIBREOFFICE_DISABLE_ROUTES=false
+      NODE_ENV: production
+      EMAIL_SERVICE: ${EMAIL_SERVICE:-}
+      EMAIL_USER: ${EMAIL_USER:-}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD:-}
+      RECIPIENT_EMAIL: ${RECIPIENT_EMAIL:-support@aieditpro.net}
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - aieditpro_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: aieditpro_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./html:/usr/share/nginx/html:ro
+    depends_on:
+      - app
+    restart: always
+    networks:
+      - aieditpro_network
+
+networks:
+  aieditpro_network:
+    driver: bridge
