@@ -69,7 +69,7 @@ export default function ContactUs() {
                 <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>✉️</div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#f0f0ff", marginBottom: "0.35rem" }}>Email</h3>
                 <p style={{ fontSize: "0.9rem", color: "rgba(220,210,255,0.75)", margin: 0 }}>We'll respond within 24 hours</p>
-                <p style={{ fontSize: "0.9rem", color: "#67e8f9", fontWeight: 600, margin: "0.5rem 0 0" }}>aieditpronet@gmail.com</p>
+                <p style={{ fontSize: "0.9rem", color: "#67e8f9", fontWeight: 600, margin: "0.5rem 0 0" }}>Contact us via the form below</p>
               </div>
 
               {/* Card 2 */}
