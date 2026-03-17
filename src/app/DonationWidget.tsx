@@ -15,12 +15,10 @@ export default function DonationWidget() {
   ];
 
   const handleDonate = (amount: number) => {
-    // PayPal redirect - will be replaced with actual PayPal ID later
-    const paypalId = "YOUR_PAYPAL_ID"; // Placeholder
-    const donateUrl = `https://www.paypal.com/donate?business=${paypalId}&item_name=Support+AI-EditPro+Development&amount=${amount}&currency_code=USD`;
+    const paypalEmail = "aieditpronet@gmail.com";
+    const donateUrl = `https://www.paypal.com/donate?business=${encodeURIComponent(paypalEmail)}&item_name=Support+AI-EditPro+Development&amount=${amount}&currency_code=USD`;
     
     if (amount === 0) {
-      // For custom amount, user enters amount on PayPal page
       window.open(donateUrl, "_blank");
     } else {
       window.open(donateUrl, "_blank");
