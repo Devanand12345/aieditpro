@@ -5,24 +5,8 @@ import { useState } from "react";
 export default function DonationWidget() {
   const [showDonation, setShowDonation] = useState(false);
 
-  const donationAmounts = [
-    { amount: 5, label: "$5", message: "☕ Buy us a coffee" },
-    { amount: 10, label: "$10", message: "🍕 Support lunch" },
-    { amount: 25, label: "$25", message: "🎯 Fuel development" },
-    { amount: 50, label: "$50", message: "🚀 Boost innovation" },
-    { amount: 100, label: "$100", message: "⭐ VIP supporter" },
-    { amount: 0, label: "Custom", message: "💰 Your choice" },
-  ];
-
-  const handleDonate = (amount: number) => {
-    const paypalEmail = "aieditpronet@gmail.com";
-    const donateUrl = `https://www.paypal.com/donate?business=${encodeURIComponent(paypalEmail)}&item_name=Support+AI-EditPro+Development&amount=${amount}&currency_code=USD`;
-    
-    if (amount === 0) {
-      window.open(donateUrl, "_blank");
-    } else {
-      window.open(donateUrl, "_blank");
-    }
+  const handleDonate = () => {
+    window.open("https://buymeacoffee.com/aieditpronet", "_blank");
   };
 
   return (
@@ -56,7 +40,7 @@ export default function DonationWidget() {
           e.currentTarget.style.boxShadow = "0 4px 15px rgba(249,158,11,0.3)";
         }}
       >
-        💝 Support Us
+        ☕ Coffee
       </button>
 
       {/* Donation Modal */}
@@ -136,14 +120,14 @@ export default function DonationWidget() {
               <h2 style={{
                 fontSize: "1.8rem",
                 fontWeight: 900,
-                background: "linear-gradient(135deg, #f59e0b, #f97316)",
+                background: "linear-gradient(135deg, #FFDD00, #FFAA00)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 marginBottom: "0.5rem",
                 letterSpacing: "-0.02em",
               }}>
-                Support AI-EditPro
+                Buy us a coffee ☕
               </h2>
               <p style={{
                 fontSize: "1rem",
@@ -168,46 +152,37 @@ export default function DonationWidget() {
 
             {/* Donation Options */}
             <div style={{ marginBottom: "2rem" }}>
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-                gap: "1rem",
-              }}>
-                {donationAmounts.map((option) => (
-                  <button
-                    key={option.amount}
-                    onClick={() => handleDonate(option.amount)}
-                    style={{
-                      padding: "1.25rem 1rem",
-                      borderRadius: "0.85rem",
-                      border: "2px solid rgba(249,158,11,0.2)",
-                      background: "rgba(249,158,11,0.08)",
-                      color: "#fcd34d",
-                      cursor: "pointer",
-                      fontWeight: 700,
-                      fontSize: "1rem",
-                      transition: "all 0.2s",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = "rgba(249,158,11,0.2)";
-                      e.currentTarget.style.borderColor = "rgba(249,158,11,0.6)";
-                      e.currentTarget.style.transform = "scale(1.05)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "rgba(249,158,11,0.08)";
-                      e.currentTarget.style.borderColor = "rgba(249,158,11,0.2)";
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
-                  >
-                    <span style={{ fontSize: "1.2rem" }}>{option.label}</span>
-                    <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>{option.message}</span>
-                  </button>
-                ))}
-              </div>
+              <button
+                onClick={handleDonate}
+                style={{
+                  width: "100%",
+                  padding: "1.5rem",
+                  borderRadius: "1rem",
+                  border: "none",
+                  background: "linear-gradient(135deg, #FFDD00, #FFAA00)",
+                  color: "#000",
+                  cursor: "pointer",
+                  fontWeight: 800,
+                  fontSize: "1.3rem",
+                  transition: "all 0.3s",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  boxShadow: "0 8px 30px rgba(255,221,0,0.4)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(255,221,0,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "0 8px 30px rgba(255,221,0,0.4)";
+                }}
+              >
+                ☕ Buy me a coffee
+                <span style={{ fontSize: "0.85rem", opacity: 0.8, fontWeight: 600 }}>Support AI-EditPro</span>
+              </button>
             </div>
 
             {/* Info */}
