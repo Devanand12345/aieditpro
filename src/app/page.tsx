@@ -300,31 +300,43 @@ export default function Home() {
             {/* Product */}
             <div className="footer-col">
               <div className="footer-col-title">Product</div>
-              {[["Converter", "/converter"], ["Tools", "/tools"]].map(([l, h]) => (
-                <div key={l} className="footer-link-wrap">
-                  <Link href={h} className="footer-link">{l}</Link>
-                </div>
-              ))}
+              <div className="footer-link-wrap">
+                <Link href="/converter" className="footer-link">Converter</Link>
+              </div>
+              <div className="footer-link-wrap">
+                <Link href="/tools" className="footer-link">Tools</Link>
+              </div>
             </div>
 
             {/* Formats */}
             <div className="footer-col">
               <div className="footer-col-title">Formats</div>
-              {["PDF", "DOCX", "XLSX", "EPUB", "HTML", "TXT"].map(f => (
-                <div key={f} className="footer-link-wrap">
-                  <span className="footer-link">{f}</span>
-                </div>
-              ))}
+              <div className="footer-link-wrap"><span className="footer-link">PDF</span></div>
+              <div className="footer-link-wrap"><span className="footer-link">DOCX</span></div>
+              <div className="footer-link-wrap"><span className="footer-link">XLSX</span></div>
+              <div className="footer-link-wrap"><span className="footer-link">EPUB</span></div>
             </div>
 
             {/* Legal */}
             <div className="footer-col">
               <div className="footer-col-title">Legal</div>
-              {["Privacy Policy", "Terms & Conditions"].map(l => (
-                <div key={l} className="footer-link-wrap">
-                  <span className="footer-link" style={{ cursor: "pointer" }}>{l}</span>
-                </div>
-              ))}
+              <div className="footer-link-wrap">
+                <Link href="/privacy-policy" className="footer-link">Privacy Policy</Link>
+              </div>
+              <div className="footer-link-wrap">
+                <Link href="/terms-conditions" className="footer-link">Terms & Conditions</Link>
+              </div>
+            </div>
+
+            {/* Support */}
+            <div className="footer-col">
+              <div className="footer-col-title">Support</div>
+              <div className="footer-link-wrap">
+                <Link href="/contact" className="footer-link">Contact Us</Link>
+              </div>
+              <div className="footer-link-wrap">
+                <Link href="/contact" className="footer-link">Feedback</Link>
+              </div>
             </div>
           </div>
 
@@ -332,11 +344,6 @@ export default function Home() {
             <span className="footer-copy">
               © 2026 <span className="gradient-text" style={{ fontWeight: 600 }}>AI-EditPro</span> — File Conversion &amp; Developer Tools
             </span>
-            <div className="footer-socials">
-              {["Twitter", "GitHub", "Discord"].map(s => (
-                <span key={s} className="footer-social">𝕏 {s}</span>
-              ))}
-            </div>
           </div>
         </div>
       </footer>
@@ -925,7 +932,7 @@ export default function Home() {
         .footer-inner { max-width: 1360px; margin: 0 auto; }
         .footer-grid {
           display: grid;
-          grid-template-columns: 1.8fr 1fr 1fr 1fr;
+          grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
           gap: 3.5rem;
           margin-bottom: 4rem;
         }
@@ -963,7 +970,7 @@ export default function Home() {
           border-top: 1px solid rgba(255,255,255,0.08);
           padding-top: 2.5rem;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           flex-wrap: wrap;
           gap: 1.5rem;
@@ -1001,6 +1008,7 @@ export default function Home() {
           .footer-grid   { grid-template-columns: 1.5fr 1fr 1fr; }
           .hero-grid     { gap: 3.5rem; }
           .trending-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
           .hero-grid     { grid-template-columns: 1fr; gap: 3rem; }
           .tools-grid    { grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }

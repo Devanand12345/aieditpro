@@ -127,8 +127,8 @@ export default function ConverterPage() {
             </div>
 
             {/* Format grid */}
-            <div>
-              <label style={{ display:"block", fontSize:"0.78rem", fontWeight:800, color:"rgba(220,210,255,0.75)", letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"0.85rem" }}>
+            <div role="group" aria-labelledby="convert-to-label">
+              <label id="convert-to-label" style={{ display:"block", fontSize:"0.78rem", fontWeight:800, color:"rgba(220,210,255,0.75)", letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"0.85rem" }}>
                 Convert To
               </label>
               <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"0.65rem" }}>

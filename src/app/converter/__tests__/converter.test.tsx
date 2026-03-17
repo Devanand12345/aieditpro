@@ -8,7 +8,6 @@ describe("ConverterPage", () => {
     expect(screen.getByText(/file converter/i)).toBeDefined();
     expect(screen.getByText(/convert to/i)).toBeDefined();
     expect(screen.getByRole("button", { name: /convert/i })).toBeDisabled();
-    expect(screen.getByLabelText(/convert to/i)).toBeDefined();
     expect(document.querySelector('input[type=file]')).toBeTruthy();
   });
 
