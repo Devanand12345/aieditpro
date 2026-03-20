@@ -95,9 +95,13 @@ export default function Navbar() {
       )}
 
       <style>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+          .navbar { padding: 0.75rem 1rem; }
+        }
+        @media (max-width: 480px) {
+          .navbar { padding: 0.6rem 0.75rem; }
         }
       `}</style>
     </nav>

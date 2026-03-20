@@ -477,17 +477,29 @@ export default function Home() {
           .trending-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
         }
         @media (max-width: 480px) {
-          .hero-section { padding: 3rem 1.25rem 4rem; }
+          .hero-section { padding: 6rem 1rem 3rem; }
           .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
           .stats-inner { grid-template-columns: 1fr 1fr; }
           .steps-grid { grid-template-columns: 1fr; gap: 1.25rem; }
           .features-grid { grid-template-columns: 1fr; gap: 1rem; }
           .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-          .section { padding: 0 1.25rem; }
-          .hero-title { font-size: 2.2rem; }
-          .cta-card { padding: 2rem 1.5rem; }
-          .cta-title { font-size: 1.6rem; }
+          .section { padding: 0 1rem; }
+          .hero-title { font-size: 1.8rem; }
+          .hero-badge { font-size: 0.8rem; padding: 0.5rem 1rem; }
+          .cta-card { padding: 2rem 1rem; }
+          .cta-title { font-size: 1.4rem; }
           .trending-grid { grid-template-columns: 1fr; }
+          .hero-desc { font-size: 0.95rem; }
+          .section-title { font-size: 1.6rem; }
+          .section-subtitle { font-size: 0.9rem; }
+          .stats-section { padding: 0 1rem; }
+          .stat-value { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 360px) {
+          .hero-title { font-size: 1.6rem; }
+          .tools-grid { grid-template-columns: 1fr; }
+          .btn-primary-hero { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
         }
 
         /* Light Mode */

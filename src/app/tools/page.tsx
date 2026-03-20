@@ -414,16 +414,46 @@ export default function ToolsPage() {
         }
 
         /* Responsive */
+        @media (max-width: 768px) {
+          .page-header { padding: 0 1rem; }
+          .search-wrap { padding: 0 1rem; }
+          .category-tabs { padding: 0 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .tools-grid { padding: 0 1rem; }
+        }
         @media (max-width: 640px) {
-          .tools-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-          .tool-body  { padding: 1.1rem 1.1rem 0.75rem; }
-          .tool-footer{ padding: 0 1.1rem 1.1rem; }
+          .tools-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+          .tool-body  { padding: 1rem 0.75rem 0.5rem; }
+          .tool-footer{ padding: 0 0.75rem 0.75rem; }
           .category-tabs { gap: 0.35rem; }
-          .category-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+          .category-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; white-space: nowrap; }
+          .page-title { font-size: 1.8rem; }
+          .page-subtitle { font-size: 0.9rem; }
+          .tool-name { font-size: 0.9rem; }
+          .tool-desc { font-size: 0.75rem; }
+          .tool-btn { font-size: 0.8rem; padding: 0.6rem; }
+          .results-label { padding: 0 1rem; font-size: 0.85rem; }
         }
         @media (max-width: 420px) {
           .tools-grid { grid-template-columns: 1fr; }
+          .page-title { font-size: 1.5rem; }
         }
+
+        /* Light Mode */
+        [data-theme="light"] .page-title { color: #0f0a1e; }
+        [data-theme="light"] .page-subtitle { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .page-eyebrow { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.25); color: #7c3aed; }
+        [data-theme="light"] .search-input { background: rgba(255,255,255,0.95); color: #0f0a1e; border-color: rgba(124,58,237,0.3); }
+        [data-theme="light"] .search-input::placeholder { color: rgba(30,27,75,0.5); }
+        [data-theme="light"] .category-tab { color: rgba(30,27,75,0.7); background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2); }
+        [data-theme="light"] .category-tab.active { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+        [data-theme="light"] .tool-card { background: rgba(255,255,255,0.95); border-color: rgba(124,58,237,0.15); }
+        [data-theme="light"] .tool-name { color: #0f0a1e; }
+        [data-theme="light"] .tool-desc { color: rgba(30,27,75,0.65); }
+        [data-theme="light"] .tool-icon { font-size: 1.8rem; }
+        [data-theme="light"] .back-link { color: #7c3aed; }
+        [data-theme="light"] .results-label { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .empty-title { color: #0f0a1e; }
+        [data-theme="light"] .empty-sub { color: rgba(30,27,75,0.6); }
       `}</style>
     </div>
   );
