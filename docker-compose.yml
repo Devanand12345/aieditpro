@@ -8,10 +8,14 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: production
+      GOTENBERG_URL: http://gotenberg:3000
       EMAIL_SERVICE: ${EMAIL_SERVICE:-}
       EMAIL_USER: ${EMAIL_USER:-}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD:-}
       RECIPIENT_EMAIL: ${RECIPIENT_EMAIL:-support@aieditpro.net}
+    depends_on:
+      gotenberg:
+        condition: service_healthy
     restart: always
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
@@ -19,6 +23,23 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - aieditpro_network
+
+  gotenberg:
+    image: gotenberg/gotenberg:8.0
+    container_name: aieditpro_gotenberg
+    ports:
+      - "3002:3000"
+    environment:
+      GOTENBERG_DISABLE_GOOGLE_CHROME: "false"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     networks:
       - aieditpro_network
 
