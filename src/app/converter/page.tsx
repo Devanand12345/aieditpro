@@ -2,6 +2,7 @@
 
 import { useState, FormEvent, useRef } from "react";
 import Link from "next/link";
+import "./converter-styles.css";
 
 const FORMATS = ["pdf","docx","txt","html","epub","rtf","xlsx","pptx"];
 const FORMAT_ICONS: Record<string,string> = { pdf:"📄",docx:"📝",txt:"🗒️",html:"🌐",epub:"📚",rtf:"📋",xlsx:"📊",pptx:"🎞️" };
@@ -324,17 +325,6 @@ export default function ConverterPage() {
           </p>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.8; box-shadow: 0 0 8px rgba(167, 139, 250, 0.4); }
-          50% { opacity: 1; box-shadow: 0 0 16px rgba(167, 139, 250, 0.6); }
-        }
-        @keyframes spin-slow {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }
