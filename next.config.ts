@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  // 🚀 Turbopack Configuration (Next.js 16+)
-  turbopack: {},
+  // 🚀 Turbopack Configuration (Next.js 16+) - Disabled for stability
+  // turbopack: {},
 
   // 📦 Bundle Optimization
   webpack: (config, { dev, isServer }) => {
