@@ -4,5 +4,3 @@ Disallow: /api/
 Disallow: /.next/
 
 Sitemap: https://aieditpro.net/sitemap.xml
-
-Crawl-delay: 1
