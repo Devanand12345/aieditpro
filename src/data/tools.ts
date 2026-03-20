@@ -31,6 +31,18 @@ export const tools: Tool[] = [
   { id: "color-picker", name: "Color Picker", icon: "🎨", desc: "Pick & convert colors", category: "Design", href: "/tools/color-picker", color: "#06b6d4" },
   { id: "markdown-preview", name: "Markdown Preview", icon: "📄", desc: "Live markdown previewer", category: "Editor", href: "/tools/markdown-preview", color: "#f59e0b" },
   { id: "timestamp", name: "Timestamp", icon: "⏱️", desc: "Unix timestamp converter", category: "Utility", href: "/tools/timestamp", color: "#ec4899" },
+  { id: "age-calculator", name: "Age Calculator", icon: "🎂", desc: "Calculate exact age", category: "Utility", href: "/tools/age-calculator", color: "#f59e0b" },
+  { id: "bmi-calculator", name: "BMI Calculator", icon: "⚖️", desc: "Calculate BMI", category: "Health", href: "/tools/bmi-calculator", color: "#10b981" },
+  { id: "credit-card-validator", name: "Credit Card Validator", icon: "💳", desc: "Validate card numbers", category: "Security", href: "/tools/credit-card-validator", color: "#ec4899" },
+  { id: "fake-data-generator", name: "Fake Data", icon: "🎭", desc: "Generate fake test data", category: "Generator", href: "/tools/fake-data-generator", color: "#8b5cf6" },
+  { id: "unit-converter", name: "Unit Converter", icon: "📏", desc: "Convert measurement units", category: "Utility", href: "/tools/unit-converter", color: "#06b6d4" },
+  { id: "cron-generator", name: "Cron Generator", icon: "⏰", desc: "Create cron expressions", category: "Developer", href: "/tools/cron-generator", color: "#a855f7" },
+  { id: "uuid-v7-generator", name: "UUID v7 Generator", icon: "🆔", desc: "Time-ordered UUIDs", category: "Developer", href: "/tools/uuid-v7-generator", color: "#ec4899" },
+  { id: "color-converter", name: "Color Converter", icon: "🎨", desc: "Convert color formats", category: "Design", href: "/tools/color-converter", color: "#f59e0b" },
+  { id: "random-string-generator", name: "Random String", icon: "🎲", desc: "Generate random strings", category: "Generator", href: "/tools/random-string-generator", color: "#10b981" },
+  { id: "percentage-calculator", name: "Percentage Calculator", icon: "🧮", desc: "Calculate percentages", category: "Math", href: "/tools/percentage-calculator", color: "#8b5cf6" },
+  { id: "html-encoder", name: "HTML Encoder", icon: "🌐", desc: "Encode/decode HTML", category: "Encoding", href: "/tools/html-encoder", color: "#06b6d4" },
+  { id: "json-to-yaml", name: "JSON ↔ YAML", icon: "🔄", desc: "Convert between formats", category: "Data", href: "/tools/json-to-yaml", color: "#ef4444" },
 ];
 
 export const categories = ["All", ...Array.from(new Set(tools.map(t => t.category))).sort()] as const;
