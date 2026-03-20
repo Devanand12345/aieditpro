@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI-EditPro - Free JSON Beautifier & Online File Converter | 17+ Developer Tools",
-  description: "Free online JSON Beautifier, Formatter, Validator & Minifier with syntax highlighting. Convert PDF to DOCX, DOC, XLSX, PPTX instantly. Free Base64 encoder/decoder, URL encoder/decoder, Hash generator (MD5, SHA256, SHA512), Password generator, Word counter, JWT decoder, UUID generator, Regex tester & 17+ developer tools. No sign-up required. Fast, accurate, secure.",
+  title: "AI-EditPro - Free Online Developer Tools | QR Code Generator, Image Compressor, Lorem Ipsum & 22+ Tools",
+  description: "Free online developer tools: QR Code Generator, Image Compressor, Lorem Ipsum Generator, Password Strength Checker, URL Slug Generator, JSON Beautifier, Base64 encoder/decoder, URL encoder/decoder, Hash generator (MD5, SHA256, SHA512), Password generator, Word counter, JWT decoder, UUID generator & 22+ free tools. No sign-up required.",
   keywords: [
     // JSON Converter & Formatter - PRIMARY KEYWORDS
     "JSON beautifier",

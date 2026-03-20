@@ -7,48 +7,30 @@ import { useEffect, useState } from "react";
 const toolsList = tools.slice(0, 12);
 
 const features = [
-  { icon: "📄", title: "File Converter", desc: "Convert PDF to Word, Excel, PowerPoint, HTML, TXT with 99%+ accuracy. Free & instant.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
+  { icon: "📱", title: "QR Code Generator", desc: "Create QR codes for URLs, WiFi, contacts, text & more. Download as PNG instantly.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
+  { icon: "🖼️", title: "Image Compressor", desc: "Reduce image file size without losing quality. Supports JPG, PNG, WebP.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
+  { icon: "📝", title: "Lorem Ipsum Generator", desc: "Generate placeholder text for designs, mockups, and prototypes.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
+  { icon: "🔒", title: "Password Strength Checker", desc: "Test password security, see crack time estimates, and get improvement tips.", gradient: "linear-gradient(135deg,#14b8a6,#10b981)" },
+  { icon: "🔗", title: "URL Slug Generator", desc: "Create SEO-friendly URL slugs from any text. Perfect for blog posts.", gradient: "linear-gradient(135deg,#a855f7,#8b5cf6)" },
   { icon: "🔐", title: "Security & Encoding", desc: "Decode JWTs, encode/decode Base64 & URLs with military-grade security.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
-  { icon: "#️⃣", title: "Hash & UUID Generation", desc: "Generate MD5, SHA256, SHA512 hashes and UUIDs (v1 & v4) in seconds.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
-  { icon: "🔑", title: "Password Generator", desc: "Create secure, random passwords with customizable length and character sets.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
-  { icon: "📊", title: "Data Processing Tools", desc: "Format CSV, XML, HTML. Word counter, timestamp converter & more developer tools.", gradient: "linear-gradient(135deg,#14b8a6,#10b981)" },
-  { icon: "⚡", title: "Lightning Fast", desc: "All tools process data instantly. Client-side processing for privacy & speed.", gradient: "linear-gradient(135deg,#a855f7,#8b5cf6)" },
-  { icon: "✨", title: "100% Free Forever", desc: "No registration. No limits. 17+ developer tools completely free forever.", gradient: "linear-gradient(135deg,#fbbf24,#f59e0b)" },
-];
-
-const formats = ["PDF", "DOCX", "XLSX", "PPTX", "EPUB", "HTML", "RTF", "TXT"];
-const fmtStyle = [
-  { bg: "rgba(139,92,246,0.12)", border: "rgba(139,92,246,0.35)", text: "#c4b5fd" },
-  { bg: "rgba(236,72,153,0.12)", border: "rgba(236,72,153,0.35)", text: "#f9a8d4" },
-  { bg: "rgba(34,211,238,0.10)", border: "rgba(34,211,238,0.30)", text: "#67e8f9" },
-  { bg: "rgba(139,92,246,0.12)", border: "rgba(139,92,246,0.35)", text: "#c4b5fd" },
-  { bg: "rgba(236,72,153,0.12)", border: "rgba(236,72,153,0.35)", text: "#f9a8d4" },
-  { bg: "rgba(34,211,238,0.10)", border: "rgba(34,211,238,0.30)", text: "#67e8f9" },
-  { bg: "rgba(251,191,36,0.10)", border: "rgba(251,191,36,0.30)", text: "#fde68a" },
-  { bg: "rgba(52,211,153,0.10)", border: "rgba(52,211,153,0.30)", text: "#6ee7b7" },
-];
-
-const howItWorks = [
-  { step: "01", icon: "📂", title: "Upload", desc: "Drag & drop or click to browse. Any format, any size." },
-  { step: "02", icon: "🎯", title: "Choose", desc: "Pick your output format from 8+ options." },
-  { step: "03", icon: "⚡", title: "Convert", desc: "AI processes your file with 99%+ accuracy in seconds." },
-  { step: "04", icon: "📥", title: "Download", desc: "Grab your converted file — ready to use immediately." },
+  { icon: "⚡", title: "Lightning Fast", desc: "All tools process data instantly. Client-side processing for privacy & speed.", gradient: "linear-gradient(135deg,#fbbf24,#f59e0b)" },
+  { icon: "✨", title: "100% Free Forever", desc: "No registration. No limits. 22+ developer tools completely free forever.", gradient: "linear-gradient(135deg,#06b6d4,#10b981)" },
 ];
 
 const stats = [
-  { value: "50K+", label: "Files Converted", icon: "📄" },
-  { value: "17+", label: "Free Tools", icon: "🗂️" },
+  { value: "22+", label: "Free Tools", icon: "🛠️" },
+  { value: "100K+", label: "Users", icon: "👥" },
   { value: "99.9%", label: "Uptime", icon: "⚡" },
-  { value: "<5s", label: "Avg. Convert Time", icon: "🚀" },
+  { value: "100%", label: "Free Forever", icon: "💯" },
 ];
 
 const trendingTools = [
-  { id: "converter", name: "File Converter", icon: "📄", href: "/converter", color: "#ec4899", tag: "⭐ Popular" },
-  { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ New" },
-  { id: "hash", name: "Hash Generator", icon: "🔐", href: "/tools/hash", color: "#f59e0b", tag: "🔥 Hot" },
-  { id: "word-counter", name: "Word Counter", icon: "📝", href: "/tools/word-counter", color: "#f59e0b", tag: "⭐ New" },
-  { id: "jwt-decoder", name: "JWT Decoder", icon: "🔓", href: "/tools/jwt-decoder", color: "#06b6d4", tag: "⭐ New" },
-  { id: "uuid", name: "UUID Generator", icon: "🆔", href: "/tools/uuid", color: "#a855f7", tag: "⭐ New" },
+  { id: "qr-code-generator", name: "QR Code Generator", icon: "📱", href: "/tools/qr-code-generator", color: "#ec4899", tag: "🔥 Hot" },
+  { id: "image-compressor", name: "Image Compressor", icon: "🖼️", href: "/tools/image-compressor", color: "#f59e0b", tag: "⭐ New" },
+  { id: "lorem-ipsum-generator", name: "Lorem Ipsum", icon: "📝", href: "/tools/lorem-ipsum-generator", color: "#10b981", tag: "⭐ New" },
+  { id: "password-strength-checker", name: "Password Strength", icon: "🔒", href: "/tools/password-strength-checker", color: "#06b6d4", tag: "⭐ New" },
+  { id: "url-slug-generator", name: "URL Slug", icon: "🔗", href: "/tools/url-slug-generator", color: "#8b5cf6", tag: "⭐ New" },
+  { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ Popular" },
 ];
 
 export default function Home() {
@@ -73,67 +55,26 @@ export default function Home() {
           <div className="hero-left">
             <div className="badge hero-badge">
               <span className="badge-dot" />
-              ✨ AI-Powered File Conversion
+              ✨ 22+ Free Developer Tools
             </div>
 
             <h1 className="hero-title">
-              <span className="shimmer">File Converter</span>
+              <span className="shimmer">Free Online</span>
               <br />
-              <span className="hero-title-accent">& Developer Tools</span>
+              <span className="hero-title-accent">Developer Tools</span>
             </h1>
 
             <p className="hero-desc">
-              Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT with 99%+ accuracy. 
-              Also access 17+ free developer tools including Base64 encoder, URL encoder, Hash generator, Password generator & more.{" "}
-              <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required.</strong>
+              QR Code Generator, Image Compressor, Lorem Ipsum, Password Checker, URL Slug & more.{" "}
+              <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required. No downloads needed.</strong>
             </p>
 
             <div className="hero-actions">
-              <Link href="/converter" style={{ textDecoration: "none" }}>
+              <Link href="/tools" style={{ textDecoration: "none" }}>
                 <button className="btn-primary-hero">
-                  📤 Convert Files
+                  🛠️ Browse All Tools
                 </button>
               </Link>
-            </div>
-
-            <div className="format-pills">
-              {formats.map((f, i) => (
-                <span
-                  key={f}
-                  className="format-pill"
-                  style={{
-                    background: fmtStyle[i].bg,
-                    border: `1px solid ${fmtStyle[i].border}`,
-                    color: fmtStyle[i].text,
-                  }}
-                >
-                  {f}
-                </span>
-              ))}
-            </div>
-
-            <div className="trust-badges">
-              <div className="trust-badge">
-                <span className="trust-icon">✅</span>
-                <div>
-                  <div className="trust-title">No Sign-up</div>
-                  <div className="trust-sub">Start instantly</div>
-                </div>
-              </div>
-              <div className="trust-badge">
-                <span className="trust-icon">🔒</span>
-                <div>
-                  <div className="trust-title">100% Secure</div>
-                  <div className="trust-sub">Fully private</div>
-                </div>
-              </div>
-              <div className="trust-badge">
-                <span className="trust-icon">⚡</span>
-                <div>
-                  <div className="trust-title">Lightning Fast</div>
-                  <div className="trust-sub">Under 5 seconds</div>
-                </div>
-              </div>
             </div>
           </div>
 

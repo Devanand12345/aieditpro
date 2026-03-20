@@ -22,9 +22,8 @@ function Logo() {
 }
 
 const navLinks = [
-  { label: "Home",      href: "/" },
-  { label: "Converter", href: "/converter" },
-  { label: "Tools",     href: "/tools" },
+  { label: "Home",  href: "/" },
+  { label: "Tools",  href: "/tools" },
 ];
 
 export default function Navbar() {
