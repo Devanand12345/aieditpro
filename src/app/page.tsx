@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 const toolsList = tools.slice(0, 12);
 
 const features = [
-  { icon: "🎨", title: "JSON Beautifier & Formatter", desc: "Free JSON beautifier with syntax highlighting, validation, minifier & validator. Format JSON instantly.", gradient: "linear-gradient(135deg,#8b5cf6,#a78bfa)" },
-  { icon: "📄", title: "PDF to DOCX Converter", desc: "Convert PDF to Word, Excel, PowerPoint, HTML, TXT with 99%+ accuracy. Free & instant.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
+  { icon: "📄", title: "File Converter", desc: "Convert PDF to Word, Excel, PowerPoint, HTML, TXT with 99%+ accuracy. Free & instant.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
   { icon: "🔐", title: "Security & Encoding", desc: "Decode JWTs, encode/decode Base64 & URLs with military-grade security.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
   { icon: "#️⃣", title: "Hash & UUID Generation", desc: "Generate MD5, SHA256, SHA512 hashes and UUIDs (v1 & v4) in seconds.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
   { icon: "🔑", title: "Password Generator", desc: "Create secure, random passwords with customizable length and character sets.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
@@ -44,12 +43,12 @@ const stats = [
 ];
 
 const trendingTools = [
-  { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", href: "/tools/json-beautifier", color: "#8b5cf6", tag: "🔥 #1 Tool" },
-  { id: "converter", name: "PDF Converter", icon: "📄", href: "/converter", color: "#ec4899", tag: "⭐ Popular" },
+  { id: "converter", name: "File Converter", icon: "📄", href: "/converter", color: "#ec4899", tag: "⭐ Popular" },
   { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ New" },
-  { id: "hash", name: "Hash Generator", icon: "#️⃣", href: "/tools/hash", color: "#f59e0b", tag: "🔥 Hot" },
+  { id: "hash", name: "Hash Generator", icon: "🔐", href: "/tools/hash", color: "#f59e0b", tag: "🔥 Hot" },
   { id: "word-counter", name: "Word Counter", icon: "📝", href: "/tools/word-counter", color: "#f59e0b", tag: "⭐ New" },
   { id: "jwt-decoder", name: "JWT Decoder", icon: "🔓", href: "/tools/jwt-decoder", color: "#06b6d4", tag: "⭐ New" },
+  { id: "uuid", name: "UUID Generator", icon: "🆔", href: "/tools/uuid", color: "#a855f7", tag: "⭐ New" },
 ];
 
 export default function Home() {
@@ -78,26 +77,26 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              <span className="shimmer">JSON Beautifier</span>
+              <span className="shimmer">File Converter</span>
               <br />
-              <span className="hero-title-accent">& File Converter</span>
+              <span className="hero-title-accent">& Developer Tools</span>
             </h1>
 
             <p className="hero-desc">
-              Free online <strong>JSON Beautifier, Formatter, Validator & Minifier</strong> with instant formatting.
-              Also convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT with 99%+ accuracy.{" "}
+              Convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT with 99%+ accuracy. 
+              Also access 17+ free developer tools including Base64 encoder, URL encoder, Hash generator, Password generator & more.{" "}
               <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required.</strong>
             </p>
 
             <div className="hero-actions">
-              <Link href="/tools/json-beautifier" style={{ textDecoration: "none" }}>
+              <Link href="/converter" style={{ textDecoration: "none" }}>
                 <button className="btn-primary-hero" style={{ marginRight: "1rem" }}>
-                  🎨 JSON Beautifier
+                  📤 Convert Files
                 </button>
               </Link>
-              <Link href="/converter" style={{ textDecoration: "none" }}>
+              <Link href="/tools" style={{ textDecoration: "none" }}>
                 <button className="btn-secondary-hero">
-                  📤 Convert Files
+                  🛠️ Explore Tools
                 </button>
               </Link>
             </div>
