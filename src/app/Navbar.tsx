@@ -45,10 +45,28 @@ export default function Navbar() {
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <ThemeToggle />
           {/* Bookmark Button */}
-          <button className="btn-glow" onClick={() => {
-            alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AI-EditPro!');
-          }} style={{ padding: "0.45rem 1.2rem", fontSize: "0.85rem", position: "relative" }} title="Save AI-EditPro for instant access">
-            ⭐ Save to Bookmarks
+          <button
+            onClick={() => {
+              alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AI-EditPro!');
+            }}
+            title="Bookmark AI-EditPro"
+            style={{
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "8px",
+              padding: "0.5rem 0.75rem",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.3rem",
+              color: "#c4b5fd",
+              fontSize: "0.8rem",
+              fontWeight: 500,
+              transition: "all 0.2s",
+            }}
+          >
+            <span>⭐</span>
+            <span>Bookmark</span>
           </button>
 
           {/* Mobile hamburger */}
