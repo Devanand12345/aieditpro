@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import UrlSlugClient from "./page";
+
+export const metadata: Metadata = {
+  title: "URL Slug Generator - Create SEO-Friendly URL Slugs Online",
+  description: "Free URL slug generator. Convert titles to SEO-friendly URL slugs. Perfect for blog posts, articles, and websites. Generate clean, readable URLs instantly.",
+  keywords: [
+    "URL slug generator",
+    "slug generator",
+    "URL slug creator",
+    "create URL slug",
+    "SEO slug generator",
+    "friendly URL generator",
+    "URL cleaner",
+    "slugify text",
+    "text to URL",
+    "title to slug",
+    "URL friendly text",
+    "create slug from title",
+    "SEO friendly URL",
+    "clean URL generator",
+    "permalinks generator",
+    "URL formatter",
+    "slug maker",
+    "URL string generator",
+    "blog post URL",
+    "article URL generator",
+    "URL shortener",
+    "custom URL generator",
+    "web URL generator",
+    "website URL generator",
+    "slug generator online",
+    "free slug generator",
+    "online URL slug generator",
+    "slugify tool",
+    "slug tool",
+    "URL path generator",
+    "path generator",
+    "permalink generator",
+    "nice URL generator",
+    "readable URL generator",
+    "human readable URL",
+    "URL encoding tool",
+    "special characters URL",
+    "remove special characters from URL",
+    "format URL text",
+    "convert text to URL",
+    "text to URL slug online",
+    "blog URL generator",
+  ].join(", "),
+};
+
+export default function UrlSlugGenerator() {
+  return <UrlSlugClient />;
+}
