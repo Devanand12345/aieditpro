@@ -19,6 +19,7 @@ export default function ConverterPage() {
   const [target, setTarget] = useState(FORMATS[0]);
   const [status, setStatus] = useState<"idle"|"uploading"|"done"|"error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [errorCode, setErrorCode] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const [conversionTime, setConversionTime] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,10 +42,11 @@ export default function ConverterPage() {
       const endTime = Date.now();
       const time = ((endTime - startTime) / 1000).toFixed(2);
       setConversionTime(parseFloat(time));
-      
+
       if (!res.ok) {
         const json = await res.json().catch(() => ({}));
         setErrorMsg(json.error || "Conversion failed. Please try again.");
+        setErrorCode(json.code || "");
         setStatus("error");
         return;
       }
@@ -169,9 +171,27 @@ export default function ConverterPage() {
             </div>
           )}
           {status==="error" && (
-            <div style={{ marginTop:"1.5rem", padding:"1.2rem 1.5rem", borderRadius:"1rem", background:"rgba(239,68,68,0.15)", border:"1px solid rgba(239,68,68,0.35)", display:"flex", alignItems:"flex-start", gap:"0.75rem", color:"#fca5a5", fontSize:"0.95rem", fontWeight:600 }}>
-              <span style={{ fontSize:"1.3rem", flexShrink:0 }}>❌</span>
-              <span>{errorMsg || "Conversion failed. Please try again."}</span>
+            <div style={{ marginTop:"1.5rem" }}>
+              {errorCode === "QUOTA_EXCEEDED" ? (
+                <div style={{ padding:"1.2rem 1.5rem", borderRadius:"1rem", background:"rgba(251, 191, 36, 0.15)", border:"1px solid rgba(251, 191, 36, 0.35)", display:"flex", alignItems:"flex-start", gap:"0.75rem", color:"#fde68a", fontSize:"0.95rem", fontWeight:600 }}>
+                  <span style={{ fontSize:"1.3rem", flexShrink:0 }}>⚠️</span>
+                  <div>
+                    <div style={{ fontWeight:700, marginBottom:"0.5rem" }}>Daily Conversion Limit Reached</div>
+                    <div style={{ fontWeight:400, fontSize:"0.9rem", lineHeight:1.6 }}>
+                      You've used all 25 free conversions today. The limit resets at midnight UTC.
+                      <br />
+                      <a href="https://cloudconvert.com" target="_blank" rel="noopener noreferrer" style={{ color:"#fbbf24", textDecoration:"underline" }}>
+                        Upgrade to Pro
+                      </a> for unlimited conversions (starting at $5/month).
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ padding:"1.2rem 1.5rem", borderRadius:"1rem", background:"rgba(239,68,68,0.15)", border:"1px solid rgba(239,68,68,0.35)", display:"flex", alignItems:"flex-start", gap:"0.75rem", color:"#fca5a5", fontSize:"0.95rem", fontWeight:600 }}>
+                  <span style={{ fontSize:"1.3rem", flexShrink:0 }}>❌</span>
+                  <span>{errorMsg || "Conversion failed. Please try again."}</span>
+                </div>
+              )}
             </div>
           )}
         </div>

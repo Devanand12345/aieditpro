@@ -112,6 +112,17 @@ git push origin main
 
 **Solution:** Add `CLOUDCONVERT_API_KEY` environment variable in Vercel
 
+### Error: "Daily conversion limit reached" ⚠️
+
+**What it means:** You've used all 25 conversions for today (resets at midnight UTC)
+
+**Solutions:**
+- Wait until midnight UTC for limit to reset
+- Or upgrade CloudConvert plan:
+  - **Starter:** $5/month for 250 conversions/day
+  - **Professional:** $20/month for 1,000 conversions/day
+- Visit: https://cloudconvert.com to upgrade
+
 ### Error: "Failed to create conversion task"
 
 **Solution:**
@@ -139,6 +150,12 @@ curl -X GET https://api.cloudconvert.com/v2/tasks \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
+### User-Friendly Error Messages
+
+The converter now shows helpful messages:
+- ⚠️ **Daily Limit Reached:** Shows upgrade link and reset time
+- ❌ **Other Errors:** Shows specific error with solution hints
+
 ---
 
 ## 📈 Usage Monitoring
@@ -149,6 +166,11 @@ curl -X GET https://api.cloudconvert.com/v2/tasks \
 3. See conversions used today
 
 **Free tier reset:** Daily at midnight UTC
+
+**What users see when limit reached:**
+- Yellow warning box with clear message
+- Links to upgrade CloudConvert
+- Explains when limit resets
 
 ---
 
