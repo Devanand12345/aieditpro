@@ -325,7 +325,7 @@ export default function ConverterPage() {
         </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         @keyframes pulse-glow {
           0%, 100% { opacity: 0.8; box-shadow: 0 0 8px rgba(167, 139, 250, 0.4); }
           50% { opacity: 1; box-shadow: 0 0 16px rgba(167, 139, 250, 0.6); }
