@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { tools } from "@/data/tools";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 const toolsList = tools.slice(0, 12);
 
@@ -35,6 +35,17 @@ const trendingTools = [
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [search, setSearch] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const searchResults = useMemo(() => {
+    if (!search.trim()) return [];
+    return tools.filter(t => 
+      t.name.toLowerCase().includes(search.toLowerCase()) ||
+      t.desc.toLowerCase().includes(search.toLowerCase()) ||
+      t.category.toLowerCase().includes(search.toLowerCase())
+    ).slice(0, 8);
+  }, [search]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,6 +79,84 @@ export default function Home() {
               QR Code Generator, Image Compressor, Lorem Ipsum, Password Checker, URL Slug & more.{" "}
               <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required. No downloads needed.</strong>
             </p>
+
+            {/* Search Bar */}
+            <div style={{ position: "relative", maxWidth: "500px", marginBottom: "1.5rem" }}>
+              <div style={{ position: "relative" }}>
+                <svg style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)", color: "#c4b5fd" }} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search 35+ tools..."
+                  value={search}
+                  onChange={e => { setSearch(e.target.value); setShowResults(true); }}
+                  onFocus={() => setShowResults(true)}
+                  onBlur={() => setTimeout(() => setShowResults(false), 200)}
+                  style={{
+                    width: "100%",
+                    padding: "1rem 1rem 1rem 3rem",
+                    borderRadius: "1rem",
+                    border: "1px solid rgba(168,124,246,0.3)",
+                    background: "rgba(30,27,75,0.6)",
+                    color: "#ede9ff",
+                    fontSize: "1rem",
+                    outline: "none",
+                  }}
+                />
+              </div>
+              {/* Search Results Dropdown */}
+              {showResults && search.trim() && (
+                <div style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  right: 0,
+                  marginTop: "0.5rem",
+                  borderRadius: "1rem",
+                  border: "1px solid rgba(168,124,246,0.3)",
+                  background: "rgba(22,11,46,0.98)",
+                  backdropFilter: "blur(20px)",
+                  overflow: "hidden",
+                  zIndex: 100,
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                }}>
+                  {searchResults.length > 0 ? (
+                    searchResults.map(tool => (
+                      <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
+                        <div style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.75rem",
+                          padding: "0.85rem 1rem",
+                          borderBottom: "1px solid rgba(168,124,246,0.15)",
+                          cursor: "pointer",
+                          transition: "background 0.2s",
+                        }}
+                        onMouseEnter={e => (e.currentTarget.style.background = "rgba(139,92,246,0.2)")}
+                        onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                        >
+                          <span style={{ fontSize: "1.5rem" }}>{tool.icon}</span>
+                          <div>
+                            <div style={{ color: "#ede9ff", fontWeight: 600, fontSize: "0.95rem" }}>{tool.name}</div>
+                            <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.8rem" }}>{tool.desc}</div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div style={{ padding: "1.5rem", textAlign: "center", color: "rgba(220,210,255,0.6)" }}>
+                      No tools found for "{search}"
+                    </div>
+                  )}
+                  <Link href="/tools" style={{ textDecoration: "none" }}>
+                    <div style={{ padding: "0.75rem", textAlign: "center", color: "#c4b5fd", fontSize: "0.9rem", fontWeight: 600, background: "rgba(139,92,246,0.15)" }}>
+                      View all {tools.length} tools →
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
 
             <div className="hero-actions">
               <Link href="/tools" style={{ textDecoration: "none" }}>
