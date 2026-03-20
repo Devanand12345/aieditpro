@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-const GOTENBERG_URL = process.env.GOTENBERG_URL || "http://localhost:3002";
+const CLOUDCONVERT_API_KEY = process.env.CLOUDCONVERT_API_KEY;
+const CLOUDCONVERT_API_URL = "https://api.cloudconvert.com/v2";
 
 const CONTENT_TYPES: Record<string, string> = {
   pdf:  "application/pdf",
@@ -13,18 +14,27 @@ const CONTENT_TYPES: Record<string, string> = {
   epub: "application/epub+zip",
 };
 
-// Formats Gotenberg Chromium handles better (HTML/URL → PDF)
-const CHROMIUM_HTML_SOURCES = ["html", "htm"];
-
-function getGotenbergRoute(sourceExt: string, target: string): string {
-  if (CHROMIUM_HTML_SOURCES.includes(sourceExt) && target === "pdf") {
-    return `${GOTENBERG_URL}/forms/chromium/convert/html`;
-  }
-  return `${GOTENBERG_URL}/forms/libreoffice/convert`;
-}
+// Map of file extensions to CloudConvert format names
+const FORMAT_MAP: Record<string, string> = {
+  pdf: "pdf",
+  docx: "docx",
+  xlsx: "xlsx",
+  pptx: "pptx",
+  txt: "txt",
+  html: "html",
+  rtf: "rtf",
+  epub: "epub",
+};
 
 export async function POST(req: Request) {
   try {
+    if (!CLOUDCONVERT_API_KEY) {
+      return new NextResponse(
+        JSON.stringify({ error: "Conversion service not configured. Please add CLOUDCONVERT_API_KEY to environment variables." }),
+        { status: 503, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     const data = await req.formData();
     const file = data.get("file") as File;
     const target = data.get("target") as string;
@@ -41,57 +51,128 @@ export async function POST(req: Request) {
     const baseName = file.name.replace(/\.[^/.]+$/, "");
     const sourceExt = (file.name.split(".").pop() || "").toLowerCase();
     const outputFilename = `${baseName}.${target}`;
-    const route = getGotenbergRoute(sourceExt, target);
 
-    const form = new FormData();
-    const sourceExt_lower = sourceExt.toLowerCase();
-    
-    // Gotenberg's Chromium HTML endpoint expects "index.html" as field name
-    if (CHROMIUM_HTML_SOURCES.includes(sourceExt_lower) && target === "pdf") {
-      form.append("files", new Blob([buffer], { type: file.type || "text/html" }), "index.html");
-    } else {
-      // LibreOffice endpoint expects "files" field
-      form.append("files", new Blob([buffer], { type: file.type || "application/octet-stream" }), file.name);
+    if (!FORMAT_MAP[sourceExt] || !FORMAT_MAP[target]) {
+      return new NextResponse(JSON.stringify({ error: "Unsupported file format" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
 
     console.log(`Converting ${file.name} (${sourceExt}) to ${target}`);
-    console.log(`Using route: ${route}`);
 
-    let gotenbergRes: Response;
-    try {
-      gotenbergRes = await fetch(route, {
-        method: "POST",
-        headers: {
-          "Gotenberg-Output-Filename": outputFilename,
-        },
-        body: form,
-      });
-    } catch (err) {
-      const errMsg = err instanceof Error ? err.message : "Unknown error";
-      console.error("Fetch error:", errMsg);
-      return new NextResponse(
-        JSON.stringify({ error: "Conversion service unavailable. Make sure Gotenberg is running." }),
-        { status: 503, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    // Step 1: Create conversion task
+    const createTaskResponse = await fetch(`${CLOUDCONVERT_API_URL}/tasks`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        operation: "convert",
+        input: "import",
+        input_format: FORMAT_MAP[sourceExt],
+        output_format: FORMAT_MAP[target],
+      }),
+    });
 
-    if (!gotenbergRes.ok) {
-      const errText = await gotenbergRes.text().catch(() => "Unknown error");
-      console.error("Gotenberg error:", gotenbergRes.status, errText);
+    if (!createTaskResponse.ok) {
+      const errText = await createTaskResponse.text();
+      console.error("CloudConvert create task error:", errText);
       return new NextResponse(
-        JSON.stringify({ error: `Conversion failed: ${errText}` }),
+        JSON.stringify({ error: "Failed to create conversion task" }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    const converted = await gotenbergRes.arrayBuffer();
+    const taskData = await createTaskResponse.json();
+    const task = taskData.data;
 
-    return new NextResponse(converted, {
+    if (!task || !task.id) {
+      return new NextResponse(
+        JSON.stringify({ error: "Invalid task response" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Step 2: Upload file to the task
+    const fileFormData = new FormData();
+    fileFormData.append("file", new Blob([buffer], { type: file.type || "application/octet-stream" }), file.name);
+
+    const uploadUrl = `${CLOUDCONVERT_API_URL}/tasks/${task.id}/files`;
+    const uploadResponse = await fetch(uploadUrl, {
+      method: "POST",
       headers: {
-        "Content-Type": CONTENT_TYPES[target] || "application/octet-stream",
-        "Content-Disposition": `attachment; filename="${outputFilename}"`,
+        "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
       },
+      body: fileFormData,
     });
+
+    if (!uploadResponse.ok) {
+      const errText = await uploadResponse.text();
+      console.error("CloudConvert upload error:", errText);
+      return new NextResponse(
+        JSON.stringify({ error: "Failed to upload file" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Step 3: Wait for conversion to complete
+    let attempts = 0;
+    const maxAttempts = 30; // 30 seconds timeout
+    let taskStatus = "waiting";
+
+    while (attempts < maxAttempts && taskStatus !== "finished" && taskStatus !== "error") {
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+
+      const statusResponse = await fetch(`${CLOUDCONVERT_API_URL}/tasks/${task.id}`, {
+        headers: {
+          "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
+        },
+      });
+
+      if (statusResponse.ok) {
+        const statusData = await statusResponse.json();
+        taskStatus = statusData.data.status;
+        console.log(`Task status: ${taskStatus}`);
+
+        if (taskStatus === "error") {
+          console.error("CloudConvert task error:", statusData.data);
+          return new NextResponse(
+            JSON.stringify({ error: "Conversion failed" }),
+            { status: 500, headers: { "Content-Type": "application/json" } }
+          );
+        }
+
+        if (taskStatus === "finished" && statusData.data.result && statusData.data.result.files && statusData.data.result.files.length > 0) {
+          const fileUrl = statusData.data.result.files[0];
+
+          // Step 4: Download the converted file
+          const downloadResponse = await fetch(fileUrl);
+          if (!downloadResponse.ok) {
+            return new NextResponse(
+              JSON.stringify({ error: "Failed to download converted file" }),
+              { status: 500, headers: { "Content-Type": "application/json" } }
+            );
+          }
+
+          const convertedBuffer = await downloadResponse.arrayBuffer();
+
+          return new NextResponse(convertedBuffer, {
+            headers: {
+              "Content-Type": CONTENT_TYPES[target] || "application/octet-stream",
+              "Content-Disposition": `attachment; filename="${outputFilename}"`,
+            },
+          });
+        }
+      }
+
+      attempts++;
+    }
+
+    // Timeout
+    return new NextResponse(
+      JSON.stringify({ error: "Conversion timeout. Please try again." }),
+      { status: 504, headers: { "Content-Type": "application/json" } }
+    );
+
   } catch (err) {
     const errMsg = err instanceof Error ? err.message : "Unknown error";
     console.error("Route error:", errMsg, err);
