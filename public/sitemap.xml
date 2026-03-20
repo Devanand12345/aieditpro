@@ -1,156 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Home Page -->
   <url>
-    <loc>https://AI-EditPro.net/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Converter -->
   <url>
-    <loc>https://AI-EditPro.net/converter</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/converter</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/about</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/contact</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Tools Hub -->
   <url>
-    <loc>https://AI-EditPro.net/tools</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Individual Tools -->
-  <url>
-    <loc>https://AI-EditPro.net/tools/json-beautifier</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/base64</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/html-formatter</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/color-picker</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/jwt-decoder</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/csv-formatter</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/text-compare</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/hash</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/json-compare</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/html-formatter</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/csv-formatter</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/json-beautifier</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/base64</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/json-compare</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/url-encode</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/jwt-decoder</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/regex</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/markdown-preview</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/uuid</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/password-generator</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/hash</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/regex</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/xml-formatter</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/text-compare</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- New Tools (2026-03-11) -->
   <url>
-    <loc>https://AI-EditPro.net/tools/password-generator</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/timestamp</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/word-counter</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/url-encode</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/color-picker</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/uuid</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/markdown-preview</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/word-counter</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://AI-EditPro.net/tools/timestamp</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/xml-formatter</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Features -->
   <url>
-    <loc>https://AI-EditPro.net/features</loc>
-    <lastmod>2026-03-11</lastmod>
+    <loc>https://aieditpro.net/tools/qr-code-generator</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/image-compressor</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/lorem-ipsum-generator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/password-strength-checker</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/url-slug-generator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/unit-converter</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/age-calculator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/bmi-calculator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/credit-card-validator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aieditpro.net/tools/fake-data-generator</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
