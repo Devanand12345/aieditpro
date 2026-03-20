@@ -9,6 +9,11 @@ export interface Tool {
 }
 
 export const tools: Tool[] = [
+  { id: "qr-code-generator", name: "QR Code Generator", icon: "📱", desc: "Generate QR codes", category: "Generator", href: "/tools/qr-code-generator", color: "#ec4899" },
+  { id: "image-compressor", name: "Image Compressor", icon: "🖼️", desc: "Reduce image size", category: "Utility", href: "/tools/image-compressor", color: "#f59e0b" },
+  { id: "lorem-ipsum-generator", name: "Lorem Ipsum", icon: "📝", desc: "Generate placeholder text", category: "Generator", href: "/tools/lorem-ipsum-generator", color: "#06b6d4" },
+  { id: "password-strength-checker", name: "Password Strength", icon: "🔒", desc: "Check password security", category: "Security", href: "/tools/password-strength-checker", color: "#10b981" },
+  { id: "url-slug-generator", name: "URL Slug", icon: "🔗", desc: "Create SEO-friendly URLs", category: "SEO", href: "/tools/url-slug-generator", color: "#8b5cf6" },
   { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", desc: "Format & minify JSON", category: "Data", href: "/tools/json-beautifier", color: "#8b5cf6" },
   { id: "html-formatter", name: "HTML Formatter", icon: "🌐", desc: "Format & minify HTML", category: "Code", href: "/tools/html-formatter", color: "#06b6d4" },
   { id: "jwt-decoder", name: "JWT Decoder", icon: "🔐", desc: "Decode JWT tokens", category: "Security", href: "/tools/jwt-decoder", color: "#ec4899" },
