@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import QrCodeGeneratorClient from "./page";
+import ToolSchema from "@/components/ToolSchema";
 
 export const metadata: Metadata = {
   title: "QR Code Generator - Create QR Codes Online Free",
@@ -52,8 +53,20 @@ export const metadata: Metadata = {
     "QR code tool",
     "barcode generator",
   ].join(", "),
+  alternates: {
+    canonical: "https://aieditpro.net/tools/qr-code-generator",
+  },
 };
 
 export default function QrCodeGenerator() {
-  return <QrCodeGeneratorClient />;
+  return (
+    <>
+      <ToolSchema
+        name="QR Code Generator"
+        description="Free QR Code Generator online. Create QR codes for URLs, WiFi, contacts, text, and more."
+        url="https://aieditpro.net/tools/qr-code-generator"
+      />
+      <QrCodeGeneratorClient />
+    </>
+  );
 }

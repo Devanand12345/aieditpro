@@ -1032,13 +1032,13 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "AI-EditPro - Free Online File Converter & 17+ Developer Tools",
-    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 17 free developer tools including JSON beautifier, password generator, word counter, color picker, Base64 encoder, Hash generator & more.",
-    url: "https://AI-EditPro.net",
+    title: "AI-EditPro - Free Online File Converter & 27+ Developer Tools",
+    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 27 free developer tools including JSON beautifier, password generator, word counter, color picker, Base64 encoder, Hash generator & more.",
+    url: "https://aieditpro.net",
     siteName: "AI-EditPro",
     images: [
       {
-        url: "https://AI-EditPro.net/og-image.jpg",
+        url: "https://aieditpro.net/og-image.svg",
         width: 1200,
         height: 630,
         alt: "AI-EditPro - Free File Converter & Developer Tools",
@@ -1049,9 +1049,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI-EditPro - Free Online File Converter & 17+ Developer Tools",
+    site: "@aieditpronet",
+    creator: "@aieditpronet",
+    title: "AI-EditPro - Free Online File Converter & 27+ Developer Tools",
     description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, password generator, word counter, color picker, Base64 encoder & more. No sign-up required.",
-    images: ["https://AI-EditPro.net/og-image.jpg"],
+    images: ["https://aieditpro.net/og-image.svg"],
   },
   robots: {
     index: true,
@@ -1066,7 +1068,7 @@ export const metadata: Metadata = {
   },
   category: "Technology",
   alternates: {
-    canonical: "https://AI-EditPro.net",
+    canonical: "https://aieditpro.net",
   },
 };
 
@@ -1090,23 +1092,24 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: "AI-EditPro",
-              description: "Free online file converter and developer tools suite",
-              url: "https://AI-EditPro.net",
-              applicationCategory: "Utility",
-              offers: {
+              "name": "AI-EditPro",
+              "description": "Free online developer tools suite with 27+ tools including JSON beautifier, QR code generator, password generator, and more.",
+              "url": "https://aieditpro.net",
+              "applicationCategory": "UtilityApplication",
+              "operatingSystem": "Any",
+              "offers": {
                 "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
+                "price": "0",
+                "priceCurrency": "USD",
               },
-              aggregateRating: {
+              "aggregateRating": {
                 "@type": "AggregateRating",
-                ratingValue: "4.9",
-                ratingCount: "50000",
+                "ratingValue": "4.9",
+                "ratingCount": "50000",
               },
-              potentialAction: {
+              "potentialAction": {
                 "@type": "UseAction",
-                target: "https://AI-EditPro.net/converter",
+                "target": "https://aieditpro.net/tools",
               },
             }),
           }}
@@ -1159,6 +1162,58 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+        
+        {/* Breadcrumb Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://aieditpro.net"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Tools",
+                  "item": "https://aieditpro.net/tools"
+                }
+              ]
+            }),
+          }}
+        />
+        
+        {/* Organization Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "AI-EditPro",
+              "url": "https://aieditpro.net",
+              "logo": "https://aieditpro.net/favicon.svg",
+              "sameAs": [
+                "https://twitter.com/aieditpronet",
+                "https://github.com/Devanand12345/aieditpro"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "contact@aieditpro.net",
+                "contactType": "customer service"
+              }
+            }),
+          }}
+        />
         
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
