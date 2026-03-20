@@ -90,13 +90,8 @@ export default function Home() {
 
             <div className="hero-actions">
               <Link href="/converter" style={{ textDecoration: "none" }}>
-                <button className="btn-primary-hero" style={{ marginRight: "1rem" }}>
+                <button className="btn-primary-hero">
                   📤 Convert Files
-                </button>
-              </Link>
-              <Link href="/tools" style={{ textDecoration: "none" }}>
-                <button className="btn-secondary-hero">
-                  🛠️ Explore Tools
                 </button>
               </Link>
             </div>
