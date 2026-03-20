@@ -57,7 +57,7 @@ export default function ConverterPage() {
       const a = document.createElement("a");
       a.href = url;
       const contentDisposition = res.headers.get("content-disposition") || "";
-      const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
+      const filenameMatch = contentDisposition.match(/filename[=:]\s*["']?([^;"']+)["']?/);
       a.download = filenameMatch?.[1] || file.name;
       document.body.appendChild(a);
       a.click();
