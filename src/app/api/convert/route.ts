@@ -4,17 +4,16 @@ const CLOUDCONVERT_API_KEY = process.env.CLOUDCONVERT_API_KEY;
 const CLOUDCONVERT_API_URL = "https://api.cloudconvert.com/v2";
 
 const CONTENT_TYPES: Record<string, string> = {
-  pdf:  "application/pdf",
+  pdf: "application/pdf",
   docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-  txt:  "text/plain",
+  txt: "text/plain",
   html: "text/html",
-  rtf:  "application/rtf",
+  rtf: "application/rtf",
   epub: "application/epub+zip",
 };
 
-// Map of file extensions to CloudConvert format names
 const FORMAT_MAP: Record<string, string> = {
   pdf: "pdf",
   docx: "docx",
@@ -26,68 +25,11 @@ const FORMAT_MAP: Record<string, string> = {
   epub: "epub",
 };
 
-// Helper function to handle CloudConvert errors with user-friendly messages
-function handleCloudConvertError(errorData: any, status: number): NextResponse {
-  const errorMessage = errorData?.message || errorData?.error || "";
-  const errorCode = errorData?.code || "";
-
-  // Check for quota/limit exceeded errors
-  if (
-    status === 402 ||
-    status === 429 ||
-    errorMessage.toLowerCase().includes("quota") ||
-    errorMessage.toLowerCase().includes("limit") ||
-    errorMessage.toLowerCase().includes("credits") ||
-    errorMessage.toLowerCase().includes("billing") ||
-    errorCode === " quota_exceeded" ||
-    errorCode === "limit_exceeded"
-  ) {
-    return new NextResponse(
-      JSON.stringify({
-        error: "Daily conversion limit reached",
-        message: "You've reached your daily limit of 25 conversions. Please upgrade your CloudConvert plan or try again tomorrow.",
-        code: "QUOTA_EXCEEDED"
-      }),
-      { status: 429, headers: { "Content-Type": "application/json" } }
-    );
-  }
-
-  // Invalid API key
-  if (
-    status === 401 ||
-    errorMessage.toLowerCase().includes("unauthorized") ||
-    errorMessage.toLowerCase().includes("invalid api key")
-  ) {
-    return new NextResponse(
-      JSON.stringify({ error: "Invalid API configuration. Please check CLOUDCONVERT_API_KEY." }),
-      { status: 503, headers: { "Content-Type": "application/json" } }
-    );
-  }
-
-  // Unsupported format
-  if (
-    errorMessage.toLowerCase().includes("unsupported") ||
-    errorMessage.toLowerCase().includes("not supported") ||
-    errorCode === "unsupported_format"
-  ) {
-    return new NextResponse(
-      JSON.stringify({ error: "This file format is not supported for conversion." }),
-      { status: 400, headers: { "Content-Type": "application/json" } }
-    );
-  }
-
-  // Generic error
-  return new NextResponse(
-    JSON.stringify({ error: errorMessage || "Conversion failed. Please try again." }),
-    { status: status || 500, headers: { "Content-Type": "application/json" } }
-  );
-}
-
 export async function POST(req: Request) {
   try {
     if (!CLOUDCONVERT_API_KEY) {
       return new NextResponse(
-        JSON.stringify({ error: "Conversion service not configured. Please add CLOUDCONVERT_API_KEY to environment variables." }),
+        JSON.stringify({ error: "Conversion service not configured." }),
         { status: 503, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -110,80 +52,96 @@ export async function POST(req: Request) {
     const outputFilename = `${baseName}.${target}`;
 
     if (!FORMAT_MAP[sourceExt] || !FORMAT_MAP[target]) {
-      return new NextResponse(JSON.stringify({ error: "Unsupported file format" }), { status: 400, headers: { "Content-Type": "application/json" } });
+      return new NextResponse(JSON.stringify({ error: "Unsupported source file format" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
 
-    console.log(`Converting ${file.name} (${sourceExt}) to ${target}`);
-
-    // Step 1: Create conversion task
-    const createTaskResponse = await fetch(`${CLOUDCONVERT_API_URL}/tasks`, {
+    // Create a job with CloudConvert v2 API
+    const jobResponse = await fetch(`${CLOUDCONVERT_API_URL}/jobs`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        operation: "convert",
-        input: "import",
-        input_format: FORMAT_MAP[sourceExt],
-        output_format: FORMAT_MAP[target],
+        tasks: {
+          import_file: {
+            operation: "import/upload",
+          },
+          convert_file: {
+            operation: "convert",
+            input: ["import_file"],
+            input_format: FORMAT_MAP[sourceExt],
+            output_format: FORMAT_MAP[target],
+          },
+          export_file: {
+            operation: "export/url",
+            input: ["convert_file"],
+            inline: false,
+            archive: false,
+          },
+        },
       }),
     });
 
-    if (!createTaskResponse.ok) {
-      let errorData;
-      try {
-        errorData = await createTaskResponse.json();
-      } catch {
-        errorData = { message: await createTaskResponse.text() };
-      }
-      console.error("CloudConvert create task error:", createTaskResponse.status, errorData);
-      return handleCloudConvertError(errorData, createTaskResponse.status);
-    }
-
-    const taskData = await createTaskResponse.json();
-    const task = taskData.data;
-
-    if (!task || !task.id) {
+    if (!jobResponse.ok) {
+      const errorData = await jobResponse.json().catch(() => ({}));
+      console.error("CloudConvert job error:", jobResponse.status, errorData);
       return new NextResponse(
-        JSON.stringify({ error: "Invalid task response" }),
+        JSON.stringify({ error: "Failed to create conversion job" }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    // Step 2: Upload file to the task
-    const fileFormData = new FormData();
-    fileFormData.append("file", new Blob([buffer], { type: file.type || "application/octet-stream" }), file.name);
+    const jobData = await jobResponse.json();
+    const job = jobData.data;
 
-    const uploadUrl = `${CLOUDCONVERT_API_URL}/tasks/${task.id}/files`;
+    if (!job || !job.id) {
+      return new NextResponse(
+        JSON.stringify({ error: "Invalid job response" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Get the upload URL from the import task
+    const importTask = job.tasks.find((t: any) => t.name === "import_file");
+    if (!importTask || !importTask.result || !importTask.result.form) {
+      return new NextResponse(
+        JSON.stringify({ error: "Failed to get upload URL" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const uploadForm = importTask.result.form;
+    const uploadUrl = uploadForm.url;
+
+    // Upload the file
+    const uploadFormData = new FormData();
+    for (const [key, value] of Object.entries(uploadForm.parameters || {})) {
+      uploadFormData.append(key, value as string);
+    }
+    uploadFormData.append("file", new Blob([buffer], { type: file.type || "application/octet-stream" }), file.name);
+
     const uploadResponse = await fetch(uploadUrl, {
       method: "POST",
-      headers: {
-        "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
-      },
-      body: fileFormData,
+      body: uploadFormData,
     });
 
     if (!uploadResponse.ok) {
-      let errorData;
-      try {
-        errorData = await uploadResponse.json();
-      } catch {
-        errorData = { message: await uploadResponse.text() };
-      }
-      console.error("CloudConvert upload error:", uploadResponse.status, errorData);
-      return handleCloudConvertError(errorData, uploadResponse.status);
+      console.error("CloudConvert upload error:", uploadResponse.status);
+      return new NextResponse(
+        JSON.stringify({ error: "Failed to upload file" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
     }
 
-    // Step 3: Wait for conversion to complete
+    // Wait for job to complete
     let attempts = 0;
-    const maxAttempts = 30; // 30 seconds timeout
-    let taskStatus = "waiting";
+    const maxAttempts = 60;
 
-    while (attempts < maxAttempts && taskStatus !== "finished" && taskStatus !== "error") {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+    while (attempts < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-      const statusResponse = await fetch(`${CLOUDCONVERT_API_URL}/tasks/${task.id}`, {
+      const statusResponse = await fetch(`${CLOUDCONVERT_API_URL}/jobs/${job.id}`, {
         headers: {
           "Authorization": `Bearer ${CLOUDCONVERT_API_KEY}`,
         },
@@ -191,42 +149,45 @@ export async function POST(req: Request) {
 
       if (statusResponse.ok) {
         const statusData = await statusResponse.json();
-        taskStatus = statusData.data.status;
-        console.log(`Task status: ${taskStatus}`);
+        const currentJob = statusData.data;
 
-        if (taskStatus === "error") {
-          const errorData = statusData.data;
-          console.error("CloudConvert task error:", errorData);
-          return handleCloudConvertError(errorData, 500);
+        if (currentJob.status === "finished") {
+          const exportTask = currentJob.tasks.find((t: any) => t.name === "export_file");
+          if (exportTask && exportTask.result && exportTask.result.files && exportTask.result.files.length > 0) {
+            const fileUrl = exportTask.result.files[0].url;
+
+            // Download the converted file
+            const downloadResponse = await fetch(fileUrl);
+            if (!downloadResponse.ok) {
+              return new NextResponse(
+                JSON.stringify({ error: "Failed to download converted file" }),
+                { status: 500, headers: { "Content-Type": "application/json" } }
+              );
+            }
+
+            const convertedBuffer = await downloadResponse.arrayBuffer();
+
+            return new NextResponse(convertedBuffer, {
+              headers: {
+                "Content-Type": CONTENT_TYPES[target] || "application/octet-stream",
+                "Content-Disposition": `attachment; filename="${outputFilename}"`,
+              },
+            });
+          }
         }
 
-        if (taskStatus === "finished" && statusData.data.result && statusData.data.result.files && statusData.data.result.files.length > 0) {
-          const fileUrl = statusData.data.result.files[0];
-
-          // Step 4: Download the converted file
-          const downloadResponse = await fetch(fileUrl);
-          if (!downloadResponse.ok) {
-            return new NextResponse(
-              JSON.stringify({ error: "Failed to download converted file" }),
-              { status: 500, headers: { "Content-Type": "application/json" } }
-            );
-          }
-
-          const convertedBuffer = await downloadResponse.arrayBuffer();
-
-          return new NextResponse(convertedBuffer, {
-            headers: {
-              "Content-Type": CONTENT_TYPES[target] || "application/octet-stream",
-              "Content-Disposition": `attachment; filename="${outputFilename}"`,
-            },
-          });
+        if (currentJob.status === "error") {
+          console.error("CloudConvert job error:", currentJob.tasks);
+          return new NextResponse(
+            JSON.stringify({ error: "Conversion failed. Please try again." }),
+            { status: 500, headers: { "Content-Type": "application/json" } }
+          );
         }
       }
 
       attempts++;
     }
 
-    // Timeout
     return new NextResponse(
       JSON.stringify({ error: "Conversion timeout. Please try again." }),
       { status: 504, headers: { "Content-Type": "application/json" } }
@@ -234,7 +195,7 @@ export async function POST(req: Request) {
 
   } catch (err) {
     const errMsg = err instanceof Error ? err.message : "Unknown error";
-    console.error("Route error:", errMsg, err);
+    console.error("Route error:", errMsg);
     return new NextResponse(
       JSON.stringify({ error: `Server error: ${errMsg}` }),
       { status: 500, headers: { "Content-Type": "application/json" } }
