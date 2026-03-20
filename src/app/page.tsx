@@ -153,33 +153,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="section">
-        <div className="section-header">
-          <div className="section-eyebrow">Simple Process</div>
-          <h2 className="section-title">
-            How It <span className="gradient-text">Works</span>
-          </h2>
-          <p className="section-subtitle">Four simple steps to your converted file</p>
-        </div>
-
-        <div className="steps-grid">
-          {howItWorks.map((step, i) => (
-            <div key={step.step} className="step-wrapper">
-              <div className="step-card glass-card">
-                <div className="step-number">{step.step}</div>
-                <div className="step-icon">{step.icon}</div>
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-desc">{step.desc}</p>
-              </div>
-              {i < howItWorks.length - 1 && (
-                <div className="step-arrow">→</div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Features Grid */}
       <section className="section section-alt">
         <div className="section-header">
