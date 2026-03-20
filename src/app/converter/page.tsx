@@ -110,10 +110,10 @@ export default function ConverterPage() {
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
             {[
-              { name: "JSON Beautifier", desc: "Format & minify JSON", icon: "🎨" },
               { name: "Base64 Encoder", desc: "Encode/decode Base64", icon: "🔤" },
               { name: "URL Encoder", desc: "Encode/decode URLs", icon: "🔗" },
               { name: "Password Generator", desc: "Generate secure passwords", icon: "🔑" },
+              { name: "Hash Generator", desc: "Generate MD5, SHA hashes", icon: "🔐" },
             ].map((tool) => (
               <Link key={tool.name} href="/tools" style={{
                 padding: "1.25rem",
