@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Script } from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "./Navbar";
 import DynamicBackground from "./DynamicBackground";
@@ -885,6 +886,7 @@ export default function RootLayout({
           {children}
         </div>
         <BackToTop />
+        <Analytics />
       </body>
     </html>
   );
