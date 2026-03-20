@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./Navbar";
 import DynamicBackground from "./DynamicBackground";
 import BackToTop from "./BackToTop";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -1211,6 +1212,7 @@ export default function RootLayout({
           {children}
         </div>
         <BackToTop />
+        <Analytics />
       </body>
     </html>
   );
