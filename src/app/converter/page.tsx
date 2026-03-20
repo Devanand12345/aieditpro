@@ -321,7 +321,7 @@ export default function ConverterPage() {
           border:"1px solid rgba(168,124,246,0.2)", textAlign:"center"
         }}>
           <p style={{ fontSize:"0.9rem", color:"rgba(220,210,255,0.82)", margin:0, fontWeight:600 }}>
-            🚀 <strong>50,000+</strong> files converted · <strong>99.9%</strong> uptime · <strong>&lt;5s</strong> average conversion time
+            <strong>50,000+</strong> files converted · <strong>99.9%</strong> uptime · <strong>less than 5s</strong> average conversion time
           </p>
         </div>
       </div>
