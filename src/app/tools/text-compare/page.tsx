@@ -60,7 +60,7 @@ export default function TextComparePage() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Text Compare</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>Text Compare</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two texts instantly and see the differences</p>
 
         <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
@@ -100,7 +100,7 @@ export default function TextComparePage() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 1</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>Text 1</label>
             <textarea
               value={text1}
               onChange={(e) => handleText1Change(e.target.value)}
@@ -110,9 +110,9 @@ export default function TextComparePage() {
                 height: "300px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -121,7 +121,7 @@ export default function TextComparePage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Text 2</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>Text 2</label>
             <textarea
               value={text2}
               onChange={(e) => handleText2Change(e.target.value)}
@@ -131,9 +131,9 @@ export default function TextComparePage() {
                 height: "300px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -159,7 +159,7 @@ export default function TextComparePage() {
               </div>
             </div>
 
-            <div style={{ padding: "1.25rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", maxHeight: "400px", overflow: "auto" }}>
+            <div style={{ padding: "1.25rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", maxHeight: "400px", overflow: "auto" }}>
               {diff.map((line, idx) => (
                 <div
                   key={idx}

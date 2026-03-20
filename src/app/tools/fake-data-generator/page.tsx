@@ -54,7 +54,7 @@ export default function FakeDataGeneratorClient() {
       <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <Link href="/tools" style={{ color: "#a78bfa", textDecoration: "none", fontSize: "0.9rem" }}>← Back to Tools</Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>Fake Data Generator</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>Fake Data Generator</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Generate realistic test data for development and testing</p>
 
         <div style={{ padding: "2rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.25)" }}>
@@ -68,9 +68,9 @@ export default function FakeDataGeneratorClient() {
               { label: "Username", value: data.username },
               { label: "Password", value: data.password },
             ].map(item => (
-              <div key={item.label} style={{ padding: "1rem", background: "rgba(255,255,255,0.05)", borderRadius: "0.75rem" }}>
+              <div key={item.label} style={{ padding: "1rem", background: "var(--card-bg)", borderRadius: "0.75rem" }}>
                 <div style={{ color: "rgba(220,210,255,0.5)", fontSize: "0.85rem", marginBottom: "0.25rem" }}>{item.label}</div>
-                <div style={{ color: "#ede9ff", fontWeight: 600, fontFamily: item.label === "Password" ? "monospace" : "inherit" }}>{item.value}</div>
+                <div style={{ color: "var(--text-primary)", fontWeight: 600, fontFamily: item.label === "Password" ? "monospace" : "inherit" }}>{item.value}</div>
               </div>
             ))}
           </div>
@@ -79,7 +79,7 @@ export default function FakeDataGeneratorClient() {
             <button onClick={regenerate} style={{ flex: 1, padding: "1rem", borderRadius: "0.75rem", border: "none", background: "linear-gradient(135deg, #a78bfa, #e879f9)", color: "#fff", fontWeight: 700, cursor: "pointer" }}>
               Generate New
             </button>
-            <button onClick={copyToClipboard} style={{ flex: 1, padding: "1rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(168,124,246,0.2)", color: "#c4b5fd", fontWeight: 700, cursor: "pointer" }}>
+            <button onClick={copyToClipboard} style={{ flex: 1, padding: "1rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "rgba(168,124,246,0.2)", color: "var(--primary-light)", fontWeight: 700, cursor: "pointer" }}>
               {copied ? "Copied!" : "Copy All"}
             </button>
           </div>

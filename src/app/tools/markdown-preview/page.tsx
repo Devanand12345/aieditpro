@@ -71,7 +71,7 @@ export default function MarkdownPreview() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", padding: "0.28rem 0.85rem", borderRadius: "9999px", marginBottom: "0.75rem" }}>Editor</span>
-            <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "#ede9ff", letterSpacing: "-0.03em", margin: 0 }}>📄 Markdown Preview</h1>
+            <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em", margin: 0 }}>📄 Markdown Preview</h1>
           </div>
           <div style={{ display: "flex", gap: "0.5rem" }}>
             {(["split", "edit", "preview"] as const).map(v => (
@@ -85,10 +85,10 @@ export default function MarkdownPreview() {
         <div style={{ display: "grid", gridTemplateColumns: view === "split" ? "1fr 1fr" : "1fr", gap: "1.5rem", height: "65vh" }}>
           {(view === "split" || view === "edit") && (
             <textarea value={md} onChange={e => setMd(e.target.value)}
-              style={{ width: "100%", height: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.25rem", color: "#ede9ff", fontSize: "0.92rem", lineHeight: 1.7, resize: "none", outline: "none", fontFamily: "monospace" }} />
+              style={{ width: "100%", height: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.25rem", color: "var(--text-primary)", fontSize: "0.92rem", lineHeight: 1.7, resize: "none", outline: "none", fontFamily: "monospace" }} />
           )}
           {(view === "split" || view === "preview") && (
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.75rem 2rem", overflowY: "auto", color: "#ede9ff", fontSize: "0.95rem", lineHeight: 1.75 }}
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.75rem 2rem", overflowY: "auto", color: "var(--text-primary)", fontSize: "0.95rem", lineHeight: 1.75 }}
               dangerouslySetInnerHTML={{ __html: html }} />
           )}
         </div>

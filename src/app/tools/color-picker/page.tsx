@@ -85,26 +85,26 @@ export default function ColorPicker() {
 
         <div style={{ marginBottom: "2rem" }}>
           <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#06b6d4", background: "rgba(6,182,212,0.12)", border: "1px solid rgba(6,182,212,0.3)", padding: "0.28rem 0.85rem", borderRadius: "9999px", marginBottom: "1rem" }}>Design</span>
-          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "#ede9ff", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>🎨 Color Picker &amp; Converter</h1>
+          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>🎨 Color Picker &amp; Converter</h1>
           <p style={{ color: "rgba(220,210,255,0.7)", fontSize: "1rem", lineHeight: 1.6 }}>Pick colors and convert between HEX, RGB, HSL, and CMYK formats instantly.</p>
         </div>
 
         {/* Main picker */}
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", alignItems: "center" }}>
             <div>
               <div style={{ height: "200px", borderRadius: "1rem", background: color, marginBottom: "1rem", border: "2px solid rgba(255,255,255,0.1)", boxShadow: `0 20px 60px ${color}60` }} />
               <input type="color" value={color} onChange={e => { setColor(e.target.value); setHexInput(e.target.value); }}
-                style={{ width: "100%", height: "50px", borderRadius: "0.65rem", border: "1px solid rgba(168,124,246,0.3)", cursor: "pointer", background: "transparent" }} />
+                style={{ width: "100%", height: "50px", borderRadius: "0.65rem", border: "1px solid var(--input-border)", cursor: "pointer", background: "transparent" }} />
             </div>
             <div style={{ display: "flex", flexDirection: "column" as const, gap: "0.75rem" }}>
               <input value={hexInput} onChange={e => handleHexInput(e.target.value)} placeholder="#000000"
-                style={{ padding: "0.85rem 1rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(168,124,246,0.3)", borderRadius: "0.65rem", color: "#ede9ff", fontSize: "1rem", fontFamily: "monospace", outline: "none", letterSpacing: "0.05em" }} />
+                style={{ padding: "0.85rem 1rem", background: "var(--card-bg)", border: "1px solid var(--input-border)", borderRadius: "0.65rem", color: "var(--text-primary)", fontSize: "1rem", fontFamily: "monospace", outline: "none", letterSpacing: "0.05em" }} />
               {formats.map(f => (
                 <div key={f.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 1rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(168,124,246,0.15)", borderRadius: "0.65rem" }}>
                   <div>
                     <div style={{ fontSize: "0.7rem", color: "rgba(220,210,255,0.5)", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "0.15rem" }}>{f.label}</div>
-                    <div style={{ fontSize: "0.88rem", color: "#c4b5fd", fontFamily: "monospace" }}>{f.value}</div>
+                    <div style={{ fontSize: "0.88rem", color: "var(--primary-light)", fontFamily: "monospace" }}>{f.value}</div>
                   </div>
                   <button onClick={() => copy(f.value, f.label)} style={{ background: copied === f.label ? "rgba(16,185,129,0.2)" : "rgba(139,92,246,0.15)", border: `1px solid ${copied === f.label ? "rgba(16,185,129,0.4)" : "rgba(139,92,246,0.35)"}`, borderRadius: "0.45rem", padding: "0.35rem 0.7rem", color: copied === f.label ? "#6ee7b7" : "#c4b5fd", cursor: "pointer", fontSize: "0.78rem", fontWeight: 600, transition: "all 0.2s" }}>
                     {copied === f.label ? "✓" : "Copy"}
@@ -116,7 +116,7 @@ export default function ColorPicker() {
         </div>
 
         {/* Shades */}
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1rem", padding: "1.5rem", marginBottom: "1.5rem" }}>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1rem", padding: "1.5rem", marginBottom: "1.5rem" }}>
           <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "rgba(220,210,255,0.6)", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "1rem" }}>Color Shades</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(9, 1fr)", gap: "0.5rem" }}>
             {shades.map((s, i) => (
@@ -126,7 +126,7 @@ export default function ColorPicker() {
         </div>
 
         {/* Palette */}
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1rem", padding: "1.5rem" }}>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1rem", padding: "1.5rem" }}>
           <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "rgba(220,210,255,0.6)", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "1rem" }}>Quick Palette</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(10, 1fr)", gap: "0.5rem" }}>
             {PALETTES.map(p => (

@@ -59,18 +59,18 @@ export default function UuidGeneratorPage() {
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>UUID Generator</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>UUID Generator</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Generate UUIDs instantly (v1 and v4)</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>UUID Version</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>UUID Version</label>
             <div style={{ display: "flex", gap: "1rem" }}>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.95rem" }}>
                 <input type="radio" name="version" checked={version === "v4"} onChange={() => handleVersionChange("v4")} />
                 🎲 v4 (Random)
               </label>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.95rem" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.95rem" }}>
                 <input type="radio" name="version" checked={version === "v1"} onChange={() => handleVersionChange("v1")} />
                 ⏰ v1 (Time-based)
               </label>
@@ -78,7 +78,7 @@ export default function UuidGeneratorPage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Number of UUIDs</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Number of UUIDs</label>
             <input
               type="number"
               min="1"
@@ -89,9 +89,9 @@ export default function UuidGeneratorPage() {
                 width: "100%",
                 padding: "1.25rem",
                 borderRadius: "0.5rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontSize: "0.95rem",
               }}
             />
@@ -101,15 +101,15 @@ export default function UuidGeneratorPage() {
         {uuids.length > 0 && (
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-              <div style={{ fontSize: "1rem", fontWeight: 600, color: "#c4b5fd" }}>Generated UUIDs ({uuids.length})</div>
+              <div style={{ fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)" }}>Generated UUIDs ({uuids.length})</div>
               <button
                 onClick={copyAllToClipboard}
                 style={{
                   padding: "0.7rem 1rem",
                   borderRadius: "0.5rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
+                  border: "1px solid var(--input-border)",
                   background: "rgba(168,124,246,0.2)",
-                  color: "#c4b5fd",
+                  color: "var(--primary-light)",
                   cursor: "pointer",
                   fontWeight: 600,
                   fontSize: "0.9rem",
@@ -126,8 +126,8 @@ export default function UuidGeneratorPage() {
                   style={{
                     padding: "1.25rem",
                     borderRadius: "0.5rem",
-                    border: "1px solid rgba(168,124,246,0.3)",
-                    background: "rgba(30,27,75,0.6)",
+                    border: "1px solid var(--input-border)",
+                    background: "var(--input-bg)",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -143,7 +143,7 @@ export default function UuidGeneratorPage() {
                       borderRadius: "0.25rem",
                       border: "none",
                       background: "rgba(168,124,246,0.3)",
-                      color: "#c4b5fd",
+                      color: "var(--primary-light)",
                       cursor: "pointer",
                       fontWeight: 600,
                       fontSize: "0.9rem",

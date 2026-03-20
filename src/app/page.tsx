@@ -400,6 +400,38 @@ export default function Home() {
           .cta-title { font-size: 1.6rem; }
           .trending-grid { grid-template-columns: 1fr; }
         }
+
+        /* Light Mode */
+        [data-theme="light"] .hero-title { color: #0f0a1e; }
+        [data-theme="light"] .hero-title-accent { background: linear-gradient(135deg, #7c3aed, #db2777, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        [data-theme="light"] .hero-desc { color: rgba(30,27,75,0.85); }
+        [data-theme="light"] .hero-badge { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); color: #7c3aed; }
+        [data-theme="light"] .tools-title { color: #0f0a1e; }
+        [data-theme="light"] .tools-subtitle { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .tool-card { background: rgba(255,255,255,0.9); border-color: rgba(124,58,237,0.2); }
+        [data-theme="light"] .tool-card:hover { background: rgba(255,255,255,0.98); border-color: rgba(124,58,237,0.5); }
+        [data-theme="light"] .tool-name { color: #0f0a1e; }
+        [data-theme="light"] .tool-desc { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .btn-all-tools { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.3); color: #7c3aed; }
+        [data-theme="light"] .stat-label { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .section-title { color: #0f0a1e; }
+        [data-theme="light"] .section-subtitle { color: rgba(30,27,75,0.75); }
+        [data-theme="light"] .section-eyebrow { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.25); color: #7c3aed; }
+        [data-theme="light"] .trending-name { color: #0f0a1e; }
+        [data-theme="light"] .feature-title { color: #0f0a1e; }
+        [data-theme="light"] .feature-desc { color: rgba(30,27,75,0.75); }
+        [data-theme="light"] .cta-title { color: #0f0a1e; }
+        [data-theme="light"] .cta-subtitle { color: rgba(30,27,75,0.75); }
+        [data-theme="light"] .footer { background: rgba(248,245,255,0.95); border-color: rgba(124,58,237,0.1); }
+        [data-theme="light"] .footer-brand-desc { color: rgba(30,27,75,0.6); }
+        [data-theme="light"] .footer-col-title { color: rgba(30,27,75,0.5); }
+        [data-theme="light"] .footer-link { color: rgba(30,27,75,0.7); }
+        [data-theme="light"] .footer-link:hover { color: #7c3aed; }
+        [data-theme="light"] .footer-copy { color: rgba(30,27,75,0.5); }
+        [data-theme="light"] .gradient-text { background: linear-gradient(135deg, #7c3aed, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        [data-theme="light"] .gradient-text-2 { background: linear-gradient(135deg, #db2777, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        [data-theme="light"] .glass-card { background: rgba(255,255,255,0.9); border-color: rgba(124,58,237,0.2); }
+        [data-theme="light"] .stat-item { border-color: rgba(124,58,237,0.1) !important; }
       `}</style>
     </div>
   );

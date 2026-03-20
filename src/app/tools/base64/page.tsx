@@ -62,8 +62,8 @@ export default function Base64Page() {
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Base64 Encoder/Decoder</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Encode and decode Base64 strings instantly</p>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>Base64 Encoder/Decoder</h1>
+        <p style={{ color: "var(--text-muted)", marginBottom: "2rem" }}>Encode and decode Base64 strings instantly</p>
 
         <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
           <button
@@ -72,9 +72,9 @@ export default function Base64Page() {
               padding: "0.9rem 1.5rem",
               borderRadius: "0.5rem",
               border: "1px solid",
-              background: mode === "encode" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
-              borderColor: mode === "encode" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: mode === "encode" ? "#fff" : "#c4b5fd",
+              background: mode === "encode" ? "var(--gradient-1)" : "var(--card-bg)",
+              borderColor: mode === "encode" ? "transparent" : "var(--input-border)",
+              color: mode === "encode" ? "#fff" : "var(--primary-light)",
               cursor: "pointer",
               fontWeight: 600,
               fontSize: "0.95rem",
@@ -88,9 +88,9 @@ export default function Base64Page() {
               padding: "0.9rem 1.5rem",
               borderRadius: "0.5rem",
               border: "1px solid",
-              background: mode === "decode" ? "linear-gradient(120deg, #a78bfa, #c084fc)" : "rgba(255,255,255,0.05)",
-              borderColor: mode === "decode" ? "rgba(168,124,246,0.8)" : "rgba(168,124,246,0.2)",
-              color: mode === "decode" ? "#fff" : "#c4b5fd",
+              background: mode === "decode" ? "var(--gradient-1)" : "var(--card-bg)",
+              borderColor: mode === "decode" ? "transparent" : "var(--input-border)",
+              color: mode === "decode" ? "#fff" : "var(--primary-light)",
               cursor: "pointer",
               fontWeight: 600,
               fontSize: "0.95rem",
@@ -101,7 +101,7 @@ export default function Base64Page() {
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
             {mode === "encode" ? "Text to Encode" : "Base64 to Decode"}
           </label>
           <textarea
@@ -113,9 +113,9 @@ export default function Base64Page() {
               height: "200px",
               padding: "1.25rem",
               borderRadius: "0.75rem",
-              border: "1px solid rgba(168,124,246,0.3)",
-              background: "rgba(30,27,75,0.6)",
-              color: "#ede9ff",
+              border: "1px solid var(--input-border)",
+              background: "var(--input-bg)",
+              color: "var(--text-primary)",
               fontFamily: "monospace",
               fontSize: "0.95rem",
               resize: "none",
@@ -131,7 +131,7 @@ export default function Base64Page() {
 
         {output && (
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Result</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Result</label>
             <textarea
               value={output}
               readOnly
@@ -140,9 +140,9 @@ export default function Base64Page() {
                 height: "200px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -154,9 +154,9 @@ export default function Base64Page() {
                 marginTop: "1rem",
                 padding: "0.9rem 1.5rem",
                 borderRadius: "0.5rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(168,124,246,0.2)",
-                color: "#c4b5fd",
+                border: "1px solid var(--input-border)",
+                background: "var(--card-bg)",
+                color: "var(--primary-light)",
                 cursor: "pointer",
                 fontWeight: 600,
                 fontSize: "0.95rem",

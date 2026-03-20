@@ -62,12 +62,12 @@ export default function UnitConverterClient() {
       <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <Link href="/tools" style={{ color: "#a78bfa", textDecoration: "none", fontSize: "0.9rem" }}>← Back to Tools</Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>Unit Converter</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>Unit Converter</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Convert between different units instantly</p>
 
         <div style={{ padding: "2rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.25)" }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Category</label>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Category</label>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               {categories.map(cat => (
                 <button key={cat.id} onClick={() => { setCategory(cat.id); setFromUnit(cat.units[0]); setToUnit(cat.units[1]); setResult(""); }}
@@ -83,19 +83,19 @@ export default function UnitConverterClient() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "1rem", alignItems: "end", marginBottom: "1.5rem" }}>
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>From</label>
+              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>From</label>
               <select value={fromUnit} onChange={(e) => { setFromUnit(e.target.value); convert(input, e.target.value, toUnit, category); }}
-                style={{ width: "100%", padding: "0.9rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", color: "#ede9ff", fontSize: "1rem" }}>
+                style={{ width: "100%", padding: "0.9rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", color: "var(--text-primary)", fontSize: "1rem" }}>
                 {currentCategory?.units.map(u => <option key={u} value={u}>{u}</option>)}
               </select>
               <input type="number" value={input} onChange={(e) => { setInput(e.target.value); convert(e.target.value, fromUnit, toUnit, category); }}
-                style={{ width: "100%", padding: "0.9rem", marginTop: "0.5rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", color: "#ede9ff", fontSize: "1rem" }} />
+                style={{ width: "100%", padding: "0.9rem", marginTop: "0.5rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", color: "var(--text-primary)", fontSize: "1rem" }} />
             </div>
             <div style={{ fontSize: "1.5rem", paddingBottom: "0.75rem" }}>→</div>
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>To</label>
+              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>To</label>
               <select value={toUnit} onChange={(e) => { setToUnit(e.target.value); convert(input, fromUnit, e.target.value, category); }}
-                style={{ width: "100%", padding: "0.9rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", color: "#ede9ff", fontSize: "1rem" }}>
+                style={{ width: "100%", padding: "0.9rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", color: "var(--text-primary)", fontSize: "1rem" }}>
                 {currentCategory?.units.map(u => <option key={u} value={u}>{u}</option>)}
               </select>
             </div>

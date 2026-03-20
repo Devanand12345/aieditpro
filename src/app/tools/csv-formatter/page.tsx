@@ -116,12 +116,12 @@ export default function CsvFormatterPage() {
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>CSV Formatter</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>CSV Formatter</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Format and convert CSV data instantly</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Input CSV</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>Input CSV</label>
             <textarea
               value={input}
               onChange={(e) => handleInputChange(e.target.value)}
@@ -131,9 +131,9 @@ export default function CsvFormatterPage() {
                 height: "400px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -183,7 +183,7 @@ export default function CsvFormatterPage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>Output</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>Output</label>
             <textarea
               value={output}
               readOnly
@@ -192,9 +192,9 @@ export default function CsvFormatterPage() {
                 height: "400px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -207,9 +207,9 @@ export default function CsvFormatterPage() {
                   marginTop: "1rem",
                   padding: "0.9rem 1.8rem",
                   borderRadius: "0.5rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
+                  border: "1px solid var(--input-border)",
                   background: "rgba(168,124,246,0.2)",
-                  color: "#c4b5fd",
+                  color: "var(--primary-light)",
                   cursor: "pointer",
                   fontWeight: 600,
                   fontSize: "0.95rem",

@@ -80,7 +80,7 @@ export default function LoremIpsumGenerator() {
           ← Back to Tools
         </Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>
           Lorem Ipsum Generator
         </h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem", fontSize: "1.05rem" }}>
@@ -94,7 +94,7 @@ export default function LoremIpsumGenerator() {
           border: "1px solid rgba(168,124,246,0.25)",
         }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>
               Type
             </label>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -121,7 +121,7 @@ export default function LoremIpsumGenerator() {
           </div>
 
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
               {type === "words" ? "Number of Words" : type === "sentences" ? "Number of Sentences" : "Number of Paragraphs"}: {count}
             </label>
             <input
@@ -166,9 +166,9 @@ export default function LoremIpsumGenerator() {
                   height: "300px",
                   padding: "1rem",
                   borderRadius: "0.75rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
-                  background: "rgba(30,27,75,0.6)",
-                  color: "#ede9ff",
+                  border: "1px solid var(--input-border)",
+                  background: "var(--input-bg)",
+                  color: "var(--text-primary)",
                   fontSize: "0.95rem",
                   resize: "none",
                   fontFamily: "Georgia, serif",
@@ -181,9 +181,9 @@ export default function LoremIpsumGenerator() {
                   marginTop: "1rem",
                   padding: "0.75rem 2rem",
                   borderRadius: "0.5rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
+                  border: "1px solid var(--input-border)",
                   background: "rgba(168,124,246,0.2)",
-                  color: "#c4b5fd",
+                  color: "var(--primary-light)",
                   fontWeight: 600,
                   cursor: "pointer",
                 }}
@@ -194,8 +194,8 @@ export default function LoremIpsumGenerator() {
           )}
         </div>
 
-        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.2)" }}>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem" }}>Why use Lorem Ipsum?</h3>
+        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid var(--input-border)" }}>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "1rem" }}>Why use Lorem Ipsum?</h3>
           <ul style={{ color: "rgba(220,210,255,0.85)", lineHeight: 2, paddingLeft: "1.5rem" }}>
             <li>Focus on design, not content</li>
             <li>Industry standard placeholder text</li>

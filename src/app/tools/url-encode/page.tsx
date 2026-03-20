@@ -62,7 +62,7 @@ export default function UrlEncodePage() {
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>URL Encoder/Decoder</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>URL Encoder/Decoder</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Encode and decode URLs instantly</p>
 
         <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
@@ -101,7 +101,7 @@ export default function UrlEncodePage() {
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
             {mode === "encode" ? "Text to Encode" : "URL to Decode"}
           </label>
           <textarea
@@ -113,9 +113,9 @@ export default function UrlEncodePage() {
               height: "200px",
               padding: "1.25rem",
               borderRadius: "0.75rem",
-              border: "1px solid rgba(168,124,246,0.3)",
-              background: "rgba(30,27,75,0.6)",
-              color: "#ede9ff",
+              border: "1px solid var(--input-border)",
+              background: "var(--input-bg)",
+              color: "var(--text-primary)",
               fontFamily: "monospace",
               fontSize: "0.95rem",
               resize: "none",
@@ -131,7 +131,7 @@ export default function UrlEncodePage() {
 
         {output && (
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Result</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Result</label>
             <textarea
               value={output}
               readOnly
@@ -140,9 +140,9 @@ export default function UrlEncodePage() {
                 height: "200px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -154,9 +154,9 @@ export default function UrlEncodePage() {
                 marginTop: "1rem",
                 padding: "0.9rem 1.5rem",
                 borderRadius: "0.5rem",
-                border: "1px solid rgba(168,124,246,0.3)",
+                border: "1px solid var(--input-border)",
                 background: "rgba(168,124,246,0.2)",
-                color: "#c4b5fd",
+                color: "var(--primary-light)",
                 cursor: "pointer",
                 fontWeight: 600,
                 fontSize: "0.95rem",

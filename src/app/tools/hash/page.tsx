@@ -51,11 +51,11 @@ export default function HashGeneratorPage() {
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>Hash Generator</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>Hash Generator</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes</p>
 
         <div style={{ marginBottom: "2rem" }}>
-          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Text Input</label>
+          <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Text Input</label>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -65,9 +65,9 @@ export default function HashGeneratorPage() {
               height: "150px",
               padding: "1.25rem",
               borderRadius: "0.5rem",
-              border: "1px solid rgba(168,124,246,0.3)",
-              background: "rgba(30,27,75,0.6)",
-              color: "#ede9ff",
+              border: "1px solid var(--input-border)",
+              background: "var(--input-bg)",
+              color: "var(--text-primary)",
               fontFamily: "monospace",
               fontSize: "0.95rem",
               resize: "none",
@@ -103,8 +103,8 @@ export default function HashGeneratorPage() {
         {Object.keys(hashes).length > 0 && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {Object.entries(hashes).map(([type, hash]) => (
-              <div key={type} style={{ padding: "1.25rem", borderRadius: "0.5rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)" }}>
-                <div style={{ fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>{type}</div>
+              <div key={type} style={{ padding: "1.25rem", borderRadius: "0.5rem", border: "1px solid var(--input-border)", background: "var(--input-bg)" }}>
+                <div style={{ fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>{type}</div>
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                   <code
                     style={{
@@ -124,7 +124,7 @@ export default function HashGeneratorPage() {
                       borderRadius: "0.25rem",
                       border: "none",
                       background: "rgba(168,124,246,0.3)",
-                      color: "#c4b5fd",
+                      color: "var(--primary-light)",
                       cursor: "pointer",
                       fontWeight: 600,
                       fontSize: "0.95rem",

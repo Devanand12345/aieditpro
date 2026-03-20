@@ -73,7 +73,7 @@ export default function ImageCompressor() {
           ← Back to Tools
         </Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>
           Image Compressor
         </h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem", fontSize: "1.05rem" }}>
@@ -109,7 +109,7 @@ export default function ImageCompressor() {
               }}
             >
               <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>📷</div>
-              <div style={{ fontWeight: 700, color: "#ede9ff", marginBottom: "0.5rem" }}>
+              <div style={{ fontWeight: 700, color: "var(--text-primary)", marginBottom: "0.5rem" }}>
                 Click to upload image
               </div>
               <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.9rem" }}>
@@ -120,11 +120,11 @@ export default function ImageCompressor() {
             <div>
               <div style={{ marginBottom: "1.5rem" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
-                  <div style={{ padding: "1rem", background: "rgba(255,255,255,0.05)", borderRadius: "0.75rem", textAlign: "center" }}>
+                  <div style={{ padding: "1rem", background: "var(--card-bg)", borderRadius: "0.75rem", textAlign: "center" }}>
                     <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.85rem", marginBottom: "0.25rem" }}>Original</div>
                     <div style={{ color: "#fca5a5", fontWeight: 700 }}>{formatSize(originalSize)}</div>
                   </div>
-                  <div style={{ padding: "1rem", background: "rgba(255,255,255,0.05)", borderRadius: "0.75rem", textAlign: "center" }}>
+                  <div style={{ padding: "1rem", background: "var(--card-bg)", borderRadius: "0.75rem", textAlign: "center" }}>
                     <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.85rem", marginBottom: "0.25rem" }}>Compressed</div>
                     <div style={{ color: "#6ee7b7", fontWeight: 700 }}>
                       {compressedSize ? formatSize(compressedSize) : "-"}
@@ -139,7 +139,7 @@ export default function ImageCompressor() {
               </div>
 
               <div style={{ marginBottom: "1.5rem" }}>
-                <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+                <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
                   Quality: {quality}%
                 </label>
                 <input
@@ -176,7 +176,7 @@ export default function ImageCompressor() {
               </button>
 
               {compressed && (
-                <div style={{ textAlign: "center", padding: "1.5rem", background: "rgba(255,255,255,0.05)", borderRadius: "0.75rem" }}>
+                <div style={{ textAlign: "center", padding: "1.5rem", background: "var(--card-bg)", borderRadius: "0.75rem" }}>
                   <img src={compressed} alt="Compressed" style={{ maxWidth: "100%", maxHeight: "300px", borderRadius: "0.5rem" }} />
                   <button
                     onClick={downloadCompressed}
@@ -184,9 +184,9 @@ export default function ImageCompressor() {
                       marginTop: "1rem",
                       padding: "0.75rem 2rem",
                       borderRadius: "0.5rem",
-                      border: "1px solid rgba(168,124,246,0.3)",
+                      border: "1px solid var(--input-border)",
                       background: "rgba(168,124,246,0.2)",
-                      color: "#c4b5fd",
+                      color: "var(--primary-light)",
                       fontWeight: 600,
                       cursor: "pointer",
                     }}
@@ -201,8 +201,8 @@ export default function ImageCompressor() {
           <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
 
-        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.2)" }}>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem" }}>Why compress images?</h3>
+        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid var(--input-border)" }}>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "1rem" }}>Why compress images?</h3>
           <ul style={{ color: "rgba(220,210,255,0.85)", lineHeight: 2, paddingLeft: "1.5rem" }}>
             <li>Faster website loading times</li>
             <li>Reduced storage costs</li>

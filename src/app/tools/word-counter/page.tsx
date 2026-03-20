@@ -47,7 +47,7 @@ export default function WordCounter() {
 
         <div style={{ marginBottom: "2rem" }}>
           <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#10b981", background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.3)", padding: "0.28rem 0.85rem", borderRadius: "9999px", marginBottom: "1rem" }}>Utility</span>
-          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "#ede9ff", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>📝 Word Counter</h1>
+          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>📝 Word Counter</h1>
           <p style={{ color: "rgba(220,210,255,0.7)", fontSize: "1rem", lineHeight: 1.6 }}>Count words, characters, sentences, paragraphs. Get reading &amp; speaking time estimates.</p>
         </div>
 
@@ -57,7 +57,7 @@ export default function WordCounter() {
               value={text}
               onChange={e => setText(e.target.value)}
               placeholder="Paste or type your text here..."
-              style={{ width: "100%", minHeight: "400px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.25rem", color: "#ede9ff", fontSize: "0.95rem", lineHeight: 1.7, resize: "vertical" as const, outline: "none", fontFamily: "inherit" }}
+              style={{ width: "100%", minHeight: "400px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.25)", borderRadius: "1rem", padding: "1.25rem", color: "var(--text-primary)", fontSize: "0.95rem", lineHeight: 1.7, resize: "vertical" as const, outline: "none", fontFamily: "inherit" }}
             />
             {text && (
               <button onClick={() => setText("")} style={{ marginTop: "0.75rem", padding: "0.6rem 1.25rem", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: "0.6rem", color: "#fca5a5", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600 }}>
@@ -75,11 +75,11 @@ export default function WordCounter() {
             ))}
 
             {stats.topWords.length > 0 && (
-              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "0.85rem", padding: "1rem 1.25rem" }}>
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "0.85rem", padding: "1rem 1.25rem" }}>
                 <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "rgba(220,210,255,0.6)", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "0.75rem" }}>Top Keywords</div>
                 {stats.topWords.map(([word, freq]) => (
                   <div key={word} style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                    <span style={{ fontSize: "0.85rem", color: "#c4b5fd" }}>{word}</span>
+                    <span style={{ fontSize: "0.85rem", color: "var(--primary-light)" }}>{word}</span>
                     <span style={{ fontSize: "0.85rem", color: "rgba(220,210,255,0.5)", fontWeight: 600 }}>{freq}x</span>
                   </div>
                 ))}

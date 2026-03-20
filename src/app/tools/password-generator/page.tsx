@@ -69,11 +69,11 @@ export default function PasswordGenerator() {
 
         <div style={{ marginBottom: "2rem" }}>
           <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#a78bfa", background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.3)", padding: "0.28rem 0.85rem", borderRadius: "9999px", marginBottom: "1rem" }}>Generator</span>
-          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "#ede9ff", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>🔑 Password Generator</h1>
+          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>🔑 Password Generator</h1>
           <p style={{ color: "rgba(220,210,255,0.7)", fontSize: "1rem", lineHeight: 1.6 }}>Generate secure, random passwords with custom length and character sets.</p>
         </div>
 
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
           {/* Length */}
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "flex", justifyContent: "space-between", color: "rgba(220,210,255,0.85)", fontSize: "0.9rem", fontWeight: 600, marginBottom: "0.75rem" }}>
@@ -112,7 +112,7 @@ export default function PasswordGenerator() {
         {password && (
           <div>
             {/* Strength */}
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1rem", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1rem", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.6rem", fontSize: "0.85rem", fontWeight: 600 }}>
                 <span style={{ color: "rgba(220,210,255,0.7)" }}>Password Strength</span>
                 <span style={{ color: str.color }}>{str.label}</span>
@@ -125,15 +125,15 @@ export default function PasswordGenerator() {
             {/* Passwords */}
             {passwords.map((pwd, i) => (
               <div key={i} style={{ background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: "1rem", padding: "1.25rem 1.5rem", marginBottom: "0.75rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
-                <code style={{ fontSize: "0.95rem", color: "#c4b5fd", fontFamily: "monospace", wordBreak: "break-all" as const, flex: 1 }}>{pwd}</code>
-                <button onClick={() => copy(pwd)} style={{ background: "rgba(139,92,246,0.2)", border: "1px solid rgba(139,92,246,0.4)", borderRadius: "0.5rem", padding: "0.4rem 0.8rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600, whiteSpace: "nowrap" as const, transition: "all 0.2s" }}>
+                <code style={{ fontSize: "0.95rem", color: "var(--primary-light)", fontFamily: "monospace", wordBreak: "break-all" as const, flex: 1 }}>{pwd}</code>
+                <button onClick={() => copy(pwd)} style={{ background: "rgba(139,92,246,0.2)", border: "1px solid rgba(139,92,246,0.4)", borderRadius: "0.5rem", padding: "0.4rem 0.8rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600, whiteSpace: "nowrap" as const, transition: "all 0.2s" }}>
                   {copied ? "✓ Copied!" : "Copy"}
                 </button>
               </div>
             ))}
 
             {passwords.length > 1 && (
-              <button onClick={() => copy(passwords.join("\n"))} style={{ width: "100%", padding: "0.85rem", background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.35)", borderRadius: "0.85rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.9rem", fontWeight: 600 }}>
+              <button onClick={() => copy(passwords.join("\n"))} style={{ width: "100%", padding: "0.85rem", background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.35)", borderRadius: "0.85rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.9rem", fontWeight: 600 }}>
                 Copy All Passwords
               </button>
             )}

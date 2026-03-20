@@ -45,14 +45,14 @@ export default function AgeCalculatorClient() {
       <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <Link href="/tools" style={{ color: "#a78bfa", textDecoration: "none", fontSize: "0.9rem" }}>← Back to Tools</Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>Age Calculator</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>Age Calculator</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem" }}>Find out your exact age in years, months, days and more</p>
 
         <div style={{ padding: "2rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.25)" }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>Enter your birth date</label>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>Enter your birth date</label>
             <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
-              style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", color: "#ede9ff", fontSize: "1rem" }} />
+              style={{ width: "100%", padding: "1rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", color: "var(--text-primary)", fontSize: "1rem" }} />
           </div>
 
           <button onClick={calculateAge}
@@ -75,9 +75,9 @@ export default function AgeCalculatorClient() {
                   { label: "Total Seconds", value: result.totalSeconds.toLocaleString() },
                   { label: "Days Until Birthday", value: result.daysUntilBirthday },
                 ].map(item => (
-                  <div key={item.label} style={{ padding: "1rem", background: "rgba(255,255,255,0.05)", borderRadius: "0.75rem", textAlign: "center" }}>
+                  <div key={item.label} style={{ padding: "1rem", background: "var(--card-bg)", borderRadius: "0.75rem", textAlign: "center" }}>
                     <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.85rem" }}>{item.label}</div>
-                    <div style={{ color: "#ede9ff", fontWeight: 700, fontSize: "1.2rem", marginTop: "0.25rem" }}>{item.value}</div>
+                    <div style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: "1.2rem", marginTop: "0.25rem" }}>{item.value}</div>
                   </div>
                 ))}
               </div>

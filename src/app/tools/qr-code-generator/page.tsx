@@ -52,7 +52,7 @@ export default function QrCodeGenerator() {
           ← Back to Tools
         </Link>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "#ede9ff" }}>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginTop: "1rem", marginBottom: "0.5rem", color: "var(--text-primary)" }}>
           QR Code Generator
         </h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem", fontSize: "1.05rem" }}>
@@ -66,7 +66,7 @@ export default function QrCodeGenerator() {
           border: "1px solid rgba(168,124,246,0.25)",
         }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
               Enter URL or Text
             </label>
             <textarea
@@ -78,9 +78,9 @@ export default function QrCodeGenerator() {
                 height: "100px",
                 padding: "1rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontSize: "1rem",
                 resize: "none",
                 outline: "none",
@@ -89,7 +89,7 @@ export default function QrCodeGenerator() {
           </div>
 
           <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.5rem" }}>
+            <label style={{ display: "block", fontSize: "0.9rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.5rem" }}>
               Size: {size}x{size}px
             </label>
             <input
@@ -125,7 +125,7 @@ export default function QrCodeGenerator() {
           </button>
 
           {text && (
-            <div style={{ textAlign: "center", padding: "2rem", background: "rgba(255,255,255,0.05)", borderRadius: "1rem" }}>
+            <div style={{ textAlign: "center", padding: "2rem", background: "var(--card-bg)", borderRadius: "1rem" }}>
               <canvas ref={canvasRef} style={{ maxWidth: "100%", borderRadius: "0.5rem" }} />
               <button
                 onClick={downloadQR}
@@ -133,9 +133,9 @@ export default function QrCodeGenerator() {
                   marginTop: "1rem",
                   padding: "0.75rem 2rem",
                   borderRadius: "0.5rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
+                  border: "1px solid var(--input-border)",
                   background: "rgba(168,124,246,0.2)",
-                  color: "#c4b5fd",
+                  color: "var(--primary-light)",
                   fontWeight: 600,
                   cursor: "pointer",
                 }}
@@ -146,8 +146,8 @@ export default function QrCodeGenerator() {
           )}
         </div>
 
-        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(168,124,246,0.2)" }}>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem" }}>Popular Uses</h3>
+        <div style={{ marginTop: "2rem", padding: "1.5rem", borderRadius: "1rem", background: "rgba(139,92,246,0.08)", border: "1px solid var(--input-border)" }}>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "1rem" }}>Popular Uses</h3>
           <ul style={{ color: "rgba(220,210,255,0.85)", lineHeight: 2, paddingLeft: "1.5rem" }}>
             <li>Share website URLs</li>
             <li>WiFi login credentials</li>

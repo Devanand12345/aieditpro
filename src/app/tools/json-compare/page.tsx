@@ -118,12 +118,12 @@ export default function JsonComparePage() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <BackToToolsButton />
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>JSON Compare</h1>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "var(--text-primary)" }}>JSON Compare</h1>
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Compare two JSON objects instantly and see the differences</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JSON 1</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>JSON 1</label>
             <textarea
               value={json1}
               onChange={(e) => handleJson1Change(e.target.value)}
@@ -133,9 +133,9 @@ export default function JsonComparePage() {
                 height: "300px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -144,7 +144,7 @@ export default function JsonComparePage() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "#c4b5fd", marginBottom: "0.75rem" }}>JSON 2</label>
+            <label style={{ display: "block", fontSize: "1rem", fontWeight: 600, color: "var(--primary-light)", marginBottom: "0.75rem" }}>JSON 2</label>
             <textarea
               value={json2}
               onChange={(e) => handleJson2Change(e.target.value)}
@@ -154,9 +154,9 @@ export default function JsonComparePage() {
                 height: "300px",
                 padding: "1.25rem",
                 borderRadius: "0.75rem",
-                border: "1px solid rgba(168,124,246,0.3)",
-                background: "rgba(30,27,75,0.6)",
-                color: "#ede9ff",
+                border: "1px solid var(--input-border)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
                 fontFamily: "monospace",
                 fontSize: "0.95rem",
                 resize: "none",
@@ -188,7 +188,7 @@ export default function JsonComparePage() {
               </div>
             </div>
 
-            <div style={{ padding: "1rem", borderRadius: "0.75rem", border: "1px solid rgba(168,124,246,0.3)", background: "rgba(30,27,75,0.6)", maxHeight: "500px", overflow: "auto" }}>
+            <div style={{ padding: "1rem", borderRadius: "0.75rem", border: "1px solid var(--input-border)", background: "var(--input-bg)", maxHeight: "500px", overflow: "auto" }}>
               {differences.map((diff, idx) => (
                 <div key={idx} style={{ marginBottom: "1rem", paddingBottom: "1rem", borderBottom: "1px solid rgba(168,124,246,0.2)" }}>
                   <div style={{ color: diff.type === "added" ? "#86efac" : diff.type === "removed" ? "#fca5a5" : "#fbbf24", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.875rem" }}>

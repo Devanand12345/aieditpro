@@ -44,7 +44,7 @@ export default function TimestampConverter() {
 
         <div style={{ marginBottom: "2rem" }}>
           <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", padding: "0.28rem 0.85rem", borderRadius: "9999px", marginBottom: "1rem" }}>Utility</span>
-          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "#ede9ff", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>⏱️ Unix Timestamp Converter</h1>
+          <h1 style={{ fontSize: "clamp(1.8rem,4vw,2.5rem)", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.03em", marginBottom: "0.5rem" }}>⏱️ Unix Timestamp Converter</h1>
           <p style={{ color: "rgba(220,210,255,0.7)", fontSize: "1rem", lineHeight: 1.6 }}>Convert Unix timestamps to human-readable dates and vice versa.</p>
         </div>
 
@@ -56,11 +56,11 @@ export default function TimestampConverter() {
         </div>
 
         {/* Timestamp → Date */}
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
-          <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1.25rem" }}>Timestamp → Human Date</h2>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1.2rem", padding: "2rem", marginBottom: "1.5rem" }}>
+          <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "1.25rem" }}>Timestamp → Human Date</h2>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <input value={tsInput} onChange={e => setTsInput(e.target.value)} placeholder="e.g. 1709500000"
-              style={{ flex: 1, padding: "0.85rem 1rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(168,124,246,0.3)", borderRadius: "0.65rem", color: "#ede9ff", fontSize: "0.95rem", fontFamily: "monospace", outline: "none" }} />
+              style={{ flex: 1, padding: "0.85rem 1rem", background: "var(--card-bg)", border: "1px solid var(--input-border)", borderRadius: "0.65rem", color: "var(--text-primary)", fontSize: "0.95rem", fontFamily: "monospace", outline: "none" }} />
             <button onClick={convertTs} style={{ padding: "0.85rem 1.5rem", background: "linear-gradient(135deg,#a78bfa,#e879f9)", border: "none", borderRadius: "0.65rem", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: "0.9rem" }}>
               Convert
             </button>
@@ -71,9 +71,9 @@ export default function TimestampConverter() {
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)", borderRadius: "0.65rem" }}>
                   <div>
                     <div style={{ fontSize: "0.7rem", color: "rgba(220,210,255,0.5)", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "0.1rem" }}>{label}</div>
-                    <div style={{ fontSize: "0.9rem", color: "#c4b5fd", fontFamily: "monospace" }}>{val}</div>
+                    <div style={{ fontSize: "0.9rem", color: "var(--primary-light)", fontFamily: "monospace" }}>{val}</div>
                   </div>
-                  <button onClick={() => copy(val)} style={{ background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: "0.4rem", padding: "0.3rem 0.65rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600 }}>Copy</button>
+                  <button onClick={() => copy(val)} style={{ background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: "0.4rem", padding: "0.3rem 0.65rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600 }}>Copy</button>
                 </div>
               ))}
             </div>
@@ -81,11 +81,11 @@ export default function TimestampConverter() {
         </div>
 
         {/* Date → Timestamp */}
-        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,124,246,0.2)", borderRadius: "1.2rem", padding: "2rem" }}>
-          <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1.25rem" }}>Date → Timestamp</h2>
+        <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid var(--input-border)", borderRadius: "1.2rem", padding: "2rem" }}>
+          <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "1.25rem" }}>Date → Timestamp</h2>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <input type="datetime-local" value={dateInput} onChange={e => setDateInput(e.target.value)}
-              style={{ flex: 1, padding: "0.85rem 1rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(168,124,246,0.3)", borderRadius: "0.65rem", color: "#ede9ff", fontSize: "0.95rem", outline: "none", colorScheme: "dark" }} />
+              style={{ flex: 1, padding: "0.85rem 1rem", background: "var(--card-bg)", border: "1px solid var(--input-border)", borderRadius: "0.65rem", color: "var(--text-primary)", fontSize: "0.95rem", outline: "none", colorScheme: "dark" }} />
             <button onClick={convertDate} style={{ padding: "0.85rem 1.5rem", background: "linear-gradient(135deg,#a78bfa,#e879f9)", border: "none", borderRadius: "0.65rem", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: "0.9rem" }}>
               Convert
             </button>
@@ -96,9 +96,9 @@ export default function TimestampConverter() {
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 1rem", background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.2)", borderRadius: "0.65rem" }}>
                   <div>
                     <div style={{ fontSize: "0.7rem", color: "rgba(220,210,255,0.5)", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "0.1rem" }}>{label}</div>
-                    <div style={{ fontSize: "1.1rem", color: "#c4b5fd", fontFamily: "monospace", fontWeight: 700 }}>{val}</div>
+                    <div style={{ fontSize: "1.1rem", color: "var(--primary-light)", fontFamily: "monospace", fontWeight: 700 }}>{val}</div>
                   </div>
-                  <button onClick={() => copy(val)} style={{ background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: "0.4rem", padding: "0.3rem 0.65rem", color: "#c4b5fd", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600 }}>Copy</button>
+                  <button onClick={() => copy(val)} style={{ background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: "0.4rem", padding: "0.3rem 0.65rem", color: "var(--primary-light)", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600 }}>Copy</button>
                 </div>
               ))}
             </div>
