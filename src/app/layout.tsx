@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Script } from "next/script";
 import "./globals.css";
 import Navbar from "./Navbar";
 import DynamicBackground from "./DynamicBackground";
@@ -228,6 +229,17 @@ export default function RootLayout({
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
+        
+        {/* Google Analytics */}
+        <Script async src={`https://www.googletagmanager.com/gtag/js?id=G-WM5JVFQBDG`} />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WM5JVFQBDG');
+          `}
+        </Script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* Dynamic canvas background */}
