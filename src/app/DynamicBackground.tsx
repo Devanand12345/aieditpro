@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Particle {
   x: number; y: number;
@@ -14,6 +14,20 @@ interface Streak { x: number; y: number; len: number; speed: number; alpha: numb
 export default function DynamicBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute("data-theme");
+      setIsLight(theme === "light");
+    };
+    checkTheme();
+    
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,19 +36,17 @@ export default function DynamicBackground() {
     let W = (canvas.width = window.innerWidth);
     let H = (canvas.height = window.innerHeight);
 
-    // ── Particles ─────────────────────────────────────────────
-    const particles: Particle[] = Array.from({ length: 100 }, () => ({
+    const particles: Particle[] = Array.from({ length: isLight ? 40 : 100 }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       vx: (Math.random() - 0.5) * 0.55, vy: (Math.random() - 0.5) * 0.55,
       radius: Math.random() * 2 + 0.8,
-      hue: [260, 280, 300, 200, 320, 240][Math.floor(Math.random() * 6)],
-      alpha: Math.random() * 0.6 + 0.2,
+      hue: isLight ? [200, 220, 240, 260, 280][Math.floor(Math.random() * 5)] : [260, 280, 300, 200, 320, 240][Math.floor(Math.random() * 6)],
+      alpha: isLight ? Math.random() * 0.3 + 0.1 : Math.random() * 0.6 + 0.2,
       pulse: Math.random() * Math.PI * 2,
       pulseSpeed: Math.random() * 0.018 + 0.008,
     }));
 
-    // ── Stars (tiny twinkling) ─────────────────────────────────
-    const stars = Array.from({ length: 160 }, () => ({
+    const stars = Array.from({ length: isLight ? 0 : 160 }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       r: Math.random() * 1.2 + 0.2,
       alpha: Math.random(),
@@ -42,8 +54,7 @@ export default function DynamicBackground() {
       phase: Math.random() * Math.PI * 2,
     }));
 
-    // ── Shooting streaks ───────────────────────────────────────
-    const streaks: Streak[] = Array.from({ length: 5 }, () => ({ x:0,y:0,len:0,speed:0,alpha:0,active:false,angle:0,hue:0 }));
+    const streaks: Streak[] = Array.from({ length: isLight ? 0 : 5 }, () => ({ x:0,y:0,len:0,speed:0,alpha:0,active:false,angle:0,hue:0 }));
     let streakTimer = 0;
     function spawnStreak() {
       const s = streaks.find(s => !s.active);
@@ -57,9 +68,12 @@ export default function DynamicBackground() {
       });
     }
 
-    // ── Mesh blobs ─────────────────────────────────────────────
     let hueShift = 0;
-    const blobs = [
+    const blobs = isLight ? [
+      { ox: 0.08, oy: 0.12, rx: 0.55, ry: 0.55, hue: 220, alpha: 0.12, spd: 0.00030 },
+      { ox: 0.88, oy: 0.82, rx: 0.50, ry: 0.50, hue: 260, alpha: 0.10, spd: 0.00025 },
+      { ox: 0.50, oy: 0.40, rx: 0.42, ry: 0.42, hue: 280, alpha: 0.08, spd: 0.00020 },
+    ] : [
       { ox: 0.08, oy: 0.12, rx: 0.55, ry: 0.55, hue:  0, alpha: 0.38, spd: 0.00030 },
       { ox: 0.88, oy: 0.82, rx: 0.50, ry: 0.50, hue: 55, alpha: 0.32, spd: 0.00025 },
       { ox: 0.50, oy: 0.40, rx: 0.42, ry: 0.42, hue:120, alpha: 0.22, spd: 0.00020 },
@@ -67,25 +81,31 @@ export default function DynamicBackground() {
       { ox: 0.10, oy: 0.90, rx: 0.36, ry: 0.36, hue:250, alpha: 0.20, spd: 0.00022 },
     ];
 
-    // ── Events ────────────────────────────────────────────────
     const onMove = (e: MouseEvent) => { mouseRef.current = { x: e.clientX, y: e.clientY }; };
     const onResize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; };
     window.addEventListener("mousemove", onMove);
     window.addEventListener("resize", onResize);
 
-    // ── Draw ──────────────────────────────────────────────────
     function drawBase() {
-      // Deep navy radial gradient
-      const bg = ctx.createRadialGradient(W * 0.5, H * 0.35, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.9);
-      bg.addColorStop(0,   "#160b2e"); // deep violet centre
-      bg.addColorStop(0.4, "#0d0720"); // midnight indigo
-      bg.addColorStop(0.75,"#07051a"); // near-black navy
-      bg.addColorStop(1,   "#030310"); // deepest edge
-      ctx.fillStyle = bg;
+      if (isLight) {
+        const bg = ctx.createLinearGradient(0, 0, 0, H);
+        bg.addColorStop(0, "#f8f5ff");
+        bg.addColorStop(0.5, "#ede9fe");
+        bg.addColorStop(1, "#ddd6fe");
+        ctx.fillStyle = bg;
+      } else {
+        const bg = ctx.createRadialGradient(W * 0.5, H * 0.35, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.9);
+        bg.addColorStop(0,   "#160b2e");
+        bg.addColorStop(0.4, "#0d0720");
+        bg.addColorStop(0.75,"#07051a");
+        bg.addColorStop(1,   "#030310");
+        ctx.fillStyle = bg;
+      }
       ctx.fillRect(0, 0, W, H);
     }
 
     function drawBlobs(t: number) {
+      if (isLight) return;
       hueShift = (hueShift + 0.05) % 360;
       blobs.forEach(b => {
         const x = b.ox * W + Math.sin(t * b.spd + b.hue) * W * 0.12;
@@ -107,6 +127,7 @@ export default function DynamicBackground() {
     }
 
     function drawStars(t: number) {
+      if (isLight) return;
       stars.forEach(s => {
         const a = (Math.sin(t * s.speed + s.phase) + 1) / 2 * 0.7 + 0.05;
         ctx.beginPath();
@@ -117,13 +138,13 @@ export default function DynamicBackground() {
     }
 
     function drawGrid(t: number) {
+      if (isLight) return;
       const sp = 58, shift = (t * 0.015) % sp;
       const cols = Math.ceil(W / sp) + 2, rows = Math.ceil(H / sp) + 2;
       ctx.lineWidth = 0.5;
       ctx.strokeStyle = "rgba(130,90,240,0.07)";
       for (let i = 0; i <= cols; i++) { const x = i*sp-shift; ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
       for (let j = 0; j <= rows; j++) { const y = j*sp-shift; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-      // sparkle dots
       for (let i = 0; i <= cols; i++) for (let j = 0; j <= rows; j++) {
         const p = Math.sin(t * 0.002 + i*0.55 + j*0.75);
         if (p > 0.9) {
@@ -136,6 +157,7 @@ export default function DynamicBackground() {
     }
 
     function drawParticles() {
+      if (isLight) return;
       const { x: mx, y: my } = mouseRef.current;
       particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
@@ -159,7 +181,6 @@ export default function DynamicBackground() {
         ctx.beginPath(); ctx.arc(p.x,p.y,pr,0,Math.PI*2);
         ctx.fillStyle=`hsla(${p.hue},100%,82%,${Math.min(pa+0.25,1)})`; ctx.fill();
       });
-      // connections
       for (let i = 0; i < particles.length; i++) for (let j = i+1; j < particles.length; j++) {
         const a=particles[i], b=particles[j];
         const dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy);
@@ -175,6 +196,7 @@ export default function DynamicBackground() {
     }
 
     function drawStreaks() {
+      if (isLight) return;
       streakTimer++;
       if (streakTimer > 130) { streakTimer = 0; spawnStreak(); }
       streaks.forEach(s => {
@@ -196,8 +218,8 @@ export default function DynamicBackground() {
       });
     }
 
-    // Vignette
     function drawVignette() {
+      if (isLight) return;
       const g = ctx.createRadialGradient(W/2,H/2,H*0.25,W/2,H/2,H*0.9);
       g.addColorStop(0,"rgba(0,0,0,0)");
       g.addColorStop(1,"rgba(0,0,15,0.55)");
@@ -209,11 +231,13 @@ export default function DynamicBackground() {
       ctx.clearRect(0,0,W,H);
       drawBase();
       drawBlobs(t);
-      drawStars(t);
-      drawGrid(t);
-      drawParticles();
-      drawStreaks();
-      drawVignette();
+      if (!isLight) {
+        drawStars(t);
+        drawGrid(t);
+        drawParticles();
+        drawStreaks();
+        drawVignette();
+      }
       animId = requestAnimationFrame(draw);
     }
     animId = requestAnimationFrame(draw);
@@ -223,7 +247,7 @@ export default function DynamicBackground() {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isLight]);
 
   return (
     <canvas ref={canvasRef} style={{ position:"fixed", inset:0, width:"100%", height:"100%", zIndex:0, pointerEvents:"none" }} />

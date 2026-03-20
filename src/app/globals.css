@@ -18,6 +18,18 @@
   --card-border: rgba(255,255,255,0.09);
   --input-bg: rgba(30,27,75,0.6);
   --input-border: rgba(168,124,246,0.3);
+  --navbar-bg: rgba(22,11,46,0.35);
+  --navbar-border: rgba(180,150,255,0.08);
+  --nav-link-color: rgba(220,210,255,0.82);
+  --nav-link-hover: #ffffff;
+  --drop-zone-bg: rgba(139,92,246,0.03);
+  --drop-zone-border: rgba(139,92,246,0.35);
+  --drop-zone-hover-bg: rgba(139,92,246,0.07);
+  --drop-zone-hover-border: rgba(139,92,246,0.7);
+  --badge-bg: rgba(139,92,246,0.15);
+  --badge-border: rgba(139,92,246,0.35);
+  --feature-card-bg: rgba(255,255,255,0.05);
+  --feature-card-border: rgba(255,255,255,0.09);
 }
 
 [data-theme="light"] {
@@ -27,6 +39,8 @@
   --primary-light: #8b5cf6;
   --secondary: #db2777;
   --accent: #0891b2;
+  --gradient-1: linear-gradient(135deg, #7c3aed 0%, #db2777 55%, #ea580c 100%);
+  --gradient-2: linear-gradient(135deg, #0891b2 0%, #7c3aed 100%);
   --glass-bg: rgba(255,255,255,0.8);
   --glass-border: rgba(139,92,246,0.15);
   --glow-purple: 0 8px 40px rgba(124,58,237,0.25);
@@ -36,6 +50,18 @@
   --card-border: rgba(139,92,246,0.2);
   --input-bg: rgba(255,255,255,0.95);
   --input-border: rgba(139,92,246,0.3);
+  --navbar-bg: rgba(248,245,255,0.85);
+  --navbar-border: rgba(139,92,246,0.15);
+  --nav-link-color: rgba(30,27,75,0.7);
+  --nav-link-hover: #7c3aed;
+  --drop-zone-bg: rgba(124,58,237,0.03);
+  --drop-zone-border: rgba(124,58,237,0.25);
+  --drop-zone-hover-bg: rgba(124,58,237,0.07);
+  --drop-zone-hover-border: rgba(124,58,237,0.5);
+  --badge-bg: rgba(124,58,237,0.1);
+  --badge-border: rgba(124,58,237,0.25);
+  --feature-card-bg: rgba(255,255,255,0.9);
+  --feature-card-border: rgba(139,92,246,0.15);
 }
 
 @theme inline {
@@ -56,7 +82,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* ── Gradient text ───────────────────────────── */
 .gradient-text {
   background: var(--gradient-1);
   -webkit-background-clip: text;
@@ -70,17 +95,16 @@ body {
   background-clip: text;
 }
 
-/* ── Glass card ──────────────────────────────── */
 .glass-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.09);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 1.25rem;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.07);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.1);
+  transition: background 0.3s, border-color 0.3s;
 }
 
-/* ── Glow button ─────────────────────────────── */
 .btn-glow {
   position: relative;
   background: var(--gradient-1);
@@ -107,7 +131,6 @@ body {
 .btn-glow:hover::after { opacity: 0.55; }
 .btn-glow:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
 
-/* ── Animations ──────────────────────────────── */
 @keyframes pulse-glow {
   0%,100% { opacity: 0.4; }
   50%      { opacity: 1; }
@@ -125,18 +148,17 @@ body {
   50%     { transform: translateY(-8px); }
 }
 
-/* ── Navbar ──────────────────────────────────── */
 .navbar {
   position: fixed; top:0; left:0; right:0; z-index:100;
   padding: 0.9rem 2rem;
-  background: rgba(22,11,46,0.35);
+  background: var(--navbar-bg);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border-bottom: 1px solid rgba(180,150,255,0.08);
-  box-shadow: 0 1px 0 rgba(180,150,255,0.06);
+  border-bottom: 1px solid var(--navbar-border);
+  box-shadow: 0 1px 0 var(--navbar-border);
+  transition: background 0.3s, border-color 0.3s;
 }
 
-/* ── Logo ────────────────────────────────────── */
 .logo-icon {
   width:36px; height:36px; border-radius:10px;
   background: var(--gradient-1);
@@ -144,51 +166,50 @@ body {
   box-shadow: var(--glow-purple); flex-shrink:0;
 }
 
-/* ── Badge ───────────────────────────────────── */
 .badge {
   display:inline-flex; align-items:center; gap:0.4rem;
   padding:0.3rem 0.9rem; border-radius:9999px;
   font-size:0.75rem; font-weight:600; letter-spacing:0.05em;
-  background: rgba(139,92,246,0.15);
-  border: 1px solid rgba(139,92,246,0.35);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
   color: var(--primary-light);
+  transition: background 0.3s, border-color 0.3s;
 }
 
-/* ── Feature icon ────────────────────────────── */
 .feature-icon {
   width:48px; height:48px; border-radius:12px;
   display:flex; align-items:center; justify-content:center;
   font-size:1.4rem; margin-bottom:1rem;
 }
 
-/* ── Feature card hover ──────────────────────── */
-.feature-card { transition: transform 0.25s, box-shadow 0.25s; }
+.feature-card { 
+  transition: transform 0.25s, box-shadow 0.25s, background 0.3s, border-color 0.3s; 
+  background: var(--feature-card-bg);
+  border: 1px solid var(--feature-card-border);
+}
 .feature-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,92,246,0.2);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(139,92,246,0.2);
 }
 
-/* ── Nav link ────────────────────────────────── */
 .nav-link {
-  color: rgba(220,210,255,0.82);
+  color: var(--nav-link-color);
   text-decoration:none; font-size:0.9rem; font-weight:500;
   transition: color 0.2s;
 }
-.nav-link:hover { color: #ffffff; }
+.nav-link:hover { color: var(--nav-link-hover); }
 
-/* ── Drop zone ───────────────────────────────── */
 .drop-zone {
-  border: 2px dashed rgba(139,92,246,0.35);
+  border: 2px dashed var(--drop-zone-border);
   border-radius:1rem; padding:2.5rem; text-align:center; cursor:pointer;
   transition: border-color 0.2s, background 0.2s;
-  background: rgba(139,92,246,0.03);
+  background: var(--drop-zone-bg);
 }
 .drop-zone:hover {
-  border-color: rgba(139,92,246,0.7);
-  background: rgba(139,92,246,0.07);
+  border-color: var(--drop-zone-hover-border);
+  background: var(--drop-zone-hover-bg);
 }
 
-/* ── Shimmer ─────────────────────────────────── */
 .shimmer {
   background: linear-gradient(90deg, #a78bfa 0%, #f0abfc 25%, #fff 45%, #f9a8d4 65%, #a78bfa 100%);
   background-size: 200% auto;
