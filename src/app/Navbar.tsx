@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 function Logo() {
   return (
@@ -42,6 +43,7 @@ export default function Navbar() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <ThemeToggle />
           {/* Bookmark Button */}
           <button className="btn-glow" onClick={() => {
             alert('Press ' + (/Mac/.test(navigator.userAgent) ? 'Cmd' : 'Ctrl') + '+D to bookmark AI-EditPro!');

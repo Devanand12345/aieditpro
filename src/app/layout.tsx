@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./Navbar";
 import DynamicBackground from "./DynamicBackground";
 import BackToTop from "./BackToTop";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -1190,6 +1191,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -1211,6 +1213,7 @@ export default function RootLayout({
           {children}
         </div>
         <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
