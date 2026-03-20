@@ -80,20 +80,21 @@ export default function ConverterPage() {
           ← Back to Home
         </Link>
 
-        {/* Main Converter */}
-        <div className="glass-card" style={{ padding:"3rem", marginBottom:"2.5rem", background:"rgba(139, 92, 246, 0.08)", backdropFilter:"blur(20px)", borderRadius:"1.5rem" }}>
-          <div style={{ marginBottom:"2.5rem" }}>
-            <div className="badge" style={{ marginBottom:"1rem", display:"inline-flex", alignItems:"center", gap:"0.6rem", padding:"0.7rem 1.2rem", background:"rgba(139,92,246,0.2)", border:"1px solid rgba(168,124,246,0.4)", borderRadius:"9999px" }}>
-              <span style={{ width:"7px",height:"7px",borderRadius:"50%",background:"#a78bfa",animation:"pulse-glow 2s ease-in-out infinite" }} />
-              ✨ AI-Powered File Converter
-            </div>
-            <h1 style={{ fontSize:"clamp(1.8rem,3vw,2.8rem)", fontWeight:900, letterSpacing:"-0.04em", marginBottom:"0.75rem", color:"#f0f0ff" }}>
-              Convert <span style={{ background:"linear-gradient(135deg, #a78bfa, #e879f9)", backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Any File</span> in Seconds
-            </h1>
-            <p style={{ color:"rgba(220,210,255,0.85)", fontSize:"1.05rem", lineHeight:1.65 }}>
-              Upload your file, select output format, and download instantly. 99%+ fidelity with automatic format optimization.
-            </p>
+        {/* SEO Headline */}
+        <div style={{ marginBottom:"1.5rem" }}>
+          <div className="badge" style={{ marginBottom:"1rem", display:"inline-flex", alignItems:"center", gap:"0.6rem", padding:"0.7rem 1.2rem", background:"rgba(139,92,246,0.2)", border:"1px solid rgba(168,124,246,0.4)", borderRadius:"9999px" }}>
+            <span style={{ width:"7px",height:"7px",borderRadius:"50%",background:"#a78bfa",animation:"pulse-glow 2s ease-in-out infinite" }} />
+            ✨ Free Online File Converter
           </div>
+          <h1 style={{ fontSize:"clamp(1.8rem,3vw,2.8rem)", fontWeight:900, letterSpacing:"-0.04em", marginBottom:"0.75rem", color:"#f0f0ff" }}>
+            Convert <span style={{ background:"linear-gradient(135deg, #a78bfa, #e879f9)", backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Any File Format</span> Instantly
+          </h1>
+          <p style={{ color:"rgba(220,210,255,0.85)", fontSize:"1.05rem", lineHeight:1.65, maxWidth:"800px" }}>
+            Free online document converter supporting PDF, DOCX, XLSX, PPTX, HTML, TXT, EPUB, RTF.
+            Convert PDF to Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML, TXT, EPUB, RTF instantly.
+            100% free, no email required, no registration. AI-powered accuracy with instant download.
+          </p>
+        </div>
 
           <form onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:"1.8rem" }}>
             {/* Drop zone */}
@@ -196,10 +197,98 @@ export default function ConverterPage() {
           )}
         </div>
 
+        {/* SEO Content Section - Document Converter Guide */}
+        <div style={{ marginBottom:"2.5rem", padding:"2.5rem", borderRadius:"1.5rem", background:"rgba(139, 92, 246, 0.08)", backdropFilter:"blur(20px)", border:"1px solid rgba(168,124,246,0.2)" }}>
+          <h2 style={{ fontSize:"1.8rem", fontWeight:800, color:"#f0f0ff", marginBottom:"1.5rem" }}>
+            Free Online Document Converter - Convert PDF, Word, Excel, PowerPoint
+          </h2>
+
+          <p style={{ color:"rgba(220,210,255,0.85)", fontSize:"1.05rem", lineHeight:1.8, marginBottom:"1.5rem" }}>
+            Our free online document converter allows you to convert documents between different formats instantly.
+            Whether you need to <strong style={{ color:"#c4b5fd" }}>convert PDF to Word (DOCX)</strong>,
+            <strong style={{ color:"#c4b5fd" }}> PDF to Excel (XLSX)</strong>,
+            <strong style={{ color:"#c4b5fd" }}> PDF to PowerPoint (PPTX)</strong>, or any other combination,
+            our AI-powered converter delivers 99%+ accuracy while preserving formatting, images, and layout.
+          </p>
+
+          <h3 style={{ fontSize:"1.3rem", fontWeight:700, color:"#ede9ff", marginTop:"2rem", marginBottom:"1rem" }}>
+            🎯 Popular Conversions
+          </h3>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(250px, 1fr))", gap:"1rem", marginBottom:"2rem" }}>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>PDF to DOCX</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert PDF to editable Word document</p>
+            </div>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>PDF to XLSX</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert PDF to Excel spreadsheet</p>
+            </div>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>PDF to PPTX</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert PDF to PowerPoint presentation</p>
+            </div>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>PDF to HTML</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert PDF to web-ready HTML</p>
+            </div>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>DOCX to PDF</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert Word to PDF format</p>
+            </div>
+            <div style={{ padding:"1rem 1.25rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.75rem", border:"1px solid rgba(168,124,246,0.2)" }}>
+              <strong style={{ color:"#c4b5fd" }}>XLSX to PDF</strong>
+              <p style={{ margin:"0.5rem 0 0", fontSize:"0.9rem", color:"rgba(220,210,255,0.75)" }}>Convert Excel to PDF format</p>
+            </div>
+          </div>
+
+          <h3 style={{ fontSize:"1.3rem", fontWeight:700, color:"#ede9ff", marginTop:"2rem", marginBottom:"1rem" }}>
+            ✅ Why Choose Our Document Converter?
+          </h3>
+          <ul style={{ color:"rgba(220,210,255,0.85)", lineHeight:1.9, paddingLeft:"1.5rem", marginBottom:"1.5rem" }}>
+            <li><strong>100% Free Forever</strong> - No limits, no watermarks, no registration required</li>
+            <li><strong>99%+ Accuracy</strong> - AI-powered conversion preserves formatting, fonts, images, and layout</li>
+            <li><strong>Instant Results</strong> - Convert documents in under 5 seconds</li>
+            <li><strong>Secure & Private</strong> - All conversions happen in your browser, no uploads to servers</li>
+            <li><strong>All Formats Supported</strong> - PDF, DOCX, XLSX, PPTX, HTML, TXT, EPUB, RTF</li>
+            <li><strong>Batch Conversion</strong> - Convert multiple files one after another</li>
+            <li><strong>Works Everywhere</strong> - No software to install, works on PC, Mac, Linux, mobile</li>
+            <li><strong>No Email Required</strong> - Start converting immediately without signup</li>
+          </ul>
+
+          <h3 style={{ fontSize:"1.3rem", fontWeight:700, color:"#ede9ff", marginTop:"2rem", marginBottom:"1rem" }}>
+            📋 How to Convert Documents Online
+          </h3>
+          <ol style={{ color:"rgba(220,210,255,0.85)", lineHeight:1.9, paddingLeft:"1.5rem", marginBottom:"1.5rem" }}>
+            <li>Click "Choose File" or drag and drop your document into the upload area</li>
+            <li>Select your desired output format from the 8+ available options</li>
+            <li>Click "Convert & Download" to start the conversion process</li>
+            <li>Your converted file will download automatically - ready to use!</li>
+          </ol>
+
+          <h3 style={{ fontSize:"1.3rem", fontWeight:700, color:"#ede9ff", marginTop:"2rem", marginBottom:"1rem" }}>
+            🔧 Supported Conversions
+          </h3>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(200px, 1fr))", gap:"0.75rem" }}>
+            {["PDF to DOCX", "PDF to XLSX", "PDF to PPTX", "PDF to HTML", "PDF to TXT", "PDF to EPUB", "PDF to RTF",
+              "DOCX to PDF", "XLSX to PDF", "PPTX to PDF", "TXT to PDF", "RTF to PDF", "EPUB to PDF", "HTML to PDF"].map((conv) => (
+              <div key={conv} style={{ padding:"0.75rem", background:"rgba(255,255,255,0.05)", borderRadius:"0.5rem", border:"1px solid rgba(168,124,246,0.2)", fontSize:"0.9rem", color:"rgba(220,210,255,0.85)" }}>
+                {conv}
+              </div>
+            ))}
+          </div>
+
+          <p style={{ color:"rgba(220,210,255,0.85)", fontSize:"1.05rem", lineHeight:1.8, marginTop:"2rem", marginBottom:"0.5rem" }}>
+            <strong style={{ color:"#c4b5fd" }}>Need JSON tools?</strong> Check out our{" "}
+            <a href="/tools/json-beautifier" style={{ color:"#a78bfa", textDecoration:"underline" }}>free JSON Beautifier</a>,{" "}
+            <a href="/tools/json-compare" style={{ color:"#a78bfa", textDecoration:"underline" }}>JSON Compare</a>, and{" "}
+            <a href="/tools/base64" style={{ color:"#a78bfa", textDecoration:"underline" }}>Base64 Encoder</a> tools.
+          </p>
+        </div>
+
         {/* AI Features Section */}
         <div style={{ marginBottom:"2.5rem" }}>
           <h2 style={{ fontSize:"1.3rem", fontWeight:850, color:"#f0f0ff", marginBottom:"1.25rem", letterSpacing:"-0.02em" }}>
-            ✨ AI-Powered Features
+            ✨ More Free Developer Tools
           </h2>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(220px, 1fr))", gap:"1rem" }}>
             {AI_FEATURES.map(f => (

@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 const toolsList = tools.slice(0, 12);
 
 const features = [
-  { icon: "🎨", title: "JSON & Code Formatting", desc: "Beautify, minify, and format JSON, HTML, XML with precision.", gradient: "linear-gradient(135deg,#8b5cf6,#a78bfa)" },
-  { icon: "📋", title: "Text Comparison & Diff", desc: "Compare and analyze text differences instantly with side-by-side view.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
+  { icon: "🎨", title: "JSON Beautifier & Formatter", desc: "Free JSON beautifier with syntax highlighting, validation, minifier & validator. Format JSON instantly.", gradient: "linear-gradient(135deg,#8b5cf6,#a78bfa)" },
+  { icon: "📄", title: "PDF to DOCX Converter", desc: "Convert PDF to Word, Excel, PowerPoint, HTML, TXT with 99%+ accuracy. Free & instant.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
   { icon: "🔐", title: "Security & Encoding", desc: "Decode JWTs, encode/decode Base64 & URLs with military-grade security.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
-  { icon: "#️⃣", title: "Hash & UUID Generation", desc: "Generate MD5, SHA hashes and UUIDs (v1 & v4) in seconds.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
-  { icon: "🔍", title: "Regex & Pattern Testing", desc: "Test and validate regex patterns with real-time results.", gradient: "linear-gradient(135deg,#06b6d4,#22d3ee)" },
-  { icon: "📊", title: "Data Processing", desc: "Format and organize CSV, JSON, and tabular data effortlessly.", gradient: "linear-gradient(135deg,#14b8a6,#10b981)" },
-  { icon: "⚡", title: "Lightning Fast", desc: "All tools process data instantly with zero latency.", gradient: "linear-gradient(135deg,#a855f7,#8b5cf6)" },
-  { icon: "✨", title: "No Sign-Up Required", desc: "Start using tools immediately — free and unlimited access.", gradient: "linear-gradient(135deg,#fbbf24,#f59e0b)" },
+  { icon: "#️⃣", title: "Hash & UUID Generation", desc: "Generate MD5, SHA256, SHA512 hashes and UUIDs (v1 & v4) in seconds.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
+  { icon: "🔑", title: "Password Generator", desc: "Create secure, random passwords with customizable length and character sets.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
+  { icon: "📊", title: "Data Processing Tools", desc: "Format CSV, XML, HTML. Word counter, timestamp converter & more developer tools.", gradient: "linear-gradient(135deg,#14b8a6,#10b981)" },
+  { icon: "⚡", title: "Lightning Fast", desc: "All tools process data instantly. Client-side processing for privacy & speed.", gradient: "linear-gradient(135deg,#a855f7,#8b5cf6)" },
+  { icon: "✨", title: "100% Free Forever", desc: "No registration. No limits. 17+ developer tools completely free forever.", gradient: "linear-gradient(135deg,#fbbf24,#f59e0b)" },
 ];
 
 const formats = ["PDF", "DOCX", "XLSX", "PPTX", "EPUB", "HTML", "RTF", "TXT"];
@@ -44,12 +44,12 @@ const stats = [
 ];
 
 const trendingTools = [
-  { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", href: "/tools/json-beautifier", color: "#8b5cf6", tag: "🔥 Hot" },
+  { id: "json-beautifier", name: "JSON Beautifier", icon: "🎨", href: "/tools/json-beautifier", color: "#8b5cf6", tag: "🔥 #1 Tool" },
+  { id: "converter", name: "PDF Converter", icon: "📄", href: "/converter", color: "#ec4899", tag: "⭐ Popular" },
   { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ New" },
+  { id: "hash", name: "Hash Generator", icon: "#️⃣", href: "/tools/hash", color: "#f59e0b", tag: "🔥 Hot" },
   { id: "word-counter", name: "Word Counter", icon: "📝", href: "/tools/word-counter", color: "#f59e0b", tag: "⭐ New" },
-  { id: "color-picker", name: "Color Picker", icon: "🎨", href: "/tools/color-picker", color: "#06b6d4", tag: "⭐ New" },
-  { id: "timestamp", name: "Timestamp Converter", icon: "⏱️", href: "/tools/timestamp", color: "#ec4899", tag: "⭐ New" },
-  { id: "base64", name: "Base64 Encoder", icon: "🔤", href: "/tools/base64", color: "#ef4444", tag: "🔥 Hot" },
+  { id: "jwt-decoder", name: "JWT Decoder", icon: "🔓", href: "/tools/jwt-decoder", color: "#06b6d4", tag: "⭐ New" },
 ];
 
 export default function Home() {
@@ -78,21 +78,26 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              <span className="shimmer">Convert Any File</span>
+              <span className="shimmer">JSON Beautifier</span>
               <br />
-              <span className="hero-title-accent">with AI Precision</span>
+              <span className="hero-title-accent">& File Converter</span>
             </h1>
 
             <p className="hero-desc">
-              Transform your documents instantly — preserving structure, formatting,
-              and content with intelligent accuracy.{" "}
-              <strong style={{ color: "#c4b5fd" }}>No sign-up required.</strong>
+              Free online <strong>JSON Beautifier, Formatter, Validator & Minifier</strong> with instant formatting.
+              Also convert PDF to DOCX, DOC, XLSX, PPTX, HTML, TXT with 99%+ accuracy.{" "}
+              <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required.</strong>
             </p>
 
             <div className="hero-actions">
+              <Link href="/tools/json-beautifier" style={{ textDecoration: "none" }}>
+                <button className="btn-primary-hero" style={{ marginRight: "1rem" }}>
+                  🎨 JSON Beautifier
+                </button>
+              </Link>
               <Link href="/converter" style={{ textDecoration: "none" }}>
-                <button className="btn-primary-hero">
-                  📤 Convert Now
+                <button className="btn-secondary-hero">
+                  📤 Convert Files
                 </button>
               </Link>
             </div>

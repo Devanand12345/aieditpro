@@ -2,6 +2,169 @@
 
 import { useState } from "react";
 import { BackToToolsButton } from "../BackToToolsButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "JSON Beautifier | Format, Minify & Validate JSON Online Free",
+  description: "Free JSON Beautifier tool to format, beautify, minify, and validate JSON online instantly. JSON formatter with syntax highlighting, error detection, and copy-to-clipboard. No registration required. Works in all browsers.",
+  keywords: [
+    "JSON beautifier",
+    "JSON formatter",
+    "JSON minifier",
+    "JSON validator",
+    "JSON parser",
+    "format JSON",
+    "beautify JSON",
+    "minify JSON",
+    "JSON pretty print",
+    "JSON online",
+    "JSON viewer",
+    "JSON editor",
+    "JSON prettier",
+    "validate JSON",
+    "JSON lint",
+    "JSON syntax checker",
+    "JSON error checker",
+    "JSON formatter online",
+    "JSON beautifier online",
+    "format JSON online",
+    "JSON pretty print online",
+    "JSON minify online",
+    "JSON validate online",
+    "JSON parse online",
+    "JSON compress online",
+    "JSON decompress online",
+    "JSON string formatter",
+    "JSON object formatter",
+    "JSON array formatter",
+    "JSON viewer online",
+    "JSON editor online",
+    "JSON tools online",
+    "free JSON formatter",
+    "free JSON beautifier",
+    "best JSON beautifier",
+    "JSON beautifier tool",
+    "JSON formatter tool",
+    "JSON formatter free",
+    "online JSON formatter",
+    "online JSON beautifier",
+    "JSON pretty printer",
+    "JSON online tool",
+    "format JSON tool",
+    "JSON beautify tool",
+    "JSON pretty formatter",
+    "JSON compact formatter",
+    "JSON human readable",
+    "JSON readable format",
+    "JSON indented format",
+    "JSON minified format",
+    "JSON code formatter",
+    "JSON string pretty print",
+    "JSON beautifier with syntax highlighting",
+    "JSON formatter with error detection",
+    "JSON validator and formatter",
+    "JSON viewer with syntax highlight",
+    "JSON beautifier instant",
+    "JSON formatter fast",
+    "JSON beautifier accurate",
+    "JSON formatter reliable",
+    "JSON beautifier browser-based",
+    "JSON formatter client-side",
+    "JSON beautifier no upload",
+    "JSON formatter local processing",
+    "JSON beautifier works offline",
+    "JSON formatter no registration",
+    "JSON beautifier no signup",
+    "JSON beautifier free forever",
+    "JSON beautifier unlimited",
+    "JSON formatter without ads",
+    "JSON beautifier clean interface",
+    "JSON formatter simple",
+    "JSON beautifier easy to use",
+    "JSON formatter drag and drop",
+    "JSON beautifier copy paste",
+    "JSON beautifier real-time",
+    "JSON formatter live",
+    "JSON beautifier instant preview",
+    "JSON formatter with examples",
+    "JSON beautifier with templates",
+    "JSON formatter for developers",
+    "JSON beautifier for programmers",
+    "JSON beautifier for coding",
+    "JSON beautifier for web development",
+    "JSON beautifier for API testing",
+    "JSON formatter for debugging",
+    "JSON beautifier for data analysis",
+    "JSON formatter for configuration files",
+    "JSON beautifier for settings",
+    "JSON formatter for config",
+    "JSON beautifier for log files",
+    "JSON formatter for data exchange",
+    "JSON beautifier for data transfer",
+    "JSON beautifier for data storage",
+    "JSON formatter for data processing",
+    "JSON beautifier for data validation",
+    "JSON beautifier for data transformation",
+    "JSON formatter for data manipulation",
+    "JSON beautifier for data formatting",
+    "JSON beautifier for data cleaning",
+    "JSON formatter for data inspection",
+    "JSON beautifier for data viewing",
+    "JSON beautifier for data analysis tool",
+    "JSON formatter developer tool",
+    "JSON beautifier programming tool",
+    "JSON formatter coding utility",
+    "JSON beautifier developer utility",
+    "JSON formatter web tool",
+    "JSON beautifier browser tool",
+    "JSON formatter online utility",
+    "JSON formatter free tool",
+    "JSON beautifier online tool",
+    "JSON formatter instant tool",
+    "JSON beautifier fast tool",
+    "JSON formatter quick tool",
+    "JSON beautifier simple tool",
+    "JSON formatter easy tool",
+    "JSON beautifier user-friendly tool",
+    "JSON formatter intuitive tool",
+    "JSON beautifier one-click tool",
+    "JSON formatter no-download tool",
+    "JSON formatter web-based tool",
+    "JSON beautifier cloud tool",
+    "JSON formatter SaaS tool",
+    "JSON beautifier browser extension",
+    "JSON formatter Chrome extension",
+    "JSON beautifier Firefox extension",
+    "JSON beautifier Safari extension",
+    "JSON beautifier Edge extension",
+    "JSON beautifier VS Code extension",
+    "JSON formatter IDE plugin",
+    "JSON beautifier Sublime plugin",
+    "JSON formatter Atom plugin",
+    "JSON beautifier Vim plugin",
+    "JSON formatter Emacs plugin",
+    "JSON beautifier Notepad++ plugin",
+    "JSON formatter TextMate plugin",
+    "JSON beautifier Brackets plugin",
+    "JSON beautifier WebStorm plugin",
+    "JSON formatter IntelliJ plugin",
+    "JSON beautifier Visual Studio plugin",
+    "JSON formatter Eclipse plugin",
+    "JSON formatter NetBeans plugin",
+    "JSON beautifier Code::Blocks plugin",
+    "JSON formatter Xcode plugin",
+    "JSON beautifier Android Studio plugin",
+    "JSON formatter Eclipse plugin",
+  ].join(", "),
+  alternates: {
+    canonical: "/tools/json-beautifier",
+  },
+  openGraph: {
+    title: "JSON Beautifier - Format & Validate JSON Online",
+    description: "Free online JSON beautifier with syntax highlighting, validation, and error detection. Format, minify, and validate JSON instantly.",
+    url: "/tools/json-beautifier",
+  },
+};
 
 export default function JsonBeautifierPage() {
   const [input, setInput] = useState("");
@@ -61,7 +224,7 @@ export default function JsonBeautifierPage() {
         <BackToToolsButton />
 
         <h1 style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#ede9ff" }}>JSON Beautifier</h1>
-        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Format and minify JSON instantly</p>
+        <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2.5rem", fontSize: "1.05rem" }}>Format and minify JSON instantly with syntax highlighting</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
           <div>
@@ -163,6 +326,49 @@ export default function JsonBeautifierPage() {
               </button>
             )}
           </div>
+        </div>
+
+        {/* SEO Content Section */}
+        <div style={{ marginTop: "3rem", padding: "2rem", borderRadius: "1rem", background: "rgba(139, 92, 246, 0.08)", border: "1px solid rgba(168,124,246,0.2)" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem" }}>What is a JSON Beautifier?</h2>
+          <p style={{ color: "rgba(220,210,255,0.85)", lineHeight: 1.8, marginBottom: "1rem" }}>
+            A JSON Beautifier is an essential tool for developers that formats and structures JSON (JavaScript Object Notation) data into a readable, indented format. Our free online JSON formatter instantly converts minified or compact JSON into human-readable code with proper indentation, syntax highlighting, and error validation.
+          </p>
+          <p style={{ color: "rgba(220,210,255,0.85)", lineHeight: 1.8, marginBottom: "1rem" }}>
+            Whether you're debugging API responses, validating configuration files, or pretty-printing JSON data for documentation, our JSON beautifier provides instant formatting without any registration or download required.
+          </p>
+
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem", marginTop: "2rem" }}>Features</h2>
+          <ul style={{ color: "rgba(220,210,255,0.85)", lineHeight: 1.8, paddingLeft: "1.5rem" }}>
+            <li>✨ <strong>Instant JSON Beautification</strong> - Format JSON with customizable indentation</li>
+            <li>📦 <strong>JSON Minification</strong> - Compress JSON for production and performance</li>
+            <li>✅ <strong>Real-time Validation</strong> - Detect syntax errors and invalid JSON immediately</li>
+            <li>🎨 <strong>Syntax Highlighting</strong> - Color-coded JSON for easy reading</li>
+            <li>📋 <strong>One-Click Copy</strong> - Copy formatted JSON to clipboard instantly</li>
+            <li>🔒 <strong>100% Client-Side</strong> - No data uploaded to servers, completely private</li>
+            <li>⚡ <strong>Lightning Fast</strong> - Works entirely in your browser for instant results</li>
+            <li>🆓 <strong>Free Forever</strong> - No limits, no registration, no watermarks</li>
+          </ul>
+
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem", marginTop: "2rem" }}>How to Use</h2>
+          <ol style={{ color: "rgba(220,210,255,0.85)", lineHeight: 1.8, paddingLeft: "1.5rem" }}>
+            <li>Paste your JSON data into the input textarea</li>
+            <li>Choose "Beautify" for formatting or "Minify" for compression</li>
+            <li>View the formatted output with syntax highlighting</li>
+            <li>Copy the result to clipboard with one click</li>
+          </ol>
+
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#ede9ff", marginBottom: "1rem", marginTop: "2rem" }}>Why Choose Our JSON Beautifier?</h2>
+          <ul style={{ color: "rgba(220,210,255,0.85)", lineHeight: 1.8, paddingLeft: "1.5rem" }}>
+            <li>✅ Free to use with no limitations</li>
+            <li>✅ Works on all devices and browsers</li>
+            <li>✅ Processes data locally for privacy</li>
+            <li>✅ Supports large JSON files</li>
+            <li>✅ Real-time error detection and validation</li>
+            <li>✅ Clean, intuitive interface</li>
+            <li>✅ No software installation required</li>
+            <li>✅ Perfect for developers, testers, and analysts</li>
+          </ul>
         </div>
       </div>
     </div>
