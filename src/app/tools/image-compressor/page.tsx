@@ -3,6 +3,9 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+
 export default function ImageCompressor() {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
@@ -11,10 +14,26 @@ export default function ImageCompressor() {
   const [originalSize, setOriginalSize] = useState(0);
   const [compressedSize, setCompressedSize] = useState(0);
   const [compressing, setCompressing] = useState(false);
+  const [error, setError] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const validateFile = (file: File): string | null => {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return "Invalid file type. Please upload JPEG, PNG, WebP, or GIF.";
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      return `File too large. Maximum size is 10MB. Your file is ${(file.size / (1024 * 1024)).toFixed(1)}MB.`;
+    }
+    return null;
+  };
+
   const handleImageSelect = (file: File) => {
-    if (!file.type.startsWith("image/")) return;
+    const validationError = validateFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setError("");
     setImage(file);
     setCompressed("");
     setCompressedSize(0);
@@ -79,6 +98,12 @@ export default function ImageCompressor() {
         <p style={{ color: "rgba(220,210,255,0.72)", marginBottom: "2rem", fontSize: "1.05rem" }}>
           Reduce image file size without losing quality
         </p>
+
+        {error && (
+          <div style={{ padding: "1rem", borderRadius: "0.75rem", background: "rgba(239,68,68,0.15)", border: "1px solid rgba(239,68,68,0.4)", color: "#fca5a5", marginBottom: "1.5rem", fontSize: "0.9rem" }}>
+            ⚠️ {error}
+          </div>
+        )}
 
         <div style={{
           padding: "2rem",

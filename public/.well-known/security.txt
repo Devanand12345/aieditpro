@@ -1,0 +1,19 @@
+# Security Policy for AI-EditPro
+# https://aieditpro.net/.well-known/security.txt
+
+Contact: mailto:contact@aieditpro.net
+Expires: 2027-03-21T00:00:00.000Z
+
+Preferred-Languages: en
+
+# Encryption
+Encryption: https://keys.openpgp.org/search?q=contact@aieditpro.net
+
+# Security Acknowledgments
+Acknowledgments: https://github.com/Devanand12345/aieditpro/security/advisories
+
+# Disclosure Policy
+Policy: https://aieditpro.net/privacy-policy
+
+# Permissions
+Hiring: https://github.com/Devanand12345
