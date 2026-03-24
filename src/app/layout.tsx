@@ -69,52 +69,6 @@ export const metadata: Metadata = {
   },
 };
 
-  formatDetection: {
-    email: true,
-    address: true,
-    telephone: true,
-  },
-  openGraph: {
-    title: "AI-EditPro - Free Online File Converter & 27+ Developer Tools",
-    description: "Convert PDF to DOCX, DOC, XLSX, PPTX + 27 free developer tools including JSON beautifier, password generator, word counter, color picker, Base64 encoder, Hash generator & more.",
-    url: "https://aieditpro.net",
-    siteName: "AI-EditPro",
-    images: [
-      {
-        url: "https://aieditpro.net/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "AI-EditPro - Free File Converter & Developer Tools",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@aieditpronet",
-    creator: "@aieditpronet",
-    title: "AI-EditPro - Free Online File Converter & 27+ Developer Tools",
-    description: "Convert any file format instantly. PDF to DOCX, JSON beautifier, password generator, word counter, color picker, Base64 encoder & more. No sign-up required.",
-    images: ["https://aieditpro.net/og-image.svg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
-  },
-  category: "Technology",
-  alternates: {
-    canonical: "https://aieditpro.net",
-  },
-};
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,

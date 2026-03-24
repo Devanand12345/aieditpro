@@ -1,12 +1,8 @@
+"use client";
+
 import { BackToToolsButton } from "../BackToToolsButton";
 import JsonBeautifierClient from "./JsonBeautifierClient";
 import Link from "next/link";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "JSON Beautifier - Format, Validate & Minify JSON Online | Free Tool",
-  description: "Free JSON Beautifier to format, beautify, minify, and validate JSON online. Copy-paste your JSON and get instant formatting with error detection. Perfect for developers and API testing.",
-};
 
 export default function JsonBeautifierPage() {
   return (
