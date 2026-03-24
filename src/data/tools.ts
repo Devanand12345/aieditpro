@@ -43,6 +43,7 @@ export const tools: Tool[] = [
   { id: "percentage-calculator", name: "Percentage Calculator", icon: "🧮", desc: "Calculate percentages", category: "Math", href: "/tools/percentage-calculator", color: "#8b5cf6" },
   { id: "html-encoder", name: "HTML Encoder", icon: "🌐", desc: "Encode/decode HTML", category: "Encoding", href: "/tools/html-encoder", color: "#06b6d4" },
   { id: "json-to-yaml", name: "JSON ↔ YAML", icon: "🔄", desc: "Convert between formats", category: "Data", href: "/tools/json-to-yaml", color: "#ef4444" },
+  { id: "ai-code-review", name: "AI Code Review", icon: "🤖", desc: "AI-powered code analysis", category: "AI", href: "/tools/ai-code-review", color: "#8b5cf6" },
 ];
 
 export const categories = ["All", ...Array.from(new Set(tools.map(t => t.category))).sort()] as const;
