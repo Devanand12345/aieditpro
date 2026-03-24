@@ -4,37 +4,9 @@ import Link from "next/link";
 import { tools } from "@/data/tools";
 import { useEffect, useState, useMemo } from "react";
 
-const toolsList = tools.slice(0, 12);
-
-const features = [
-  { icon: "📱", title: "QR Code Generator", desc: "Create QR codes for URLs, WiFi, contacts, text & more. Download as PNG instantly.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
-  { icon: "🖼️", title: "Image Compressor", desc: "Reduce image file size without losing quality. Supports JPG, PNG, WebP.", gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" },
-  { icon: "📝", title: "Lorem Ipsum Generator", desc: "Generate placeholder text for designs, mockups, and prototypes.", gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
-  { icon: "🔒", title: "Password Strength Checker", desc: "Test password security, see crack time estimates, and get improvement tips.", gradient: "linear-gradient(135deg,#14b8a6,#10b981)" },
-  { icon: "🔗", title: "URL Slug Generator", desc: "Create SEO-friendly URL slugs from any text. Perfect for blog posts.", gradient: "linear-gradient(135deg,#a855f7,#8b5cf6)" },
-  { icon: "🔐", title: "Security & Encoding", desc: "Decode JWTs, encode/decode Base64 & URLs with military-grade security.", gradient: "linear-gradient(135deg,#ec4899,#f59e0b)" },
-  { icon: "⚡", title: "Lightning Fast", desc: "All tools process data instantly. Client-side processing for privacy & speed.", gradient: "linear-gradient(135deg,#fbbf24,#f59e0b)" },
-  { icon: "✨", title: "100% Free Forever", desc: "No registration. No limits. 22+ developer tools completely free forever.", gradient: "linear-gradient(135deg,#06b6d4,#10b981)" },
-];
-
-const stats = [
-  { value: "22+", label: "Free Tools", icon: "🛠️" },
-  { value: "100K+", label: "Users", icon: "👥" },
-  { value: "99.9%", label: "Uptime", icon: "⚡" },
-  { value: "100%", label: "Free Forever", icon: "💯" },
-];
-
-const trendingTools = [
-  { id: "qr-code-generator", name: "QR Code Generator", icon: "📱", href: "/tools/qr-code-generator", color: "#ec4899", tag: "🔥 Hot" },
-  { id: "image-compressor", name: "Image Compressor", icon: "🖼️", href: "/tools/image-compressor", color: "#f59e0b", tag: "⭐ New" },
-  { id: "lorem-ipsum-generator", name: "Lorem Ipsum", icon: "📝", href: "/tools/lorem-ipsum-generator", color: "#10b981", tag: "⭐ New" },
-  { id: "password-strength-checker", name: "Password Strength", icon: "🔒", href: "/tools/password-strength-checker", color: "#06b6d4", tag: "⭐ New" },
-  { id: "url-slug-generator", name: "URL Slug", icon: "🔗", href: "/tools/url-slug-generator", color: "#8b5cf6", tag: "⭐ New" },
-  { id: "password-generator", name: "Password Generator", icon: "🔑", href: "/tools/password-generator", color: "#10b981", tag: "⭐ Popular" },
-];
+const popularTools = tools.filter(t => t.popular);
 
 export default function Home() {
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [search, setSearch] = useState("");
   const [showResults, setShowResults] = useState(false);
 
@@ -44,478 +16,177 @@ export default function Home() {
       t.name.toLowerCase().includes(search.toLowerCase()) ||
       t.desc.toLowerCase().includes(search.toLowerCase()) ||
       t.category.toLowerCase().includes(search.toLowerCase())
-    ).slice(0, 8);
+    ).slice(0, 6);
   }, [search]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="page-root">
-      {/* Scroll Progress */}
       <div className="scroll-progress" />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="hero-section">
-        <div className="hero-grid">
-          <div className="hero-left">
-            <div className="badge hero-badge">
-              <span className="badge-dot" />
-              ✨ 22+ Free Developer Tools
-            </div>
+        <div className="hero-badge">
+          <span className="badge-dot" />
+          40+ Free Developer Tools
+        </div>
+        
+        <h1 className="hero-title">
+          <span className="gradient-text">Developer Tools</span>
+          <br />
+          <span style={{ color: "#e2e8f0" }}>That Just Work</span>
+        </h1>
+        
+        <p className="hero-desc">
+          JSON formatter, Base64 encoder, hash generator, QR codes & more.
+          <br />
+          <strong style={{ color: "#c4b5fd" }}>No signup. No limits. No ads.</strong>
+        </p>
 
-            <h1 className="hero-title">
-              <span className="shimmer">Free Online</span>
-              <br />
-              <span className="hero-title-accent">Developer Tools</span>
-            </h1>
-
-            <p className="hero-desc">
-              QR Code Generator, Image Compressor, Lorem Ipsum, Password Checker, URL Slug & more.{" "}
-              <strong style={{ color: "#c4b5fd" }}>All tools free. No sign-up required. No downloads needed.</strong>
-            </p>
-
-            {/* Search Bar */}
-            <div style={{ position: "relative", maxWidth: "500px", marginBottom: "1.5rem" }}>
-              <div style={{ position: "relative" }}>
-                <svg style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)", color: "#c4b5fd" }} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search 35+ tools..."
-                  value={search}
-                  onChange={e => { setSearch(e.target.value); setShowResults(true); }}
-                  onFocus={() => setShowResults(true)}
-                  onBlur={() => setTimeout(() => setShowResults(false), 200)}
-                  style={{
-                    width: "100%",
-                    padding: "1rem 1rem 1rem 3rem",
-                    borderRadius: "1rem",
-                    border: "1px solid rgba(168,124,246,0.3)",
-                    background: "rgba(30,27,75,0.6)",
-                    color: "#ede9ff",
-                    fontSize: "1rem",
-                    outline: "none",
-                  }}
-                />
-              </div>
-              {/* Search Results Dropdown */}
-              {showResults && search.trim() && (
-                <div style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  right: 0,
-                  marginTop: "0.5rem",
-                  borderRadius: "1rem",
-                  border: "1px solid rgba(168,124,246,0.3)",
-                  background: "rgba(22,11,46,0.98)",
-                  backdropFilter: "blur(20px)",
-                  overflow: "hidden",
-                  zIndex: 100,
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-                }}>
-                  {searchResults.length > 0 ? (
-                    searchResults.map(tool => (
-                      <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
-                        <div style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.75rem",
-                          padding: "0.85rem 1rem",
-                          borderBottom: "1px solid rgba(168,124,246,0.15)",
-                          cursor: "pointer",
-                          transition: "background 0.2s",
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.background = "rgba(139,92,246,0.2)")}
-                        onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
-                        >
-                          <span style={{ fontSize: "1.5rem" }}>{tool.icon}</span>
-                          <div>
-                            <div style={{ color: "#ede9ff", fontWeight: 600, fontSize: "0.95rem" }}>{tool.name}</div>
-                            <div style={{ color: "rgba(220,210,255,0.6)", fontSize: "0.8rem" }}>{tool.desc}</div>
-                          </div>
+        {/* Search */}
+        <div className="search-wrapper">
+          <div className="search-box">
+            <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search tools... (e.g. JSON, Base64, Hash)"
+              value={search}
+              onChange={e => { setSearch(e.target.value); setShowResults(true); }}
+              onFocus={() => setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 150)}
+            />
+          </div>
+          
+          {showResults && search.trim() && (
+            <div className="search-results">
+              {searchResults.length > 0 ? (
+                <>
+                  {searchResults.map(tool => (
+                    <Link key={tool.id} href={tool.href} onClick={() => { setSearch(""); setShowResults(false); }}>
+                      <div className="search-result-item">
+                        <span className="result-icon">{tool.icon}</span>
+                        <div>
+                          <div className="result-name">{tool.name}</div>
+                          <div className="result-desc">{tool.desc}</div>
                         </div>
-                      </Link>
-                    ))
-                  ) : (
-                    <div style={{ padding: "1.5rem", textAlign: "center", color: "rgba(220,210,255,0.6)" }}>
-                      No tools found for "{search}"
-                    </div>
-                  )}
-                  <Link href="/tools" style={{ textDecoration: "none" }}>
-                    <div style={{ padding: "0.75rem", textAlign: "center", color: "#c4b5fd", fontSize: "0.9rem", fontWeight: 600, background: "rgba(139,92,246,0.15)" }}>
-                      View all {tools.length} tools →
-                    </div>
+                      </div>
+                    </Link>
+                  ))}
+                  <Link href={`/tools?q=${search}`} className="search-all" onClick={() => { setSearch(""); setShowResults(false); }}>
+                    View all results →
                   </Link>
-                </div>
+                </>
+              ) : (
+                <div className="search-empty">No tools found for "{search}"</div>
               )}
             </div>
-
-            <div className="hero-actions">
-              <Link href="/tools" style={{ textDecoration: "none" }}>
-                <button className="btn-primary-hero">
-                  🛠️ Browse All Tools
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="hero-right">
-            <div className="tools-header">
-              <h2 className="tools-title">
-                17+ Developer <span className="gradient-text">Tools</span>
-              </h2>
-              <p className="tools-subtitle">
-                Format, validate, encode, decode, and analyze instantly.
-              </p>
-            </div>
-
-            <div className="tools-grid">
-              {toolsList.slice(0, 12).map(tool => (
-                <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
-                  <div className="tool-card">
-                    <div
-                      className="tool-card-bar"
-                      style={{ background: `linear-gradient(90deg, transparent, ${tool.color}, transparent)` }}
-                    />
-                    <div className="tool-icon">{tool.icon}</div>
-                    <div className="tool-category" style={{ color: tool.color }}>{tool.category}</div>
-                    <div className="tool-name">{tool.name}</div>
-                    <div className="tool-desc">{tool.desc}</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            <Link href="/tools" style={{ textDecoration: "none" }}>
-              <button className="btn-all-tools">
-                🔧 View All 17 Tools →
-              </button>
-            </Link>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="stats-section">
-        <div className="stats-inner glass-card">
-          {stats.map((s, i) => (
-            <div key={i} className="stat-item" style={{ borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none" }}>
-              <div className="stat-icon">{s.icon}</div>
-              <div className="gradient-text stat-value">{s.value}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Trending Tools */}
+      {/* Popular Tools */}
       <section className="section">
         <div className="section-header">
-          <div className="section-eyebrow">Most Popular</div>
-          <h2 className="section-title">
-            Trending <span className="gradient-text">Tools</span>
-          </h2>
-          <p className="section-subtitle">The tools developers use most — all free, all instant</p>
+          <h2 className="section-title">Most Popular</h2>
+          <p className="section-subtitle">Tools developers use every day</p>
         </div>
-
-        <div className="trending-grid">
-          {trendingTools.map(tool => (
-            <Link key={tool.id} href={tool.href} style={{ textDecoration: "none" }}>
-              <div className="trending-card glass-card">
-                <div className="trending-tag" style={{ background: `${tool.color}18`, border: `1px solid ${tool.color}40`, color: tool.color }}>
-                  {tool.tag}
-                </div>
-                <div className="trending-icon">{tool.icon}</div>
-                <div className="trending-name">{tool.name}</div>
-                <div className="trending-arrow" style={{ color: tool.color }}>→</div>
+        
+        <div className="popular-grid">
+          {popularTools.map(tool => (
+            <Link key={tool.id} href={tool.href}>
+              <div className="popular-card" style={{ "--accent": tool.color } as React.CSSProperties}>
+                <div className="popular-icon">{tool.icon}</div>
+                <div className="popular-name">{tool.name}</div>
+                <div className="popular-desc">{tool.desc}</div>
+                <div className="popular-arrow">→</div>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Quick Categories */}
       <section className="section section-alt">
         <div className="section-header">
-          <div className="section-eyebrow">Capabilities</div>
-          <h2 className="section-title">
-            Why <span className="gradient-text-2">AI-EditPro</span>?
-          </h2>
-          <p className="section-subtitle">Everything you need for file conversion & developer tools</p>
+          <h2 className="section-title">Browse by Category</h2>
+          <p className="section-subtitle">Find the right tool for your task</p>
         </div>
+        
+        <div className="category-grid">
+          <Link href="/tools?category=Security" className="category-card">
+            <div className="cat-icon">🔒</div>
+            <div className="cat-name">Security</div>
+            <div className="cat-count">8 tools</div>
+          </Link>
+          <Link href="/tools?category=Data" className="category-card">
+            <div className="cat-icon">📊</div>
+            <div className="cat-name">Data</div>
+            <div className="cat-count">5 tools</div>
+          </Link>
+          <Link href="/tools?category=Encoding" className="category-card">
+            <div className="cat-icon">🔤</div>
+            <div className="cat-name">Encoding</div>
+            <div className="cat-count">4 tools</div>
+          </Link>
+          <Link href="/tools?category=Code" className="category-card">
+            <div className="cat-icon">💻</div>
+            <div className="cat-name">Code</div>
+            <div className="cat-count">4 tools</div>
+          </Link>
+          <Link href="/tools?category=Generator" className="category-card">
+            <div className="cat-icon">🎲</div>
+            <div className="cat-name">Generator</div>
+            <div className="cat-count">7 tools</div>
+          </Link>
+          <Link href="/tools?category=Utility" className="category-card">
+            <div className="cat-icon">🛠️</div>
+            <div className="cat-name">Utility</div>
+            <div className="cat-count">8 tools</div>
+          </Link>
+        </div>
+        
+        <div className="view-all-wrap">
+          <Link href="/tools" className="view-all-btn">View All 40+ Tools →</Link>
+        </div>
+      </section>
 
+      {/* Features */}
+      <section className="section">
+        <div className="section-header">
+          <h2 className="section-title">Why Developers Love Us</h2>
+        </div>
+        
         <div className="features-grid">
-          {features.map(f => (
-            <div key={f.title} className="feature-card glass-card">
-              <div className="feature-icon" style={{ background: f.gradient }}>{f.icon}</div>
-              <h3 className="feature-title">{f.title}</h3>
-              <p className="feature-desc">{f.desc}</p>
-            </div>
-          ))}
+          <div className="feature-item">
+            <div className="feature-icon">⚡</div>
+            <h3>Lightning Fast</h3>
+            <p>All tools process instantly in your browser. No uploads, no waiting.</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-icon">🔒</div>
+            <h3>Privacy First</h3>
+            <p>Your data never leaves your device. 100% client-side processing.</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-icon">💯</div>
+            <h3>Always Free</h3>
+            <p>No signup, no limits, no premium tiers. Every tool is free forever.</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-icon">📱</div>
+            <h3>Works Everywhere</h3>
+            <p>Responsive design works perfectly on desktop, tablet, and mobile.</p>
+          </div>
         </div>
       </section>
 
-      {/* What is AI Edit Pro Section */}
+      {/* CTA */}
       <section className="section">
-        <div className="section-header">
-          <div className="section-eyebrow">About</div>
-          <h2 className="section-title">
-            What is <span className="gradient-text">AI Edit Pro</span>?
-          </h2>
-          <p className="section-subtitle">
-            A comprehensive suite of free online developer tools designed for productivity, efficiency, and privacy.
-          </p>
-        </div>
-
-        <div className="about-content glass-card" style={{ padding: "3rem", margin: "0 auto", maxWidth: "1000px" }}>
-          <p style={{ fontSize: "1.1rem", lineHeight: "1.9", color: "rgba(220,210,255,0.9)", marginBottom: "1.5rem", textAlign: "center" }}>
-            <strong style={{ color: "#a78bfa" }}>AI Edit Pro</strong> is a collection of 35+ professional-grade developer tools that work entirely in your browser.
-            No registration, no downloads, no data collection. Just fast, reliable, and secure tools for developers, designers,
-            content creators, and anyone who values their privacy.
-          </p>
-          <p style={{ fontSize: "1rem", lineHeight: "1.8", color: "rgba(220,210,255,0.75)", textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
-            From QR code generation to JSON formatting, password generation to image compression, our tools handle everyday tasks
-            that would otherwise require multiple software installations or expensive subscriptions. Everything runs client-side,
-            meaning your data never leaves your device.
-          </p>
-        </div>
-      </section>
-
-      {/* Tool Categories Section */}
-      <section className="section section-alt">
-        <div className="section-header">
-          <div className="section-eyebrow">Browse by Category</div>
-          <h2 className="section-title">
-            Tool <span className="gradient-text">Categories</span>
-          </h2>
-          <p className="section-subtitle">
-            Find the right tool for your task, organized by category
-          </p>
-        </div>
-
-        <div className="categories-grid">
-          <Link href="/tools?category=converter" style={{ textDecoration: "none" }}>
-            <div className="category-card glass-card">
-              <div className="category-icon">🔄</div>
-              <h3 className="category-title">File Converters</h3>
-              <p className="category-desc">PDF, DOCX, images & more</p>
-              <div className="category-count">8+ tools</div>
-            </div>
-          </Link>
-
-          <Link href="/tools?category=formatter" style={{ textDecoration: "none" }}>
-            <div className="category-card glass-card">
-              <div className="category-icon">🎨</div>
-              <h3 className="category-title">Formatters</h3>
-              <p className="category-desc">JSON, HTML, CSS, SQL</p>
-              <div className="category-count">12+ tools</div>
-            </div>
-          </Link>
-
-          <Link href="/tools?category=encoder" style={{ textDecoration: "none" }}>
-            <div className="category-card glass-card">
-              <div className="category-icon">🔐</div>
-              <h3 className="category-title">Encoders & Generators</h3>
-              <p className="category-desc">Base64, JWT, Hash, UUID</p>
-              <div className="category-count">10+ tools</div>
-            </div>
-          </Link>
-
-          <Link href="/tools?category=security" style={{ textDecoration: "none" }}>
-            <div className="category-card glass-card">
-              <div className="category-icon">🔒</div>
-              <h3 className="category-title">Security Tools</h3>
-              <p className="category-desc">Passwords, validation</p>
-              <div className="category-count">5+ tools</div>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="section">
-        <div className="section-header">
-          <div className="section-eyebrow">Benefits</div>
-          <h2 className="section-title">
-            Why Choose <span className="gradient-text">AI Edit Pro</span>?
-          </h2>
-          <p className="section-subtitle">
-            Built for developers, by developers. Here's what sets us apart.
-          </p>
-        </div>
-
-        <div className="why-choose-grid">
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">100% Free Forever</h4>
-              <p className="why-choose-desc">No hidden fees, no premium tiers, no credit card required. All 35+ tools are completely free.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Privacy-First</h4>
-              <p className="why-choose-desc">All processing happens in your browser. Your data never leaves your device or touches our servers.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Lightning Fast</h4>
-              <p className="why-choose-desc">Instant results with no uploads or downloads. Optimized for speed and performance.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">No Registration</h4>
-              <p className="why-choose-desc">Jump right in and start using tools immediately. No accounts, no emails, no hassle.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Regular Updates</h4>
-              <p className="why-choose-desc">New tools added monthly based on user feedback and emerging developer needs.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Open Source</h4>
-              <p className="why-choose-desc">Transparent, community-driven development. Contribute on GitHub.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Mobile Responsive</h4>
-              <p className="why-choose-desc">Works perfectly on desktop, tablet, and mobile. Any device, anywhere.</p>
-            </div>
-          </div>
-          <div className="why-choose-item">
-            <div className="why-choose-icon">✓</div>
-            <div>
-              <h4 className="why-choose-title">Developer-Friendly</h4>
-              <p className="why-choose-desc">Built by developers for developers. Clean APIs, good docs, practical tools.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="section section-alt">
-        <div className="section-header">
-          <div className="section-eyebrow">FAQ</div>
-          <h2 className="section-title">
-            Frequently Asked <span className="gradient-text">Questions</span>
-          </h2>
-          <p className="section-subtitle">
-            Everything you need to know about AI Edit Pro
-          </p>
-        </div>
-
-        <div className="faq-container">
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>Is AI Edit Pro really free?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              Yes! AI Edit Pro is completely free with no hidden costs. All 35+ tools are available forever without registration,
-              subscriptions, or usage limits. We believe developer tools should be accessible to everyone.
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>Do you store or collect my data?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              No. All tools process data directly in your browser using client-side JavaScript. Nothing is uploaded to our servers.
-              Your files, passwords, and data remain completely private on your device.
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>How accurate are the tools?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              Our tools use industry-standard algorithms and are regularly tested for accuracy. For example, our hash generators
-              produce the same results as popular tools like OpenSSL. We also validate JSON, XML, and other formats.
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>Can I use these tools commercially?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              Absolutely! AI Edit Pro tools are free for personal and commercial use. You can use generated passwords,
-              compressed images, formatted code, and other outputs in any project without restrictions.
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>What browsers are supported?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              All modern browsers including Chrome, Firefox, Safari, Edge, and Opera. For the best experience,
-              we recommend using the latest version of your preferred browser. Mobile browsers work great too!
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>How often do you add new tools?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              We add new tools monthly based on user feedback and popular requests. Have an idea for a tool?
-              Head over to our contact page and let us know! We're always looking to expand the toolkit.
-            </div>
-          </div>
-
-          <div className="faq-item glass-card">
-            <div className="faq-question">
-              <span>Are there any file size limits?</span>
-              <span className="faq-toggle">+</span>
-            </div>
-            <div className="faq-answer">
-              Limits vary by tool, but we aim to handle files up to 50MB for image compression and other large file tools.
-              Since everything runs in your browser, practical limits depend on your device's available memory.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-card glass-card">
-          <div className="cta-content">
-            <h2 className="cta-title">Ready to Transform Your Files?</h2>
-            <p className="cta-subtitle">Start converting now. No credit card required.</p>
-            <Link href="/converter" style={{ textDecoration: "none" }}>
-              <button className="btn-cta">
-                🚀 Get Started Free
-              </button>
-            </Link>
-          </div>
+        <div className="cta-box">
+          <h2>Ready to boost your productivity?</h2>
+          <p>Start using our free tools right now. No credit card needed.</p>
+          <Link href="/tools" className="cta-btn">Get Started Free →</Link>
         </div>
       </section>
 
@@ -523,287 +194,134 @@ export default function Home() {
       <footer className="footer">
         <div className="footer-inner">
           <div className="footer-grid">
-            <div className="footer-brand">
+            <div>
               <div className="footer-logo">
-                <div className="logo-icon">
-                  <span>AI</span>
-                </div>
-                <span className="footer-brand-name">
-                  <span className="gradient-text">AIEdit</span>
-                  <span style={{ color: "rgba(255,255,255,0.9)" }}>Pro</span>
-                </span>
+                <span className="logo-icon">AI</span>
+                <span className="logo-text"><span className="gradient-text">AIEdit</span>Pro</span>
               </div>
-              <p className="footer-brand-desc">
-                AI-powered file conversion & developer tools for productivity.
-              </p>
+              <p className="footer-desc">Free online developer tools for everyone.</p>
             </div>
-
             <div className="footer-col">
-              <div className="footer-col-title">Product</div>
-              <div className="footer-link-wrap">
-                <Link href="/converter" className="footer-link">Converter</Link>
-              </div>
-              <div className="footer-link-wrap">
-                <Link href="/tools" className="footer-link">Tools</Link>
-              </div>
+              <div className="footer-col-title">Tools</div>
+              <Link href="/tools">All Tools</Link>
+              <Link href="/tools?category=Code">Code Tools</Link>
+              <Link href="/tools?category=Security">Security</Link>
             </div>
-
             <div className="footer-col">
-              <div className="footer-col-title">Support</div>
-              <div className="footer-link-wrap">
-                <Link href="/contact" className="footer-link">Contact Us</Link>
-              </div>
-              <div className="footer-link-wrap">
-                <Link href="/privacy-policy" className="footer-link">Privacy</Link>
-              </div>
-              <div className="footer-link-wrap">
-                <Link href="/terms-conditions" className="footer-link">Terms</Link>
-              </div>
+              <div className="footer-col-title">Resources</div>
+              <Link href="/blog">Blog</Link>
+              <Link href="/faq">FAQ</Link>
+              <Link href="/about">About</Link>
             </div>
           </div>
-
           <div className="footer-bottom">
-            <span className="footer-copy">
-              © 2026 <span className="gradient-text">AI-EditPro</span> — File Conversion & Developer Tools
-            </span>
+            © 2026 AI-EditPro — Free Forever
           </div>
         </div>
       </footer>
 
-      {/* Back to Top Button */}
-      <button
-        className={`back-to-top ${showBackToTop ? 'visible' : ''}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        title="Back to Top"
-      >
-        ↑
-      </button>
-
       <style>{`
-        .page-root { min-height: 100vh; padding-top: 80px; background: transparent; }
-        .glass-card { background: rgba(139, 92, 246, 0.08); backdrop-filter: blur(15px); border: 1px solid rgba(168, 124, 246, 0.25); border-radius: 1.25rem; }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes shimmer { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
-        .fade-up { animation: fadeInUp 0.7s ease-out both; }
-        .shimmer { animation: shimmer 2.5s ease-in-out infinite; }
-
-        .hero-section { max-width: 1360px; margin: 0 auto; padding: 5rem 2rem 6rem; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .hero-badge { margin-bottom: 1.75rem; display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); border-radius: 9999px; color: #6ee7b7; font-size: 0.9rem; font-weight: 600; }
-        .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse-glow 2.5s ease-in-out infinite; flex-shrink: 0; }
-        .hero-title { font-size: clamp(2.6rem, 4.5vw, 4.2rem); font-weight: 950; line-height: 1.05; letter-spacing: -0.05em; margin-bottom: 1.5rem; color: #f0f0ff; }
-        .hero-title-accent { background: linear-gradient(135deg, #a78bfa, #e879f9, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 950; }
-        .hero-desc { font-size: 1.1rem; color: rgba(220,210,255,0.88); margin-bottom: 2.5rem; line-height: 1.8; max-width: 480px; }
-
-        .hero-actions { display: flex; justify-content: center; margin-bottom: 2.5rem; }
-        .btn-primary-hero { padding: 1rem 2.2rem; border-radius: 0.9rem; border: none; background: linear-gradient(135deg, #a78bfa, #c084fc, #e879f9); color: #fff; cursor: pointer; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.02em; transition: all 0.3s; box-shadow: 0 12px 40px rgba(139,92,246,0.4); }
-        .btn-primary-hero:hover { transform: translateY(-4px); box-shadow: 0 18px 60px rgba(139,92,246,0.55); }
-
-        .format-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-        .format-pill { padding: 0.4rem 0.95rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; cursor: default; }
-        .format-pill:hover { transform: translateY(-2px); }
-
-        .trust-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .trust-badge { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-radius: 0.9rem; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); backdrop-filter: blur(10px); transition: all 0.2s; }
-        .trust-badge:hover { background: rgba(34,197,94,0.18); transform: translateY(-2px); }
-        .trust-icon { font-size: 1.3rem; }
-        .trust-title { font-size: 0.8rem; font-weight: 800; color: #86efac; text-transform: uppercase; letter-spacing: 0.05em; }
-        .trust-sub { font-size: 0.8rem; color: rgba(220,210,255,0.68); margin-top: 0.15rem; }
-
-        .tools-header { margin-bottom: 1.5rem; }
-        .tools-title { font-size: 1.9rem; font-weight: 900; color: #f0f0ff; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-        .tools-subtitle { color: rgba(220,210,255,0.75); font-size: 0.95rem; font-weight: 500; }
-        .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-        .tool-card { padding: 1.2rem 1rem; border-radius: 1rem; border: 1.5px solid rgba(168,124,246,0.22); background: rgba(139, 92, 246, 0.08); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.3s; text-align: center; position: relative; overflow: hidden; }
-        .tool-card:hover { background: rgba(139, 92, 246, 0.18); border-color: rgba(168,124,246,0.65); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(139,92,246,0.25); }
-        .tool-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 2.5px; opacity: 0; transition: opacity 0.3s; }
-        .tool-card:hover .tool-card-bar { opacity: 1; }
-        .tool-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
-        .tool-category { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
-        .tool-name { font-size: 0.82rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.25rem; }
-        .tool-desc { font-size: 0.72rem; color: rgba(220,210,255,0.65); line-height: 1.5; }
-        .btn-all-tools { width: 100%; padding: 1rem; border-radius: 0.9rem; border: 1.5px solid rgba(139,92,246,0.45); background: rgba(139,92,246,0.12); color: #c4b5fd; cursor: pointer; font-weight: 700; font-size: 0.95rem; transition: all 0.3s; }
-        .btn-all-tools:hover { background: rgba(139,92,246,0.25); border-color: rgba(139,92,246,0.8); transform: translateY(-3px); }
-
-        .stats-section { max-width: 1360px; margin: 0 auto 6rem; padding: 0 2rem; }
-        .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(236,72,153,0.08)); border-radius: 1.25rem; }
-        .stat-item { padding: 2.5rem 2rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-        .stat-icon { font-size: 1.8rem; }
-        .stat-value { font-size: 2.4rem; font-weight: 950; letter-spacing: -0.02em; }
-        .stat-label { font-size: 0.85rem; color: rgba(220,210,255,0.78); font-weight: 600; }
-
-        .section { max-width: 1360px; margin: 0 auto 7rem; padding: 0 2rem; }
-        .section-alt { background: transparent; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: #a78bfa; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.35); padding: 0.4rem 1rem; border-radius: 9999px; margin-bottom: 1.25rem; }
-        .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 950; letter-spacing: -0.04em; margin-bottom: 1rem; color: #f0f0ff; }
-        .section-subtitle { color: rgba(220,210,255,0.78); font-size: 1.05rem; font-weight: 500; max-width: 520px; margin: 0 auto; line-height: 1.7; }
-
-        .trending-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-        .trending-card { padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; transition: all 0.3s; background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.03)); position: relative; overflow: hidden; }
-        .trending-card:hover { transform: translateY(-5px); background: rgba(139,92,246,0.14); border-color: rgba(168,124,246,0.5); box-shadow: 0 16px 40px rgba(139,92,246,0.2); }
-        .trending-tag { position: absolute; top: 0.75rem; right: 0.75rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.05em; padding: 0.2rem 0.6rem; border-radius: 9999px; }
-        .trending-icon { font-size: 2rem; flex-shrink: 0; }
-        .trending-name { font-size: 0.95rem; font-weight: 700; color: #ede9ff; flex: 1; }
-        .trending-arrow { font-size: 1.2rem; font-weight: 800; flex-shrink: 0; transition: transform 0.2s; }
-        .trending-card:hover .trending-arrow { transform: translateX(4px); }
-
-        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; align-items: start; position: relative; }
-        .step-wrapper { position: relative; display: flex; align-items: center; }
-        .step-card { padding: 2.5rem 2rem; text-align: center; background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(139,92,246,0.05)); backdrop-filter: blur(15px); flex: 1; transition: all 0.3s; position: relative; overflow: hidden; }
-        .step-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(139,92,246,0.25), 0 0 0 1.5px rgba(139,92,246,0.3); }
-        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(168,124,246,0.2)); border: 2px solid rgba(168,124,246,0.55); font-size: 0.75rem; font-weight: 850; color: #a78bfa; letter-spacing: 0.08em; margin: 0 auto 1rem; }
-        .step-icon { font-size: 2.6rem; margin-bottom: 0.9rem; }
-        .step-title { font-size: 1.1rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.65rem; }
-        .step-desc { font-size: 0.88rem; color: rgba(220,210,255,0.8); line-height: 1.65; margin: 0; }
-        .step-arrow { position: absolute; right: -1.3rem; top: 50%; transform: translateY(-50%); color: rgba(139,92,246,0.5); font-size: 1.6rem; z-index: 2; pointer-events: none; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .feature-card { padding: 2.25rem 1.75rem; background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(139,92,246,0.03)); backdrop-filter: blur(12px); cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(139,92,246,0.2); }
-        .feature-icon { width: 56px; height: 56px; border-radius: 0.9rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1rem; }
-        .feature-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.65rem; color: #f0f0ff; }
-        .feature-desc { font-size: 0.88rem; color: rgba(220,210,255,0.78); line-height: 1.65; margin: 0; }
-
-        .about-content { text-align: center; }
-
-        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .category-card { padding: 2.5rem 2rem; text-align: center; transition: all 0.3s; cursor: pointer; }
-        .category-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(139,92,246,0.2); }
-        .category-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .category-title { font-size: 1.1rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.5rem; }
-        .category-desc { font-size: 0.9rem; color: rgba(220,210,255,0.7); margin-bottom: 0.75rem; }
-        .category-count { font-size: 0.8rem; color: #a78bfa; font-weight: 700; }
-
-        .why-choose-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-        .why-choose-item { display: flex; gap: 1rem; align-items: flex-start; }
-        .why-choose-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.2); border: 2px solid rgba(16,185,129,0.5); color: #6ee7b7; display: flex; align-items: center; justify-content: center; font-weight: 900; flex-shrink: 0; }
-        .why-choose-title { font-size: 1rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.4rem; }
-        .why-choose-desc { font-size: 0.88rem; color: rgba(220,210,255,0.75); line-height: 1.6; margin: 0; }
-
-        .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-        .faq-item { padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
-        .faq-item:hover { background: rgba(139,92,246,0.12); }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 700; color: #f0f0ff; }
-        .faq-toggle { font-size: 1.5rem; color: #a78bfa; font-weight: 300; }
-        .faq-answer { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(168,124,246,0.2); font-size: 0.95rem; color: rgba(220,210,255,0.8); line-height: 1.7; display: none; }
-        .faq-item:hover .faq-answer { display: block; }
-        .faq-item:hover .faq-toggle { transform: rotate(45deg); }
-
-        .cta-section { max-width: 1360px; margin: 0 auto 7rem; padding: 0 2rem; }
-        .cta-card { padding: 4rem 3rem; text-align: center; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(236,72,153,0.1)); backdrop-filter: blur(20px); position: relative; overflow: hidden; }
-        .cta-card::before { content: ''; position: absolute; top: -50%; left: 50%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.3), transparent); transform: translateX(-50%); pointer-events: none; }
-        .cta-content { position: relative; z-index: 2; }
-        .cta-title { font-size: 2.4rem; font-weight: 950; letter-spacing: -0.03em; margin-bottom: 0.75rem; color: #f0f0ff; }
-        .cta-subtitle { font-size: 1.05rem; color: rgba(220,210,255,0.8); margin-bottom: 2rem; }
-        .btn-cta { padding: 1.1rem 2.5rem; border-radius: 0.95rem; border: none; background: linear-gradient(135deg, #a78bfa, #e879f9); color: #fff; cursor: pointer; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; transition: all 0.3s; box-shadow: 0 12px 40px rgba(139,92,246,0.4); }
-        .btn-cta:hover { transform: translateY(-4px); box-shadow: 0 18px 60px rgba(139,92,246,0.55); }
-
-        .footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 5rem 2rem 3rem; background: rgba(15,23,42,0.95); backdrop-filter: blur(20px); }
-        .footer-inner { max-width: 1360px; margin: 0 auto; }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
-        .footer-logo { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
-        .logo-icon { width: 28px; height: 28px; border-radius: 8px; font-size: 11px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a78bfa, #e879f9); }
-        .footer-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -0.01em; }
-        .footer-brand-desc { font-size: 0.85rem; color: rgba(220,210,255,0.6); line-height: 1.7; max-width: 240px; }
-        .footer-col-title { font-size: 0.75rem; font-weight: 800; color: rgba(220,210,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
-        .footer-link-wrap { margin-bottom: 0.8rem; }
-        .footer-link { font-size: 0.9rem; color: rgba(220,210,255,0.7); text-decoration: none; transition: color 0.2s; font-weight: 500; }
-        .footer-link:hover { color: #c4b5fd; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2.5rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; }
-        .footer-copy { font-size: 0.85rem; color: rgba(220,210,255,0.5); font-weight: 500; }
-
-        .gradient-text { background: linear-gradient(135deg, #a78bfa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .gradient-text-2 { background: linear-gradient(135deg, #e879f9, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
+        .page-root { min-height: 100vh; background: var(--bg-primary); }
         .scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.05); z-index: 9999; }
-        .back-to-top { position: fixed; bottom: 2rem; left: 2rem; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa, #e879f9); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(139,92,246,0.4); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s; z-index: 1000; }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(139,92,246,0.6); }
-
-        @media (max-width: 1024px) {
-          .features-grid { grid-template-columns: repeat(2, 1fr); }
-          .steps-grid { grid-template-columns: repeat(2, 1fr); }
-          .step-arrow { display: none; }
-          .footer-grid { grid-template-columns: 1.5fr 1fr; }
-          .hero-grid { gap: 3.5rem; }
-          .trending-grid { grid-template-columns: repeat(2, 1fr); }
-          .categories-grid { grid-template-columns: repeat(2, 1fr); }
-          .why-choose-grid { grid-template-columns: 1fr; }
-        }
+        
+        /* Hero */
+        .hero-section { text-align: center; padding: 5rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.35); border-radius: 9999px; color: #a78bfa; font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem; }
+        .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 950; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero-desc { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2.5rem; line-height: 1.7; }
+        
+        /* Search */
+        .search-wrapper { max-width: 560px; margin: 0 auto; position: relative; }
+        .search-box { position: relative; }
+        .search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-box input { width: 100%; padding: 1.1rem 1.25rem 1.1rem 3.5rem; border-radius: 1rem; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem; outline: none; transition: border-color 0.2s; }
+        .search-box input:focus { border-color: var(--primary); }
+        .search-box input::placeholder { color: var(--text-muted); }
+        
+        .search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 100; }
+        .search-result-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s; }
+        .search-result-item:hover { background: rgba(139,92,246,0.1); }
+        .result-icon { font-size: 1.5rem; }
+        .result-name { font-weight: 600; color: var(--text-primary); }
+        .result-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .search-all { display: block; padding: 0.75rem; text-align: center; color: var(--primary); font-weight: 600; font-size: 0.9rem; background: rgba(139,92,246,0.1); }
+        .search-empty { padding: 1.5rem; text-align: center; color: var(--text-muted); }
+        
+        /* Sections */
+        .section { max-width: 1200px; margin: 0 auto 5rem; padding: 0 2rem; }
+        .section-alt { background: var(--bg-secondary); padding: 4rem 2rem; border-radius: 1.5rem; max-width: 1200px; margin-left: auto; margin-right: auto; margin-bottom: 5rem; }
+        .section-header { text-align: center; margin-bottom: 2.5rem; }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.2rem); font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
+        
+        /* Popular Grid */
+        .popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .popular-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; position: relative; transition: all 0.3s; cursor: pointer; }
+        .popular-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+        .popular-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .popular-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .popular-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+        .popular-arrow { position: absolute; top: 1.5rem; right: 1.5rem; color: var(--accent); font-size: 1.25rem; font-weight: 700; opacity: 0; transition: opacity 0.2s; }
+        .popular-card:hover .popular-arrow { opacity: 1; }
+        
+        /* Category Grid */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+        .category-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .category-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+        .cat-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .cat-name { font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .cat-count { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .view-all-wrap { text-align: center; margin-top: 2rem; }
+        .view-all-btn { display: inline-block; padding: 0.9rem 2rem; background: linear-gradient(135deg, #a78bfa, #c084fc); color: white; border-radius: 0.9rem; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
+        .view-all-btn:hover { transform: translateY(-2px); }
+        
+        /* Features */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .feature-item { text-align: center; padding: 2rem; }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-item h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .feature-item p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        
+        /* CTA */
+        .cta-box { text-align: center; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(236,72,153,0.1)); border: 1px solid rgba(139,92,246,0.25); border-radius: 1.5rem; padding: 3rem 2rem; }
+        .cta-box h2 { font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .cta-box p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .cta-btn { display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, #a78bfa, #e879f9); color: white; border-radius: 0.9rem; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: transform 0.2s; }
+        .cta-btn:hover { transform: translateY(-3px); }
+        
+        /* Footer */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 3rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #a78bfa, #e879f9); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; color: white; }
+        .logo-text { font-weight: 800; font-size: 1.1rem; }
+        .footer-desc { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-col-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem; }
+        .footer-col a { display: block; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.6rem; text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--primary); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        
+        .gradient-text { background: linear-gradient(135deg, #a78bfa, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-          .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
-          .stats-inner { grid-template-columns: repeat(2, 1fr); }
-          .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 2rem 1.5rem; }
-          .steps-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-          .features-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-          .trust-badges { grid-template-columns: 1fr; }
-          .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-          .cta-card { padding: 3rem 2rem; }
-          .trending-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-          .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+          .hero-section { padding: 4rem 1.5rem 3rem; }
+          .hero-title { font-size: 2rem; }
+          .hero-desc { font-size: 1rem; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+          .popular-grid { grid-template-columns: 1fr 1fr; }
+          .category-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-          .hero-section { padding: 6rem 1rem 3rem; }
-          .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-          .stats-inner { grid-template-columns: 1fr 1fr; }
-          .steps-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-          .features-grid { grid-template-columns: 1fr; gap: 1rem; }
-          .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-          .section { padding: 0 1rem; }
-          .hero-title { font-size: 1.8rem; }
-          .hero-badge { font-size: 0.8rem; padding: 0.5rem 1rem; }
-          .cta-card { padding: 2rem 1rem; }
-          .cta-title { font-size: 1.4rem; }
-          .trending-grid { grid-template-columns: 1fr; }
-          .hero-desc { font-size: 0.95rem; }
-          .section-title { font-size: 1.6rem; }
-          .section-subtitle { font-size: 0.9rem; }
-          .stats-section { padding: 0 1rem; }
-          .stat-value { font-size: 1.8rem; }
-          .categories-grid { grid-template-columns: 1fr; gap: 1rem; }
-          .category-card { padding: 2rem 1.5rem; }
+          .popular-grid { grid-template-columns: 1fr; }
+          .footer-grid { grid-template-columns: 1fr; }
+          .section-alt { padding: 2rem 1rem; border-radius: 1rem; }
         }
-
-        @media (max-width: 360px) {
-          .hero-title { font-size: 1.6rem; }
-          .tools-grid { grid-template-columns: 1fr; }
-          .btn-primary-hero { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
-        }
-
-        /* Light Mode */
-        [data-theme="light"] .hero-title { color: #0f0a1e; }
-        [data-theme="light"] .hero-title-accent { background: linear-gradient(135deg, #7c3aed, #db2777, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        [data-theme="light"] .hero-desc { color: rgba(30,27,75,0.85); }
-        [data-theme="light"] .hero-badge { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); color: #7c3aed; }
-        [data-theme="light"] .tools-title { color: #0f0a1e; }
-        [data-theme="light"] .tools-subtitle { color: rgba(30,27,75,0.7); }
-        [data-theme="light"] .tool-card { background: rgba(255,255,255,0.9); border-color: rgba(124,58,237,0.2); }
-        [data-theme="light"] .tool-card:hover { background: rgba(255,255,255,0.98); border-color: rgba(124,58,237,0.5); }
-        [data-theme="light"] .tool-name { color: #0f0a1e; }
-        [data-theme="light"] .tool-desc { color: rgba(30,27,75,0.7); }
-        [data-theme="light"] .btn-all-tools { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.3); color: #7c3aed; }
-        [data-theme="light"] .stat-label { color: rgba(30,27,75,0.7); }
-        [data-theme="light"] .section-title { color: #0f0a1e; }
-        [data-theme="light"] .section-subtitle { color: rgba(30,27,75,0.75); }
-        [data-theme="light"] .section-eyebrow { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.25); color: #7c3aed; }
-        [data-theme="light"] .trending-name { color: #0f0a1e; }
-        [data-theme="light"] .feature-title { color: #0f0a1e; }
-        [data-theme="light"] .feature-desc { color: rgba(30,27,75,0.75); }
-        [data-theme="light"] .cta-title { color: #0f0a1e; }
-        [data-theme="light"] .cta-subtitle { color: rgba(30,27,75,0.75); }
-        [data-theme="light"] .footer { background: rgba(248,245,255,0.95); border-color: rgba(124,58,237,0.1); }
-        [data-theme="light"] .footer-brand-desc { color: rgba(30,27,75,0.6); }
-        [data-theme="light"] .footer-col-title { color: rgba(30,27,75,0.5); }
-        [data-theme="light"] .footer-link { color: rgba(30,27,75,0.7); }
-        [data-theme="light"] .footer-link:hover { color: #7c3aed; }
-        [data-theme="light"] .footer-copy { color: rgba(30,27,75,0.5); }
-        [data-theme="light"] .gradient-text { background: linear-gradient(135deg, #7c3aed, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        [data-theme="light"] .gradient-text-2 { background: linear-gradient(135deg, #db2777, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        [data-theme="light"] .glass-card { background: rgba(255,255,255,0.9); border-color: rgba(124,58,237,0.2); }
-        [data-theme="light"] .stat-item { border-color: rgba(124,58,237,0.1) !important; }
       `}</style>
     </div>
   );
