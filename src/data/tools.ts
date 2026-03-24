@@ -43,7 +43,12 @@ export const tools: Tool[] = [
   { id: "percentage-calculator", name: "Percentage Calculator", icon: "🧮", desc: "Calculate percentages", category: "Math", href: "/tools/percentage-calculator", color: "#8b5cf6" },
   { id: "html-encoder", name: "HTML Encoder", icon: "🌐", desc: "Encode/decode HTML", category: "Encoding", href: "/tools/html-encoder", color: "#06b6d4" },
   { id: "json-to-yaml", name: "JSON ↔ YAML", icon: "🔄", desc: "Convert between formats", category: "Data", href: "/tools/json-to-yaml", color: "#ef4444" },
-  { id: "ai-code-review", name: "AI Code Review", icon: "🤖", desc: "AI-powered code analysis", category: "AI", href: "/tools/ai-code-review", color: "#8b5cf6" },
+  { id: "text-to-slug", name: "Text to Slug", icon: "🔗", desc: "Create SEO-friendly URLs", category: "SEO", href: "/tools/text-to-slug", color: "#8b5cf6" },
+  { id: "lorem-ipsum", name: "Lorem Ipsum", icon: "📝", desc: "Generate placeholder text", category: "Generator", href: "/tools/lorem-ipsum", color: "#06b6d4" },
+  { id: "binary-converter", name: "Binary Converter", icon: "💻", desc: "Binary to text converter", category: "Developer", href: "/tools/binary-converter", color: "#10b981" },
+  { id: "case-converter", name: "Case Converter", icon: "🔤", desc: "Convert text case formats", category: "Text", href: "/tools/case-converter", color: "#f59e0b" },
+  { id: "ip-lookup", name: "IP Lookup", icon: "🌐", desc: "Find IP address info", category: "Utility", href: "/tools/ip-lookup", color: "#ec4899" },
+  { id: "hash-md5", name: "MD5 Hash", icon: "🔑", desc: "Generate MD5 checksums", category: "Security", href: "/tools/hash-md5", color: "#ef4444" },
 ];
 
 export const categories = ["All", ...Array.from(new Set(tools.map(t => t.category))).sort()] as const;
