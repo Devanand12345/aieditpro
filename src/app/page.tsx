@@ -263,6 +263,247 @@ export default function Home() {
         </div>
       </section>
 
+      {/* What is AI Edit Pro Section */}
+      <section className="section">
+        <div className="section-header">
+          <div className="section-eyebrow">About</div>
+          <h2 className="section-title">
+            What is <span className="gradient-text">AI Edit Pro</span>?
+          </h2>
+          <p className="section-subtitle">
+            A comprehensive suite of free online developer tools designed for productivity, efficiency, and privacy.
+          </p>
+        </div>
+
+        <div className="about-content glass-card" style={{ padding: "3rem", margin: "0 auto", maxWidth: "1000px" }}>
+          <p style={{ fontSize: "1.1rem", lineHeight: "1.9", color: "rgba(220,210,255,0.9)", marginBottom: "1.5rem", textAlign: "center" }}>
+            <strong style={{ color: "#a78bfa" }}>AI Edit Pro</strong> is a collection of 35+ professional-grade developer tools that work entirely in your browser.
+            No registration, no downloads, no data collection. Just fast, reliable, and secure tools for developers, designers,
+            content creators, and anyone who values their privacy.
+          </p>
+          <p style={{ fontSize: "1rem", lineHeight: "1.8", color: "rgba(220,210,255,0.75)", textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
+            From QR code generation to JSON formatting, password generation to image compression, our tools handle everyday tasks
+            that would otherwise require multiple software installations or expensive subscriptions. Everything runs client-side,
+            meaning your data never leaves your device.
+          </p>
+        </div>
+      </section>
+
+      {/* Tool Categories Section */}
+      <section className="section section-alt">
+        <div className="section-header">
+          <div className="section-eyebrow">Browse by Category</div>
+          <h2 className="section-title">
+            Tool <span className="gradient-text">Categories</span>
+          </h2>
+          <p className="section-subtitle">
+            Find the right tool for your task, organized by category
+          </p>
+        </div>
+
+        <div className="categories-grid">
+          <Link href="/tools?category=converter" style={{ textDecoration: "none" }}>
+            <div className="category-card glass-card">
+              <div className="category-icon">🔄</div>
+              <h3 className="category-title">File Converters</h3>
+              <p className="category-desc">PDF, DOCX, images & more</p>
+              <div className="category-count">8+ tools</div>
+            </div>
+          </Link>
+
+          <Link href="/tools?category=formatter" style={{ textDecoration: "none" }}>
+            <div className="category-card glass-card">
+              <div className="category-icon">🎨</div>
+              <h3 className="category-title">Formatters</h3>
+              <p className="category-desc">JSON, HTML, CSS, SQL</p>
+              <div className="category-count">12+ tools</div>
+            </div>
+          </Link>
+
+          <Link href="/tools?category=encoder" style={{ textDecoration: "none" }}>
+            <div className="category-card glass-card">
+              <div className="category-icon">🔐</div>
+              <h3 className="category-title">Encoders & Generators</h3>
+              <p className="category-desc">Base64, JWT, Hash, UUID</p>
+              <div className="category-count">10+ tools</div>
+            </div>
+          </Link>
+
+          <Link href="/tools?category=security" style={{ textDecoration: "none" }}>
+            <div className="category-card glass-card">
+              <div className="category-icon">🔒</div>
+              <h3 className="category-title">Security Tools</h3>
+              <p className="category-desc">Passwords, validation</p>
+              <div className="category-count">5+ tools</div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="section">
+        <div className="section-header">
+          <div className="section-eyebrow">Benefits</div>
+          <h2 className="section-title">
+            Why Choose <span className="gradient-text">AI Edit Pro</span>?
+          </h2>
+          <p className="section-subtitle">
+            Built for developers, by developers. Here's what sets us apart.
+          </p>
+        </div>
+
+        <div className="why-choose-grid">
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">100% Free Forever</h4>
+              <p className="why-choose-desc">No hidden fees, no premium tiers, no credit card required. All 35+ tools are completely free.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Privacy-First</h4>
+              <p className="why-choose-desc">All processing happens in your browser. Your data never leaves your device or touches our servers.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Lightning Fast</h4>
+              <p className="why-choose-desc">Instant results with no uploads or downloads. Optimized for speed and performance.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">No Registration</h4>
+              <p className="why-choose-desc">Jump right in and start using tools immediately. No accounts, no emails, no hassle.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Regular Updates</h4>
+              <p className="why-choose-desc">New tools added monthly based on user feedback and emerging developer needs.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Open Source</h4>
+              <p className="why-choose-desc">Transparent, community-driven development. Contribute on GitHub.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Mobile Responsive</h4>
+              <p className="why-choose-desc">Works perfectly on desktop, tablet, and mobile. Any device, anywhere.</p>
+            </div>
+          </div>
+          <div className="why-choose-item">
+            <div className="why-choose-icon">✓</div>
+            <div>
+              <h4 className="why-choose-title">Developer-Friendly</h4>
+              <p className="why-choose-desc">Built by developers for developers. Clean APIs, good docs, practical tools.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section section-alt">
+        <div className="section-header">
+          <div className="section-eyebrow">FAQ</div>
+          <h2 className="section-title">
+            Frequently Asked <span className="gradient-text">Questions</span>
+          </h2>
+          <p className="section-subtitle">
+            Everything you need to know about AI Edit Pro
+          </p>
+        </div>
+
+        <div className="faq-container">
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>Is AI Edit Pro really free?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              Yes! AI Edit Pro is completely free with no hidden costs. All 35+ tools are available forever without registration,
+              subscriptions, or usage limits. We believe developer tools should be accessible to everyone.
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>Do you store or collect my data?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              No. All tools process data directly in your browser using client-side JavaScript. Nothing is uploaded to our servers.
+              Your files, passwords, and data remain completely private on your device.
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>How accurate are the tools?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              Our tools use industry-standard algorithms and are regularly tested for accuracy. For example, our hash generators
+              produce the same results as popular tools like OpenSSL. We also validate JSON, XML, and other formats.
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>Can I use these tools commercially?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              Absolutely! AI Edit Pro tools are free for personal and commercial use. You can use generated passwords,
+              compressed images, formatted code, and other outputs in any project without restrictions.
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>What browsers are supported?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              All modern browsers including Chrome, Firefox, Safari, Edge, and Opera. For the best experience,
+              we recommend using the latest version of your preferred browser. Mobile browsers work great too!
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>How often do you add new tools?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              We add new tools monthly based on user feedback and popular requests. Have an idea for a tool?
+              Head over to our contact page and let us know! We're always looking to expand the toolkit.
+            </div>
+          </div>
+
+          <div className="faq-item glass-card">
+            <div className="faq-question">
+              <span>Are there any file size limits?</span>
+              <span className="faq-toggle">+</span>
+            </div>
+            <div className="faq-answer">
+              Limits vary by tool, but we aim to handle files up to 50MB for image compression and other large file tools.
+              Since everything runs in your browser, practical limits depend on your device's available memory.
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-card glass-card">
@@ -425,6 +666,31 @@ export default function Home() {
         .feature-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.65rem; color: #f0f0ff; }
         .feature-desc { font-size: 0.88rem; color: rgba(220,210,255,0.78); line-height: 1.65; margin: 0; }
 
+        .about-content { text-align: center; }
+
+        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .category-card { padding: 2.5rem 2rem; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .category-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(139,92,246,0.2); }
+        .category-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .category-title { font-size: 1.1rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.5rem; }
+        .category-desc { font-size: 0.9rem; color: rgba(220,210,255,0.7); margin-bottom: 0.75rem; }
+        .category-count { font-size: 0.8rem; color: #a78bfa; font-weight: 700; }
+
+        .why-choose-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .why-choose-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .why-choose-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.2); border: 2px solid rgba(16,185,129,0.5); color: #6ee7b7; display: flex; align-items: center; justify-content: center; font-weight: 900; flex-shrink: 0; }
+        .why-choose-title { font-size: 1rem; font-weight: 800; color: #f0f0ff; margin-bottom: 0.4rem; }
+        .why-choose-desc { font-size: 0.88rem; color: rgba(220,210,255,0.75); line-height: 1.6; margin: 0; }
+
+        .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .faq-item { padding: 1.5rem; transition: all 0.3s; cursor: pointer; }
+        .faq-item:hover { background: rgba(139,92,246,0.12); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 700; color: #f0f0ff; }
+        .faq-toggle { font-size: 1.5rem; color: #a78bfa; font-weight: 300; }
+        .faq-answer { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(168,124,246,0.2); font-size: 0.95rem; color: rgba(220,210,255,0.8); line-height: 1.7; display: none; }
+        .faq-item:hover .faq-answer { display: block; }
+        .faq-item:hover .faq-toggle { transform: rotate(45deg); }
+
         .cta-section { max-width: 1360px; margin: 0 auto 7rem; padding: 0 2rem; }
         .cta-card { padding: 4rem 3rem; text-align: center; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(236,72,153,0.1)); backdrop-filter: blur(20px); position: relative; overflow: hidden; }
         .cta-card::before { content: ''; position: absolute; top: -50%; left: 50%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.3), transparent); transform: translateX(-50%); pointer-events: none; }
@@ -463,6 +729,8 @@ export default function Home() {
           .footer-grid { grid-template-columns: 1.5fr 1fr; }
           .hero-grid { gap: 3.5rem; }
           .trending-grid { grid-template-columns: repeat(2, 1fr); }
+          .categories-grid { grid-template-columns: repeat(2, 1fr); }
+          .why-choose-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -475,6 +743,7 @@ export default function Home() {
           .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
           .cta-card { padding: 3rem 2rem; }
           .trending-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+          .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
         }
         @media (max-width: 480px) {
           .hero-section { padding: 6rem 1rem 3rem; }
@@ -494,6 +763,8 @@ export default function Home() {
           .section-subtitle { font-size: 0.9rem; }
           .stats-section { padding: 0 1rem; }
           .stat-value { font-size: 1.8rem; }
+          .categories-grid { grid-template-columns: 1fr; gap: 1rem; }
+          .category-card { padding: 2rem 1.5rem; }
         }
 
         @media (max-width: 360px) {

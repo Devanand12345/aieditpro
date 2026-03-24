@@ -73,8 +73,8 @@ ${code}
     }
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 2048,
+      model: "claude-3-5-sonnet-20241022",
+      max_tokens: 4096,
       messages: [
         {
           role: "user",
@@ -89,10 +89,11 @@ ${code}
     }
 
     return NextResponse.json({ response: "No response from Claude" });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Claude API Error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to get response from Claude. Please try again." },
+      { error: `Failed to get response from Claude. Error: ${errorMessage}` },
       { status: 500 }
     );
   }
