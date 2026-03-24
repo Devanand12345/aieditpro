@@ -16,7 +16,7 @@ function Logo() {
       </div>
       <span style={{ fontSize: "1.15rem", fontWeight: 700, letterSpacing: "-0.02em" }}>
         <span className="gradient-text">AIEdit</span>
-        <span style={{ color: "rgba(255,255,255,0.92)" }}>Pro</span>
+        <span style={{ color: "var(--text-primary)" }}>Pro</span>
       </span>
     </Link>
   );
@@ -53,15 +53,15 @@ export default function Navbar() {
             }}
             title="Bookmark AI-EditPro"
             style={{
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              background: "var(--glass-bg)",
+              border: "1px solid var(--border)",
               borderRadius: "8px",
               padding: "0.5rem 0.75rem",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
-              color: "#c4b5fd",
+              color: "var(--primary)",
               fontSize: "0.8rem",
               fontWeight: 500,
               transition: "all 0.2s",
@@ -76,7 +76,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(o => !o)}
             className="mobile-menu-btn"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: "0.25rem", color: "rgba(220,210,255,0.88)" }}
+            style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: "0.25rem", color: "var(--text-primary)" }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {menuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
