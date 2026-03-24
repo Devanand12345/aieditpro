@@ -25,6 +25,8 @@ function Logo() {
 const navLinks = [
   { label: "Home",  href: "/" },
   { label: "Tools",  href: "/tools" },
+  { label: "Blog",  href: "/blog" },
+  { label: "FAQ",  href: "/faq" },
 ];
 
 export default function Navbar() {
